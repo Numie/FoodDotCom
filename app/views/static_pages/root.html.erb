@@ -1,6 +1,15 @@
 <script type="text/javascript">
+  <% if logged_in? %>
+    window.currentUser = <%= render(
+      'api/users/user.json.jbuilder',
+      user: current_user
+    ).html_safe %>
+  <% end %>
+</script>
+
+<script type="text/javascript">
   window.staticImages = {
-    name: '<%= asset_url('logo.jpeg') %>',
+    name: '<%= asset_url("logo.jpeg") %>',
   }
 </script>
 

@@ -14,7 +14,14 @@ export default class SessionModal extends React.Component {
 
   handlelogin(e) {
     e.preventDefault();
-    this.props.login();
+    const user = Object.assign({}, this.state);
+    this.props.login(user);
+  }
+
+  update(field) {
+    return(e) => {
+      this.setState({[field]: e.target.value});
+    };
   }
 
   render() {
@@ -24,8 +31,8 @@ export default class SessionModal extends React.Component {
         <h2 className='heading'>Sign in with your Food.com account</h2>
 
         <form className='session-form'>
-          <input type='email' placeholder='Email' value={this.state.email}/>
-          <input type='password' placeholder='Password' value={this.state.password}/>
+          <input type='email' placeholder='Email' value={this.state.email} onChange={this.update('email')}/>
+          <input type='password' placeholder='Password' value={this.state.password} onChange={this.update('password')}/>
           <input type='submit' value='Sign In' onClick={this.handlelogin}/>
           <input id='guest-login' type='submit' value='Guest Sign In'/>
           <h6>Don't have an account? <a>Create your account</a></h6>

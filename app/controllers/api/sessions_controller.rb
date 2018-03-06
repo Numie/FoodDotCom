@@ -8,7 +8,7 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login(@user)
-      #render current page
+      render 'api/users/show'
     else
       render json: ['Wrong email or password!'], status: 401
     end
@@ -17,7 +17,7 @@ class Api::SessionsController < ApplicationController
   def destroy
     if current_user
       logout
-      #render root
+      render json: {}
     else
       render json: ['You\'re already logged out!'], status: 400
     end

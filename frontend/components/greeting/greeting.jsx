@@ -19,7 +19,7 @@ class Greeting extends React.Component {
     if (currentUser !== null) {
       return (
         <div>
-          <h3>Welcome {currentUser.username}!</h3>
+          <h3>Welcome {currentUser.first_name}!</h3>
           <button className='session-button' onClick={this.handleLogout}>Log Out</button>
         </div>
       );

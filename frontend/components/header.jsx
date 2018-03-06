@@ -5,8 +5,8 @@ import GreetingContainer from './greeting/greeting_container';
 const Header = (props) => {
   return (
     <header className='header'>
-      <Link to='/' className='logo'>
-        <img src={window.staticImages.name} alt='FoodDotCom' />
+      <Link to='/'>
+        <img className='logo' src={window.staticImages.name} alt='FoodDotCom' />
       </Link>
       <GreetingContainer />
     </header>

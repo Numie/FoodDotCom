@@ -4,12 +4,11 @@
   align-items: center;
   height: 60px;
   padding: 10px 20px;
-  box-sizing: border-box;
   color: #2b8282;
   border: 1px solid gray;
 }
 
-.logo img {
+.logo {
   display: block;
   width: 105px;
 }
@@ -18,7 +17,6 @@
   padding: 8px 16px;
   border: 2px solid #2b8282;
   border-radius: 4px;
-  font-family: sans-serif;
-  font-weight: bold;
   font-size: 12px;
+  font-weight: bold;
 }

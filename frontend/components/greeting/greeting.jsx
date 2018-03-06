@@ -1,4 +1,5 @@
 import React from 'react';
+import SessionModalContainer from '../modals/session_modal_container';
 
 class Greeting extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class Greeting extends React.Component {
   }
 
   render() {
-    const { currentUser, logout } = this.props;
+    const { currentUser, logout, sessionModal, toggleModal } = this.props;
 
     if (currentUser !== null) {
       return (
@@ -25,7 +26,8 @@ class Greeting extends React.Component {
     } else {
       return (
         <div>
-          <button className='session-button' onClick={this.handleLogin}>Sign In</button>
+          <button className='session-button' onClick={toggleModal}>Sign In</button>
+          { sessionModal ? <SessionModalContainer /> : null }
         </div>
       );
     }

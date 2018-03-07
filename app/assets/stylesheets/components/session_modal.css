@@ -28,8 +28,9 @@
   align-items: center;
 }
 
-input[type="password"],
+input[type="text"],
 input[type="email"],
+input[type="password"],
 input[type='submit'] {
   margin: 10px 0;
   width: 400px;
@@ -37,8 +38,9 @@ input[type='submit'] {
   border-radius: 4px;
 }
 
-input[type="password"],
-input[type="email"] {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
   padding: 12px 16px;
   border: 2px solid rgba(0,0,0,.2);
 }
@@ -52,6 +54,7 @@ input[type='submit'] {
   font-weight: 400;
 }
 
+input[type="text"]:focus,
 input[type=email]:focus,
 input[type=password]:focus {
   box-shadow: 0 0 10px rgba(81, 150, 238, 1);

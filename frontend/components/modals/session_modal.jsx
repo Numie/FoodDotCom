@@ -38,9 +38,11 @@ export default class SessionModal extends React.Component {
     this.props.clearErrors();
   }
 
-  toggleSessionModal() {
-    this.props.toggleSessionModal();
-    this.props.clearErrors();
+  toggleSessionModal(e) {
+    if (e.target === e.currentTarget) {
+      this.props.toggleSessionModal();
+      this.props.clearErrors();
+    }
   }
 
   update(field) {

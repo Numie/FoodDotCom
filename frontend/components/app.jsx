@@ -7,7 +7,6 @@ const App = () => {
   return (
     <div>
       <Header />
-      <h1>What up world!</h1>
     </div>
   );
 };

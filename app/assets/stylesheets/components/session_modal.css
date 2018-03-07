@@ -16,6 +16,10 @@
   z-index: 2;
 }
 
+.session-modal .logo {
+  margin: -20px 0;
+}
+
 .heading {
   color: black;
   font-size: 20px;
@@ -95,6 +99,7 @@
   display: block;
   color: black;
   font-size: 14px;
+  margin-bottom: 20px;
 }
 
 .session-modal .x-close {

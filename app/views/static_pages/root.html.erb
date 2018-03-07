@@ -1,17 +1,15 @@
 <script type="text/javascript">
   <% if logged_in? %>
-  debugger
     window.currentUser = <%= render(
       'api/users/user.json.jbuilder',
       user: current_user
     ).html_safe %>
-    debugger
   <% end %>
 </script>
 
 <script type="text/javascript">
   window.staticImages = {
-    name: '<%= asset_url("logo.jpg") %>',
+    name: '<%= asset_url("logo.png") %>',
   }
 </script>
 

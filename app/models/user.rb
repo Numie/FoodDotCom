@@ -1,4 +1,12 @@
 class User < ApplicationRecord
+  validates :email, presence: { message: 'Email is required!' }
+  validates :email, uniqueness: { message: 'That email is already taken!' }
+  validates :email format: { with: /.+@.+..+/, message: 'Email is invalid!' }
+  validates :session_token, presence: { message: 'Error logging in, please try again!' }
+  validates :session_token, uniqueness: { message: 'Error logging in, please try again!' }
+  validates :first_name, :last_name, presence: { message: 'Name is required!' }
+  validates :password_digest, presence: { message: 'Password is required!' }
+  validates :password, length: { minimum: 6, allow_nil: true, message: 'Password must be at least 6 characters!' }
 
   attr_reader :password
 

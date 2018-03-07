@@ -6,7 +6,7 @@ const Header = (props) => {
   return (
     <header className='header'>
       <Link to='/'>
-        <img className='logo' src={window.staticImages.name} alt='FoodDotCom' />
+        <img className='logo' src={window.staticImages.logo} alt='FoodDotCom' />
       </Link>
       <GreetingContainer />
     </header>

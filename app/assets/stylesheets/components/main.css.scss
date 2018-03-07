@@ -1,5 +1,11 @@
 .main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
   background: image-url('main.jpg');
   background-size: cover;
-  min-height: 300px;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  min-height: 250px;
 }

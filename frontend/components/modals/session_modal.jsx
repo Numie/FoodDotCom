@@ -72,7 +72,7 @@ export default class SessionModal extends React.Component {
     return (
       <div className='modal-container' onClick={this.toggleSessionModal}>
         <div className='session-modal'>
-          <img className='logo' src={window.staticImages.name} alt='FoodDotCom' />
+          <img className='logo' src={window.staticImages.logo} alt='FoodDotCom' />
           <h2 className='heading'>{signupModal ? 'Create your account' : 'Sign in with your Food.com account' }</h2>
 
           <h6 className='errors'>{errors ? errors[0] : null}</h6>

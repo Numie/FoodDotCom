@@ -1,4 +1,4 @@
-.modal {
+.session-modal {
   position: fixed;
     top: 50%;
     left: 50%;
@@ -28,24 +28,41 @@
   align-items: center;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type='submit'] {
+.name-container {
+  display: flex;
+}
+
+.session-form input[type="text"],
+.session-form input[type="email"],
+.session-form input[type="password"],
+.session-form input[type='submit'] {
   margin: 10px 0;
   width: 400px;
   min-height: 44px;
   border-radius: 4px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+.session-form input[type="text"] {
+  margin: 10px 5px;
+  width: 195px;
+  min-height: 44px;
+  border-radius: 4px;
+}
+
+.session-form input[type="text"],
+.session-form input[type="email"],
+.session-form input[type="password"] {
   padding: 12px 16px;
   border: 2px solid rgba(0,0,0,.2);
 }
 
-input[type='submit'] {
+.session-form input[type="text"]:focus,
+.session-form input[type=email]:focus,
+.session-form input[type=password]:focus {
+  box-shadow: 0 0 10px rgba(81, 150, 238, 1);
+}
+
+.session-form input[type='submit'] {
   display: flex;
   justify-content: center;
   color: white;
@@ -54,13 +71,7 @@ input[type='submit'] {
   font-weight: 400;
 }
 
-input[type="text"]:focus,
-input[type=email]:focus,
-input[type=password]:focus {
-  box-shadow: 0 0 10px rgba(81, 150, 238, 1);
-}
-
-#guest-login {
+.session-form input[type='submit']:last-of-type {
   background-color: #2b8282;
 }
 
@@ -75,7 +86,7 @@ input[type=password]:focus {
   font-size: 14px;
 }
 
-.x-close {
+.session-modal .x-close {
   position: absolute;
   line-height: 5px;
   top: 10px;

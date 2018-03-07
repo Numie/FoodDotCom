@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   validates :email, presence: { message: 'Email is required!' }
   validates :email, uniqueness: { message: 'That email is already taken!' }
-  validates :email format: { with: /.+@.+..+/, message: 'Email is invalid!' }
+  validates :email, format: { with: /.+@.+..+/, message: 'Email is invalid!' }
   validates :session_token, presence: { message: 'Error logging in, please try again!' }
   validates :session_token, uniqueness: { message: 'Error logging in, please try again!' }
   validates :first_name, :last_name, presence: { message: 'Name is required!' }

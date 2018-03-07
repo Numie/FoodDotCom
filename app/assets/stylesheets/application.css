@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.errors {
+  color: #c90017;
+  font-size: 12px;
+  font-style: italic;
+}

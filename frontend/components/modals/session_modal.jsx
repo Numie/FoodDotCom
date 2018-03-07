@@ -13,6 +13,8 @@ export default class SessionModal extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleGuestLogin = this.handleGuestLogin.bind(this);
+    this.toggleSignupModal = this.toggleSignupModal.bind(this);
+    this.toggleSessionModal = this.toggleSessionModal.bind(this);
   }
 
   handleSubmit(e) {
@@ -31,6 +33,16 @@ export default class SessionModal extends React.Component {
     this.props.login(user);
   }
 
+  toggleSignupModal() {
+    this.props.toggleSignupModal();
+    this.props.clearErrors();
+  }
+
+  toggleSessionModal() {
+    this.props.toggleSessionModal();
+    this.props.clearErrors();
+  }
+
   update(field) {
     return(e) => {
       this.setState({[field]: e.target.value});
@@ -38,7 +50,7 @@ export default class SessionModal extends React.Component {
   }
 
   render() {
-    const { signupModal, toggleSessionModal, toggleSignupModal } = this.props;
+    const { signupModal, errors, toggleSessionModal, toggleSignupModal } = this.props;
 
     let extraFields;
     if (signupModal) {
@@ -56,20 +68,24 @@ export default class SessionModal extends React.Component {
     }
 
     return (
-      <div className='session-modal'>
-        <img className='logo' src={window.staticImages.name} alt='FoodDotCom' />
-        <h2 className='heading'>{signupModal ? 'Create your account' : 'Sign in with your Food.com account' }</h2>
+      <div className='modal-container' onClick={this.toggleSessionModal}>
+        <div className='session-modal'>
+          <img className='logo' src={window.staticImages.name} alt='FoodDotCom' />
+          <h2 className='heading'>{signupModal ? 'Create your account' : 'Sign in with your Food.com account' }</h2>
 
-        <form className='session-form'>
-          {extraFields}
-          <input type='email' placeholder='Email' value={this.state.email} onChange={this.update('email')}/>
-          <input type='password' placeholder='Password' value={this.state.password} onChange={this.update('password')}/>
-          <input type='submit' value={signupModal ? 'Create your account' : 'Sign In'} onClick={this.handleSubmit}/>
-          {guestSignIn}
-          <h6>{signupModal ? 'Have an account?' : 'Don\'t have an account?'} <a onClick={toggleSignupModal}>{signupModal ? 'Sign in' : 'Create your account'}</a></h6>
-        </form>
+          <h6 className='errors'>{errors ? errors[0] : null}</h6>
 
-        <button className="x-close" onClick={toggleSessionModal}>x</button>
+          <form className='session-form'>
+            {extraFields}
+            <input type='email' placeholder='Email' value={this.state.email} onChange={this.update('email')}/>
+            <input type='password' placeholder='Password' value={this.state.password} onChange={this.update('password')}/>
+            <input type='submit' value={signupModal ? 'Create your account' : 'Sign In'} onClick={this.handleSubmit}/>
+            {guestSignIn}
+            <h6>{signupModal ? 'Have an account?' : 'Don\'t have an account?'} <a onClick={this.toggleSignupModal}>{signupModal ? 'Sign in' : 'Create your account'}</a></h6>
+          </form>
+
+          <button className="x-close" onClick={this.toggleSessionModal}>x</button>
+        </div>
       </div>
     );
   }

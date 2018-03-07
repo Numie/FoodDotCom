@@ -6,6 +6,7 @@ class Greeting extends React.Component {
     super(props);
 
     this.handleLogout = this.handleLogout.bind(this);
+    this.toggleSessionModal = this.toggleSessionModal.bind(this);
   }
 
   handleLogout(e) {
@@ -13,20 +14,25 @@ class Greeting extends React.Component {
     this.props.logout();
   }
 
+  toggleSessionModal() {
+    this.props.clearErrors();
+    this.props.toggleSessionModal();
+  }
+
   render() {
-    const { currentUser, sessionModal, signupModal, logout, toggleSessionModal } = this.props;
+    const { currentUser, sessionModal } = this.props;
 
     if (currentUser !== null) {
       return (
-        <div>
-          <h3>Welcome {currentUser.first_name}!</h3>
+        <div className='logged-in-section'>
+          <h3 className='welcome-message'>Welcome, {currentUser.first_name}!</h3>
           <button className='session-button' onClick={this.handleLogout}>Log Out</button>
         </div>
       );
     } else {
       return (
         <div>
-          <button className='session-button' onClick={toggleSessionModal}>Sign In</button>
+          <button className='session-button' onClick={this.toggleSessionModal}>Sign In</button>
           { sessionModal ? <SessionModalContainer /> : null }
         </div>
       );

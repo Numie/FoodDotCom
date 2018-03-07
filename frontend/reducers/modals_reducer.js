@@ -5,7 +5,7 @@ import { SIGNUP_MODAL } from '../actions/modal_actions';
 
 const defaultModalsUI = {
   sessionModal: false,
-  signupModal: true
+  signupModal: false
 };
 
 const modalsReducer = (oldState = defaultModalsUI, action) => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import SessionModalContainer from '../modals/session_modal_container';
-import SignupModalContainer from '../modals/signup_modal_container';
 
 class Greeting extends React.Component {
   constructor(props) {
@@ -29,7 +28,6 @@ class Greeting extends React.Component {
         <div>
           <button className='session-button' onClick={toggleSessionModal}>Sign In</button>
           { sessionModal ? <SessionModalContainer /> : null }
-          {/* { signupModal ? <SignupModalContainer /> : null } */}
         </div>
       );
     }

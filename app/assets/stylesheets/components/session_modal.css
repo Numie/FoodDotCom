@@ -9,7 +9,7 @@
   align-items: center;
   padding: 24px;
   width: 700px;
-  border: 1px solid rgba(0,0,0,.2);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   background-color: white;
   overflow: auto;
@@ -62,7 +62,7 @@
   color: black;
   font-size: 14px;
   min-height: 44px;
-  border: 2px solid rgba(0,0,0,.2);
+  border: 2px solid rgba(0, 0, 0, 0.3);
 }
 
 .session-form input[type="text"]:focus,
@@ -107,7 +107,7 @@
   line-height: 5px;
   top: 10px;
   right: 10px;
-  color: rgba(0,0,0,.2);
+  color: rgba(0, 0, 0, 0.3);
   font-size: 18px;
   font-weight: 400;
 }

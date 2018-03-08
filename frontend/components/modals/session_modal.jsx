@@ -86,7 +86,7 @@ export default class SessionModal extends React.Component {
             <h6>{signupModal ? 'Have an account?' : 'Don\'t have an account?'} <a onClick={this.toggleSignupModal}>{signupModal ? 'Sign in' : 'Create your account'}</a></h6>
           </form>
 
-          <button className="x-close" onClick={this.toggleSessionModal}>x</button>
+          <button className="x-close" onClick={this.toggleSessionModal}>&times;</button>
         </div>
       </div>
     );

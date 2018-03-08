@@ -1,4 +1,4 @@
-import * as GoogleAPIUtil from '../util/google_api_util';
+import * as AddressSearchUtil from '../util/address_search_util';
 
 export const GEOCODE = 'GEOCODE';
 export const RECEIVE_ADDRESS_ERRORS = 'RECEIVE_ADDRESS_ERRORS';
@@ -20,7 +20,7 @@ export const clearErrors = () => ({
 
 export const fetchGeocode = address => dispatch => {
   return (
-    GoogleAPIUtil.fetchGeocode(address)
+    AddressSearchUtil.fetchGeocode(address)
     .then((geocodeResponse) => dispatch(receiveGeocode(geocodeResponse)),
     () => dispatch(receiveErrors()))
   );

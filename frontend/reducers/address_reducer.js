@@ -11,7 +11,7 @@ const addressReducer = (oldState = null, action) => {
         lng: action.geocodeResponse.results[0].geometry.location.lng,
         addressComponents: action.geocodeResponse.results[0].address_components
       });
-      return merge({}, oldState, newState);
+      return newState;
     default:
       return oldState;
   }

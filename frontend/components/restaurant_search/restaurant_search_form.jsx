@@ -12,6 +12,11 @@ export default class RestaurantSearchForm extends React.Component {
   }
 
   handleSubmit(e) {
+    if (autocomplete.getPlace()) {
+      debugger
+      this.setState({['address']: autocomplete.getPlace().formatted_address});
+    }
+    debugger
     e.preventDefault();
     this.props.fetchGeocode(this.state.address);
     this.props.fetchRestaurants(this.state.address);

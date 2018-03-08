@@ -1,11 +1,27 @@
 .main {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  padding: 52px 20px;
   color: white;
   background: image-url('main.jpg');
   background-size: cover;
   background-position: 50%;
   background-repeat: no-repeat;
   min-height: 250px;
+}
+
+.main h1 {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.main h6 {
+  display: block;
+  margin: 10px 0 15px;
+  font-size: 14px;
 }

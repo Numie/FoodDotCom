@@ -23,7 +23,7 @@ export default class RestaurantSearchForm extends React.Component {
   render() {
     return(
       <form className='address-search-form'>
-        <input id='address-search-field' type='text' placeholder='Enter your address' value={this.state.address} onChange={this.update('address')} />
+        <input id='address-search-field' type='text' placeholder='Enter your address (NYC only!)' value={this.state.address} onChange={this.update('address')} />
         {this.state.address? <button className="x-close" onClick={this.clearAddress}>&times;</button> : null }
         <input type='submit' value='Find food' />
       </form>

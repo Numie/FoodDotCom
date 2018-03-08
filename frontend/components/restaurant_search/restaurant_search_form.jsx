@@ -11,7 +11,8 @@ export default class RestaurantSearchForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     this.props.fetchGeocode(this.state.address);
   }
 
@@ -26,11 +27,14 @@ export default class RestaurantSearchForm extends React.Component {
   }
 
   render() {
+    const { error } = this.props;
+
     return(
       <form className='address-search-form' onSubmit={this.handleSubmit}>
-        <input id='address-search-field' type='text' placeholder='Enter your address (NYC only!)' value={this.state.address} onChange={this.update('address')} />
+        <input id='address-search-field' type='text' placeholder='Enter your address (NYC only!)' value={this.state.address} onChange={this.update('address')} onClick={this.props.clearErrors}/>
         {this.state.address? <button className="x-close" onClick={this.clearAddress}>&times;</button> : null }
         <input type='submit' value='Find food' />
+        {error ? <div className='address-error-box'>{error}</div> : null}
       </form>
     );
   }

@@ -11,24 +11,8 @@
   </head>
 
   <body>
-    <script type="text/javascript">
-      const initialize = () => {
-        const input = document.getElementById('address-search-field');
-
-        const defaultBounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng(40.704759, -74.038335),
-          new google.maps.LatLng(40.791704, -73.931882));
-
-        const options = {
-          types: ['address'],
-          bounds: defaultBounds,
-          strictBounds: true
-        };
-        autocomplete = new google.maps.places.Autocomplete(input, options);
-      };
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
 
     <%= yield %>
+    
   </body>
 </html>

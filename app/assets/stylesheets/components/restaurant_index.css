@@ -1,0 +1,10 @@
+.restaurant-index-full-page {
+  display: flex;
+  position: relative;
+  top: 60px;
+}
+
+.restaurant-index {
+  position: relative;
+  width: 75%;
+}

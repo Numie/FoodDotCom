@@ -1,0 +1,95 @@
+.restaurant-index-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 24px 10px;
+}
+
+.restaurant-index-item:nth-of-type(2n) {
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.index-left-side {
+  display: flex;
+}
+
+.small-restaurant-image {
+  width: 90px;
+  height: 90px;
+}
+
+.index-restaurant-cuisine-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  max-width: 100%;
+  padding: 0 10px 0 20px;
+}
+
+.index-restaurant-cuisine-container h3 {
+  color: #2b8282;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.index-restaurant-cuisine-container h5 {
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 15px;
+}
+
+.index-right-side {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stars-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.stars {
+  display: flex;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.star-icon:before {
+  content: "\2605";
+  color: #faae1d;
+}
+
+.index-right-side h6 {
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 12px;
+}
+
+.price-container {
+  position: relative;
+  margin-top: 6px;
+  font-weight: 300;
+}
+
+.price-base {
+  color: #cacaca;
+}
+
+.price-rating {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.minimum-fee-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.index-right-side h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}

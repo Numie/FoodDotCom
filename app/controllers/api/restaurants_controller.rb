@@ -16,10 +16,4 @@ class Api::RestaurantsController < ApplicationController
     end
   end
 
-  # private
-  #
-  # def restaurant_params
-  #   params.require(:restaurant).permit(:name, :address, :phone, :img_url, :cuisine, :delivery_minimum, :delivery_fee, :open_time, :close_time, :lat, :lng)
-  # end
-
 end

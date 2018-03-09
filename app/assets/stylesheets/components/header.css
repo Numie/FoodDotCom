@@ -12,7 +12,7 @@
   height: 60px;
   padding: 10px 20px;
   color: #2b8282;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 .header-left {

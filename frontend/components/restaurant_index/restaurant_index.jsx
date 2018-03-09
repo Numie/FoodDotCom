@@ -3,11 +3,6 @@ import RestaurantIndexItem from './restaurant_index_item';
 import FilterBar from './filter_bar';
 
 export default class RestaurantIndex extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-
   render() {
     const { restaurants } = this.props;
     const restaurantList = restaurants.map(restaurant => {

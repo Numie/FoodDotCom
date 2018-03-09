@@ -41,7 +41,7 @@ const AddressRequired = ({ component: Component, path, address, exact }) => {
       path={path}
       exact={exact}
       render={props =>
-        address ? (
+        true ? (
           <Component {...props} />
         ) : (
           <Redirect to="/" />

@@ -1,0 +1,50 @@
+.restaurant-show-container {
+  display: flex;
+  position: relative;
+  top: 60px;
+}
+
+.restaurant-show-main {
+  position: relative;
+  width: 75%;
+}
+
+.top-info-container {
+  display: flex;
+  background: url('https://res.cloudinary.com/grubhub/image/upload/dpr_auto,f_auto,q_auto,g_auto,w_1200,h_300,c_fill,e_improve/qv8mddnemu5ncw31ljcf');
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 16px;
+  padding-top: 84px;
+}
+
+.top-info-container img {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  margin-right: 16px;
+  border: 2px solid red;
+}
+
+.top-restaurant-info {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  border: 2px solid yellow;
+}
+
+.top-restaurant-info h1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.order-container {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 25%;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}

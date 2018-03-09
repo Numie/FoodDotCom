@@ -11,7 +11,7 @@
 
 .top-info-container {
   display: flex;
-  background: url('https://res.cloudinary.com/grubhub/image/upload/dpr_auto,f_auto,q_auto,g_auto,w_1200,h_300,c_fill,e_improve/qv8mddnemu5ncw31ljcf');
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('https://res.cloudinary.com/grubhub/image/upload/dpr_auto,f_auto,q_auto,g_auto,w_1200,h_300,c_fill,e_improve/qv8mddnemu5ncw31ljcf');
   background-size: cover;
   background-repeat: no-repeat;
   padding: 16px;
@@ -23,20 +23,38 @@
   height: 100px;
   background-color: white;
   margin-right: 16px;
-  border: 2px solid red;
 }
 
 .top-restaurant-info {
   display: flex;
   flex-direction: column;
   color: white;
-  border: 2px solid yellow;
 }
 
 .top-restaurant-info h1 {
   font-size: 30px;
   font-weight: 700;
-  margin-bottom: 4px;
+}
+
+.address-phone-container {
+  display: flex;
+  font-size: 12px;
+  margin: 6px 0;
+}
+
+.address-phone-container h6 {
+  margin-right: 12px;
+  font-weight: 300;
+}
+
+.top-restaurant-info .stars-container {
+  display: flex;
+  flex-direction: row;
+  font-size: 28px;
+}
+
+.top-restaurant-info .star-icon:nth-of-type(2n) {
+  margin: 0 5px;
 }
 
 .order-container {

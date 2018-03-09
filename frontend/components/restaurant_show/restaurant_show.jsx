@@ -14,7 +14,13 @@ export default class RestaurantShow extends React.Component {
                 <h6>{address}</h6>
                 <h6>{phone}</h6>
               </div>
-              <div className='stars-container'></div>
+              <div className='stars-container'>
+                <div className='star-icon'></div>
+                <div className='star-icon'></div>
+                <div className='star-icon'></div>
+                <div className='star-icon'></div>
+                <div className='star-icon'></div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,9 +1,13 @@
 class Api::RestaurantsController < ApplicationController
 
   def index
-    @restaurants = Restaurant.near(params[:address], 20)
-    # @restaurants = Restaurant.all
-    render :index
+    @restaurants = Restaurant.near(params[:address], 2)
+
+    if @restaurants
+      render :index
+    else
+      render json: ['Error Processing Address! Please try again'], status: 500
+    end
   end
 
   def show

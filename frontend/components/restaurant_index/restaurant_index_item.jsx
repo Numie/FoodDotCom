@@ -27,13 +27,13 @@ const RestaurantIndexItem = (props) => {
           <div className='price-base'>$$$$$</div>
           <div className='price-rating'>$$$</div>
         </div>
-        <div className='minimum-fee-container'>
+        <div className='minimum-container'>
           <h3>
             ${ Math.round(delivery_minimum) === delivery_minimum ? Math.round(delivery_minimum) : delivery_minimum }
           </h3>
           <h6>Minimum</h6>
         </div>
-        <div className='minimum-fee-container'>
+        <div className='fee-container'>
           <h3>
             { delivery_fee ? '$' + delivery_fee : 'Free' }
           </h3>

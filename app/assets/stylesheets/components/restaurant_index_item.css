@@ -82,10 +82,17 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
-.minimum-fee-container {
+.minimum-container {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+.fee-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 68px;
 }
 
 .index-right-side h3 {

@@ -15,9 +15,43 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
+.header-left {
+    display: flex;
+}
+
 .logo {
   display: block;
   width: 105px;
+  margin-right: 20px;
+}
+
+.header .address-search-form {
+  position: static;
+  display: flex;
+  align-items: center;
+  margin-top: 22px;
+  height: 60px;;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header .address-search-field {
+  margin: 0;
+  padding: 12px 30px;
+}
+
+.header .address-search-field:focus{
+  border: none;
+  box-shadow: none;
+}
+
+.header .address-search-form input[type="submit"] {
+  display: none;
+}
+
+.header .address-search-form .x-close {
+  left: 610px;
+  top: 18px;
 }
 
 .session-button {

@@ -2,7 +2,7 @@
   position: relative;
 }
 
-#address-search-field {
+.address-search-field {
   margin: 10px 0;
   width: 500px;
   background-color: white;
@@ -15,7 +15,7 @@
   margin-bottom: 52px;
 }
 
-#address-search-field:focus{
+.address-search-field:focus{
   box-sizing: border-box;
   border: 2px solid rgba(81, 150, 238, 1);
   box-shadow: 0 0 20px rgba(81, 150, 238, 1);

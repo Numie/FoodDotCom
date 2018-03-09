@@ -34,9 +34,27 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => {
   )
 }
 
+// Render component if logged in, otherwise redirect
+const AddressRequired = ({ component: Component, path, address, exact }) => {
+  debugger
+  return (
+    <Route
+      path={path}
+      exact={exact}
+      render={props =>
+        address ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/" />
+        )}
+    />
+  )
+}
+
 const mapStateToProps = state => {
   return {
-    loggedIn: Boolean(state.session.currentUser)
+    loggedIn: Boolean(state.session.currentUser),
+    address: Boolean(Object.keys(state.entities.restaurants).length !== 0)
   }
 };
 
@@ -48,4 +66,8 @@ export const AuthRoute = withRouter(
 
 export const ProtectedRoute = withRouter(
   connect(mapStateToProps)(Protected)
+)
+
+export const AddressRequiredRoute = withRouter(
+  connect(mapStateToProps)(AddressRequired)
 )

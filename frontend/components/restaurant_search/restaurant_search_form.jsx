@@ -3,12 +3,12 @@ import React from 'react';
 export default class RestaurantSearchForm extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      address: ""
+      address: this.props.address ? this.props.address.formattedAddress : ""
     };
     this.clearAddress = this.clearAddress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitOnSelection = this.handleSubmitOnSelection.bind(this);
   }
 
   componentDidMount() {
@@ -23,14 +23,26 @@ export default class RestaurantSearchForm extends React.Component {
     };
     const autocomplete = new google.maps.places.Autocomplete(this.searchBar, options);
     autocomplete.addListener('place_changed', (arg) => {
+      this.handleSubmitOnSelection();
       this.setState({address: autocomplete.getPlace().formatted_address});
     });
+  }
+
+  handleSubmitOnSelection() {
+    if (this.props.location.pathname !== '/') {
+      this.props.fetchGeocode(this.state.address);
+      this.props.fetchRestaurants(this.state.address).then(() => {
+        this.props.history.push('/restaurants');
+      });
+    }
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.fetchGeocode(this.state.address);
-    this.props.fetchRestaurants(this.state.address);
+    this.props.fetchRestaurants(this.state.address).then(() => {
+      this.props.history.push('/restaurants');
+    });
   }
 
   update(field) {
@@ -48,7 +60,7 @@ export default class RestaurantSearchForm extends React.Component {
 
     return(
       <form className='address-search-form' onSubmit={this.handleSubmit}>
-        <input ref={(input) => { this.searchBar = input; }} id='address-search-field' type='text' placeholder='Enter your address (NYC only!)' value={this.state.address} onChange={this.update('address')} onClick={this.props.error !== "" ? this.props.clearErrors : null} />
+        <input ref={(input) => { this.searchBar = input; }} className='address-search-field' type='text' placeholder='Enter your address (NYC only!)' value={this.state.address} onChange={this.update('address')} onClick={this.props.error !== "" ? this.props.clearErrors : null} />
         {this.state.address? <button className="x-close" onClick={this.clearAddress}>&times;</button> : null }
         <input type='submit' value='Find food' />
         {error ? <div className='address-error-box'>{error}</div> : null}

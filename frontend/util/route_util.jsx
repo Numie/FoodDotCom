@@ -34,9 +34,8 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => {
   )
 }
 
-// Render component if logged in, otherwise redirect
+// Render component if address is present in, otherwise redirect
 const AddressRequired = ({ component: Component, path, address, exact }) => {
-  debugger
   return (
     <Route
       path={path}

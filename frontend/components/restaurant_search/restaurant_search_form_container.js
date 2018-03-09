@@ -3,6 +3,7 @@ import RestaurantSearchForm from './restaurant_search_form';
 import { fetchGeocode, receiveErrors, clearErrors } from '../../actions/address_actions';
 import { fetchRestaurants } from '../../actions/restaurant_actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => ({
   address: state.currentAddress,
@@ -16,4 +17,4 @@ const mapDispatchToProps = dispatch => ({
   fetchRestaurants: address => dispatch(fetchRestaurants(address))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantSearchForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(RestaurantSearchForm));

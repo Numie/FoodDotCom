@@ -3,6 +3,8 @@ import React from 'react';
 export default class RestaurantShow extends React.Component {
 
   componentDidMount() {
+    this.props.fetchMenuItems(this.props.match.params.id);
+
     const map = this.refs.map;
     const lat = this.props.restaurant.latitude;
     const lng = this.props.restaurant.longitude;

@@ -57,12 +57,76 @@
   margin: 0 5px;
 }
 
-.order-container {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  height: 100vh;
-  width: 25%;
-  background-color: rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+.bottom-info-container {
+  display: flex;
+  padding: 35px 20px 15px;
+  background: #efefef;
+}
+
+.left-location-info {
+  margin-left: 80px;
+  margin-right: 40px;
+}
+
+.left-location-info h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+  margin-bottom: 20px;
+}
+
+.map {
+  width: 350px;
+  height: 100px;
+}
+
+.restaurant-info-list {
+  color: #2b8282;
+  padding: 15px 0;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.restaurant-info-list li {
+  margin: 2px 0;
+}
+
+.restaurant-info-list li:nth-of-type(3) {
+  margin-bottom: 15px;
+}
+
+.restaurant-info-list li:last-of-type {
+  padding: 15px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.right-hours-info h3 {
+  margin-top: 60px;
+  font-size: 17px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.60);
+}
+
+.hours-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0;
+  padding-bottom: 15px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.60);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.hours {
+  text-align: right;
+  margin-left: 150px;
+}
+
+.hours li {
+  margin-bottom: 4px;
+}
+
+.hours li:last-of-type {
+  color: rgba(0, 0, 0, 0.40);
 }

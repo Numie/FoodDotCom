@@ -1,7 +1,7 @@
 class Api::RestaurantsController < ApplicationController
 
   def index
-    @restaurants = Restaurant.near(params[:address], 2)
+    @restaurants = Restaurant.near(params[:address], 1)
 
     if @restaurants
       render :index

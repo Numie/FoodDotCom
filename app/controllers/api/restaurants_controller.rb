@@ -6,7 +6,7 @@ class Api::RestaurantsController < ApplicationController
     if @restaurants
       render :index
     else
-      render json: ['Error Processing Address! Please try again'], status: 500
+      render json: ['Error processing address! Please try again.'], status: 500
     end
   end
 

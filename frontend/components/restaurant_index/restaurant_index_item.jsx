@@ -35,7 +35,7 @@ const RestaurantIndexItem = (props) => {
         </div>
         <div className='fee-container'>
           <h3>
-            { delivery_fee ? '$' + delivery_fee : 'Free' }
+            { delivery_fee ? '$' + delivery_fee.toFixed(2) : 'Free' }
           </h3>
           <h6>{ delivery_fee ? 'Delivery Fee' : 'Delivery' }</h6>
         </div>

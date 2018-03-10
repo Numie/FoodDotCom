@@ -28,7 +28,7 @@ export default class RestaurantShow extends React.Component {
       <div className='restaurant-show-container'>
         <div className='restaurant-show-main'>
           <div className='top-info-container'>
-            <img src='https://res.cloudinary.com/grubhub/image/upload/w_100,h_100,f_auto,fl_lossy,q_80,c_fit/nqihfqjjva8orpbtaftz' />
+            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Appacademylogo.png/175px-Appacademylogo.png' />
             <div className='top-restaurant-info'>
               <h1>{name}</h1>
               <div className='address-phone-container'>

@@ -152,6 +152,30 @@ User.create(first_name: 'Jason', last_name: 'Numeroff', email: 'jnumeroff@hotmai
     latitude: random_manhattan_latitude, longitude: random_manhattan_longitude)
 end
 
+restaurant_ids = Restaurant.all.pluck(:id).to_a
+
+def random_descripion
+  ingredients = []
+  num_ingredients = (3..7).to_a.sample
+  num_ingredients.times do
+    ingredients << Faker::Food.ingredient
+  end
+  ingredients_string = ingredients.join(", ")
+  "Prepared with #{ingredients_string}."
+end
+
+def random_price
+  rand * (30 - 8) + 8
+end
+
+restaurant_ids.each do |id|
+  20.times do
+    MenuItem.create!(restaurant_id: id, name: Faker::Food.dish, description: random_descripion, price: random_price)
+  end
+end
+
+
+
 # Midtown
 #Use 22 w 38th St to find these restaurants
 

@@ -1,7 +1,35 @@
+# == Schema Information
+#
+# Table name: restaurants
+#
+#  id               :integer          not null, primary key
+#  name             :string           not null
+#  address          :string           not null
+#  phone            :string           not null
+#  img_url          :string           not null
+#  cuisine          :string           not null
+#  delivery_minimum :float            not null
+#  delivery_fee     :float
+#  open_time        :string           not null
+#  close_time       :string           not null
+#  latitude         :float            not null
+#  longitude        :float            not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  city             :string           default("New York"), not null
+#  state            :string           default("NY"), not null
+#  zip              :string           default("10003"), not null
+#
+
 class Restaurant < ApplicationRecord
   validates :name, :address, :phone, :img_url, :cuisine, :delivery_minimum, :open_time, :close_time, :latitude, :longitude, presence: true
 
   has_many :menu_items
+  has_many :orders
+
+  has_many :order_items,
+    through: :orders,
+    source: :order_items
 
   geocoded_by :address
   after_initialize :ensure_geocode

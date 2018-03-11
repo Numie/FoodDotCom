@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  first_name      :string           not null
+#  last_name       :string           not null
+#  email           :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
   validates :first_name, :last_name, presence: { message: 'Name is required!' }
   validates :email, presence: { message: 'Email is required!' }
@@ -7,6 +21,12 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true, message: 'Password must be at least 6 characters!' }
   validates :session_token, presence: { message: 'Error logging in, please try again!' }
   validates :session_token, uniqueness: { message: 'Error logging in, please try again!' }
+
+  has_many :orders
+
+  has_many :order_items,
+    through: :orders,
+    source: :order_items
 
   attr_reader :password
 

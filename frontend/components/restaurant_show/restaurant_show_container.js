@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => ({
-  restaurant: state.entities.restaurants[ownProps.match.params.id]
+  restaurant: state.entities.restaurants[ownProps.match.params.id],
+  menuItems: Object.values(state.entities.menu_items)
 });
 
 const mapDispatchToProps = dispatch => ({

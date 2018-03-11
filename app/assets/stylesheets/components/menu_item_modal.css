@@ -14,8 +14,7 @@
 .menu-item-modal-info {
   display: flex;
   flex-direction: column;
-  padding: 12px;
-  margin-bottom: 60px;
+  padding: 24px;
 }
 
 .menu-item-modal-info h1 {
@@ -31,7 +30,7 @@
 .quantity-toggle {
   display: flex;
   align-items: center;
-  margin: 8px 0 20px;
+  margin: 12px 0 36px;
 }
 
 .plus-minus {
@@ -58,6 +57,11 @@
   text-align: center;
 }
 
+.quantity:focus, .menu-item-modal-info textarea:focus {
+  border: 2px solid rgba(81, 150, 238, 1);
+  box-shadow: 0 0 10px rgba(81, 150, 238, 1);
+}
+
 .menu-item-modal-info h4 {
   font-size: 18px;
   font-weight: 700;
@@ -74,7 +78,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: -webkit-sticky;
+  position: sticky;
   bottom: 0;
   width: 100%;
   padding: 16px;

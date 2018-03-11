@@ -56,6 +56,16 @@
   margin: 0 5px;
 }
 
+.menu-container {
+  background: #efefef;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 4% 8%;
+}
+
 .bottom-info-container {
   display: flex;
   padding: 35px 20px 15px;

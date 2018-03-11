@@ -1,0 +1,36 @@
+.menu-item-container {
+  display: flex;
+  flex-direction: column;
+  width: 49.2%;
+  height: 130px;
+  margin: 4px;
+  padding: 16px;
+  background: white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.menu-item-container:hover {
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.item-name-and-price {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.item-name-and-price h5:first-of-type {
+  color: #2b8282;
+  margin: 0 8px 8px 0;
+}
+
+.item-description {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-right: 8px;
+}

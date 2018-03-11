@@ -1,4 +1,5 @@
 import React from 'react';
+import MenuItem from '../menu/menu_item';
 
 export default class RestaurantShow extends React.Component {
 
@@ -18,7 +19,7 @@ export default class RestaurantShow extends React.Component {
 
     const marker = new google.maps.Marker({
       position: {lat, lng},
-        map,
+        map
     });
 
     marker.setMap(this.map);
@@ -26,6 +27,11 @@ export default class RestaurantShow extends React.Component {
 
   render() {
     const { name, address, city, state, zip, phone, img_url, open_time, close_time, latitude, longitude, distance } = this.props.restaurant;
+
+    const menuItems = this.props.menuItems.map(menuItem => {
+      return <MenuItem key={menuItem.id}  menuItem={menuItem} />;
+    });
+
     return (
       <div className='restaurant-show-container'>
         <div className='restaurant-show-main'>
@@ -47,7 +53,11 @@ export default class RestaurantShow extends React.Component {
             </div>
           </div>
 
-          <div id='menu'></div>
+          <div className='menu-container'>
+            <ul className='menu'>
+              {menuItems}
+            </ul>
+          </div>
 
           <div className='bottom-info-container'>
             <div className='left-location-info'>

@@ -33,7 +33,7 @@
   margin: 12px 0 36px;
 }
 
-.plus-minus {
+.plus-minus-inactive {
   display: flex;
   justify-content: center;
   border: 2px solid rgba(0, 0, 0, 0.2);
@@ -41,10 +41,16 @@
   width: 30px;
   height: 30px;
   color: rgba(0, 0, 0, 0.2);
+  cursor: default;
 }
 
-.plus-minus-activated {
-  border-color: #2b8282;
+.plus-minus-activate {
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #2b8282;
   color: #2b8282;
 }
 
@@ -65,6 +71,13 @@
 .menu-item-modal-info h4 {
   font-size: 18px;
   font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.menu-item-modal-info h6 {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 4px;
 }
 
 .menu-item-modal-info textarea {
@@ -72,6 +85,22 @@
   border-radius: 4px;
   padding: 16px;
   margin: 8px 0 20px;
+}
+
+.submit-item-inactive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  padding: 16px;
+  background-color: #cacaca;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: default;
 }
 
 .submit-item {

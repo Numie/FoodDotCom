@@ -1,7 +1,17 @@
 import React from 'react';
 import MenuItem from '../menu/menu_item';
+import MenuItemModal from '../modals/menu_item_modal';
 
 export default class RestaurantShow extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentItem: null
+    };
+
+    this.selectItem = this.selectItem.bind(this);
+  }
 
   componentDidMount() {
     this.props.fetchMenuItems(this.props.match.params.id);
@@ -25,11 +35,16 @@ export default class RestaurantShow extends React.Component {
     marker.setMap(this.map);
   }
 
+  selectItem(selectedItem) {
+    this.setState({currentItem: selectedItem});
+  }
+
   render() {
     const { name, address, city, state, zip, phone, img_url, open_time, close_time, latitude, longitude, distance } = this.props.restaurant;
+    const { toggleMenuItemModal, menuItemModal } = this.props;
 
     const menuItems = this.props.menuItems.map(menuItem => {
-      return <MenuItem key={menuItem.id}  menuItem={menuItem} />;
+      return <MenuItem key={menuItem.id}  menuItem={menuItem} selectItem={this.selectItem} toggleMenuItemModal={toggleMenuItemModal} />;
     });
 
     return (
@@ -56,6 +71,7 @@ export default class RestaurantShow extends React.Component {
           <div className='menu-container'>
             <ul className='menu'>
               {menuItems}
+              { menuItemModal ? <MenuItemModal menuItem={this.state.currentItem} toggleMenuItemModal={toggleMenuItemModal}/> : null }
             </ul>
           </div>
 

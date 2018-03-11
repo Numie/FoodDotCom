@@ -30,7 +30,7 @@
 .quantity-toggle {
   display: flex;
   align-items: center;
-  margin: 12px 0 36px;
+  margin: 12px 0;
 }
 
 .plus-minus-inactive {
@@ -68,13 +68,17 @@
   box-shadow: 0 0 10px rgba(81, 150, 238, 1);
 }
 
+.quantity-toggle .errors {
+  color: #c90017;
+}
+
 .menu-item-modal-info h4 {
   font-size: 18px;
   font-weight: 700;
-  margin-bottom: 5px;
+  margin: 36px 0 5px;
 }
 
-.menu-item-modal-info h6 {
+.menu-item-modal-info h5 {
   font-size: 14px;
   color: rgba(0, 0, 0, 0.8);
   margin-bottom: 4px;

@@ -69,6 +69,7 @@ export default class RestaurantShow extends React.Component {
           </div>
 
           <div className='menu-container'>
+            <h1>Menu</h1>
             <ul className='menu'>
               {menuItems}
               { menuItemModal ? <MenuItemModal menuItem={this.state.currentItem} toggleMenuItemModal={toggleMenuItemModal}/> : null }

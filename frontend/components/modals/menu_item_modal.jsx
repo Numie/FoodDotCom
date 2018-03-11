@@ -1,6 +1,8 @@
 import React from 'react';
+import { receiveQuantityErrors, receiveItemInstructionsErrors, clearErrors } from '../../actions/menu_item_actions';
+import { connect } from 'react-redux';
 
-export default class MenuItemModal extends React.Component {
+class MenuItemModal extends React.Component {
   constructor(props) {
     super(props);
 
@@ -34,6 +36,8 @@ export default class MenuItemModal extends React.Component {
   addQuantity() {
     if (this.state.quantity < 99) {
       this.setState({'quantity': parseInt(this.state.quantity) + 1});
+    } else {
+      this.props.receiveQuantityErrors();
     }
   }
 
@@ -51,6 +55,7 @@ export default class MenuItemModal extends React.Component {
       } else if (parseInt(newVal) && (parseInt(newVal) > 0 && parseInt(newVal) < 100)) {
         this.setState({'quantity': parseInt(newVal)});
       } else if (parseInt(newVal) > 99) {
+        this.props.receiveQuantityErrors();
         this.setState({'quantity': 99});
       }
     };
@@ -59,7 +64,7 @@ export default class MenuItemModal extends React.Component {
   updateSpecialInstructions() {
     return(e) => {
       if (e.target.value.length > 255) {
-        return;
+        this.props.receiveItemInstructionsErrors();
       } else {
         this.setState({'specialInstructions': e.target.value});
       }
@@ -68,10 +73,11 @@ export default class MenuItemModal extends React.Component {
 
   render() {
     const { name, price, description } = this.props.menuItem.props.menuItem;
+    const { quantityError, itemInstructionsError, clearErrors } = this.props;
 
     return(
       <div className='modal-container' onClick={this.toggleMenuItemModal}>
-        <div className='menu-item-modal'>
+        <div className='menu-item-modal' onClick={quantityError || itemInstructionsError ? clearErrors : null}>
           <div className='menu-item-modal-info'>
             <h1>{name}</h1>
             <h1>${parseInt(this.state.quantity) ? (this.state.price * parseInt(this.state.quantity)).toFixed(2) : 0}</h1>
@@ -81,9 +87,15 @@ export default class MenuItemModal extends React.Component {
               <input className='quantity' value={this.state.quantity} onChange={this.updateQuantity()}/>
               <button className={`${parseInt(this.state.quantity) < 99 ? 'plus-minus-activate' : 'plus-minus-inactive'}`} onClick={this.addQuantity}>+</button>
             </div>
+
+            <h6 className='errors'>{quantityError ? quantityError : null}</h6>
+
             <h4>Special Instructions</h4>
-            <h6 className={`${this.state.specialInstructions === "" ? 'hidden' : null}`}>Special requests may result in additional charges.</h6>
+            <h5 className={`${this.state.specialInstructions === "" ? 'hidden' : null}`}>Special requests may result in additional charges.</h5>
             <textarea placeholder='Dressing on the side? No pickles? Let us know here.' value={this.state.specialInstructions} onChange={this.updateSpecialInstructions()}></textarea>
+
+            <h6 className='errors'>{itemInstructionsError ? itemInstructionsError : null}</h6>
+
           </div>
           <button className={`${this.state.quantity === 0 ? 'submit-item-inactive' : 'submit-item'}`}>{`Add to bag: $${parseInt(this.state.quantity) ? (this.state.price * parseInt(this.state.quantity)).toFixed(2) : 0}`}</button>
           <button className="x-close" onClick={this.toggleMenuItemModal}>&times;</button>
@@ -92,3 +104,16 @@ export default class MenuItemModal extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  quantityError: state.errors.menuItem.quantity,
+  itemInstructionsError: state.errors.menuItem.itemInstructions
+});
+
+const mapDispatchToProps = dispatch => ({
+  receiveQuantityErrors: () => dispatch(receiveQuantityErrors()),
+  receiveItemInstructionsErrors: () => dispatch(receiveItemInstructionsErrors()),
+  clearErrors: () => dispatch(clearErrors())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuItemModal);

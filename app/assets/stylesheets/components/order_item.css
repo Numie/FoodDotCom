@@ -1,0 +1,14 @@
+.order-item-unit {
+  display: flex;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
+  border: 1px solid blue;
+}
+
+#delete-item-button {
+  padding: 12px 16px;
+  border: 1px solid green;
+}
+
+.order-item-quantity, .order-item-name, .order-item-price, .order-item-itemInstructions {
+  border: 1px solid red;
+}

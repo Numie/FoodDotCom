@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => ({
   restaurant: state.entities.restaurants[ownProps.match.params.id],
-  menuItems: Object.values(state.entities.menu_items),
+  menuItems: Object.values(state.entities.menuItems),
   menuItemModal: state.ui.modals.menuItemModal
 });
 

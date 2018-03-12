@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import OrderItemUnit from './order_item_unit';
 
 const mapStateToProps = state => ({
-  order: state.entities.order
+  order: state.entities.order,
+  orderItems: Object.values(state.entities.orderItems)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -17,7 +19,8 @@ class Order extends React.Component {
       subtotal: null,
       deliveryFee: null,
       tax: null,
-      total: null
+      total: null,
+      orderItems: this.props.orderItems
     };
   }
 
@@ -31,7 +34,9 @@ class Order extends React.Component {
   }
 
   render() {
-    const { subtotal, deliveryFee, tax, total } = this.props;
+    const orderItemsUnits = this.state.orderItems.map(orderItem => {
+      return <OrderItemUnit key={orderItem.id} orderItem={orderItem}/>;
+    });
 
     return(
       <div>
@@ -39,7 +44,7 @@ class Order extends React.Component {
           <h3>Your order</h3>
         </div>
 
-        <div className={this.props.order.restaurantId == null ? 'order-empty' : 'hidden'}>
+        <div className={this.props.order.restaurantId === null ? 'order-empty' : 'hidden'}>
           <div className='order-empty-background'>
           </div>
           <div className='order-empty-text'>
@@ -47,22 +52,26 @@ class Order extends React.Component {
           </div>
         </div>
 
-        <div className='order-total-container'>
-          <div className='subtotal'>
+        <ul>
+          {orderItemsUnits}
+        </ul>
+
+        <div className={this.props.order.restaurantId ? 'order-total-container' : 'hidden'}>
+          <div className='order-total'>
             <h6>Items Subtotal:</h6>
-            <h6>{this.state.subtotal}</h6>
+            <h6>${this.state.subtotal ? this.state.subtotal.toFixed(2) : null}</h6>
           </div>
-          <div className='delivery-fee'>
+          <div className={this.state.deliveryFee ? 'order-total' : 'hidden'}>
             <h6>Delivery Fee:</h6>
-            <h6>{this.state.deliveryFee}</h6>
+            <h6>${this.state.deliveryFee ? this.state.deliveryFee.toFixed(2) : null}</h6>
           </div>
-          <div className='tax'>
+          <div className='order-total'>
             <h6>Sales Tax:</h6>
-            <h6>{this.state.tax}</h6>
+            <h6>${this.state.tax ? this.state.tax.toFixed(2) : null}</h6>
           </div>
-          <div className='total'>
+          <div className='order-total'>
             <h6>Total:</h6>
-            <h6>{this.state.total}</h6>
+            <h6>${this.state.total ? this.state.total.toFixed(2) : null}</h6>
           </div>
         </div>
       </div>

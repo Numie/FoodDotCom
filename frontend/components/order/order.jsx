@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import OrderItemUnit from './order_item_unit';
+import { deleteAllItems } from '../../actions/order_item_actions';
 
 const mapStateToProps = state => ({
   order: state.entities.order,
@@ -8,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
+  deleteAllItems: () => dispatch(deleteAllItems())
 });
 
 class Order extends React.Component {
@@ -22,6 +23,8 @@ class Order extends React.Component {
       total: null,
       orderItems: this.props.orderItems
     };
+
+    this.deleteAllItems = this.deleteAllItems.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -32,6 +35,10 @@ class Order extends React.Component {
       'total': newProps.order.total,
       'orderItems': newProps.orderItems
     });
+  }
+
+  deleteAllItems() {
+    this.props.deleteAllItems();
   }
 
   render() {
@@ -74,6 +81,7 @@ class Order extends React.Component {
             <h6>Total:</h6>
             <h6>${this.state.total ? this.state.total.toFixed(2) : null}</h6>
           </div>
+          <h6 className='empty-bag' onClick={this.deleteAllItems}>Empty bag</h6>
         </div>
       </div>
     );

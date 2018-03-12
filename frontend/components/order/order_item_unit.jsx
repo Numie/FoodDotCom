@@ -22,7 +22,7 @@ class OrderItemUnit extends React.Component {
 
     return(
       <div className='order-item-unit'>
-        <button className='material-icons' id='delete-item-button' onClick={this.deleteItem}>delete</button>
+        <div className='material-icons' id='delete-item-button' onClick={this.deleteItem}>delete</div>
         <div className='order-item-quantity'>{quantity}</div>
 
         <div className='order-name-container'>
@@ -30,7 +30,7 @@ class OrderItemUnit extends React.Component {
           <div className='order-item-itemInstructions'>{itemInstructions}</div>
         </div>
 
-        <div className='order-item-price'>{price * quantity}</div>
+        <div className='order-item-price'>${price * quantity}</div>
       </div>
     );
   }

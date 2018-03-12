@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import { ADD_ITEM, DELETE_ITEM } from '../actions/order_item_actions';
+import { ADD_ITEM, DELETE_ITEM, DELETE_ALL_ITEMS } from '../actions/order_item_actions';
 import { saveOrder } from '../local_storage/local_storage';
 
 const defaultState = {
@@ -45,6 +45,9 @@ const orderReducer = (oldState = defaultState, action) => {
         return modifiedState;
       }
       break;
+    case DELETE_ALL_ITEMS:
+      saveOrder(defaultState);
+      return defaultState;
     default:
       return oldState;
   }

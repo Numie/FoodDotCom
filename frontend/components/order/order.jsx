@@ -47,7 +47,7 @@ class Order extends React.Component {
     });
 
     return(
-      <div>
+      <div className='inner-order-container'>
         <div className='order-header'>
           <h3>Your order</h3>
         </div>
@@ -60,28 +60,36 @@ class Order extends React.Component {
           </div>
         </div>
 
-        <ul>
-          {orderItemsUnits}
-        </ul>
+        <div className='main-order-container'>
+          <ul>
+            {orderItemsUnits}
+          </ul>
 
-        <div className={this.props.order.restaurantId ? 'order-total-container' : 'hidden'}>
-          <div className='order-total'>
-            <h6>Items Subtotal:</h6>
-            <h6>${this.state.subtotal ? this.state.subtotal.toFixed(2) : null}</h6>
-          </div>
-          <div className={this.state.deliveryFee ? 'order-total' : 'hidden'}>
-            <h6>Delivery Fee:</h6>
-            <h6>${this.state.deliveryFee ? this.state.deliveryFee.toFixed(2) : null}</h6>
-          </div>
-          <div className='order-total'>
-            <h6>Sales Tax:</h6>
-            <h6>${this.state.tax ? this.state.tax.toFixed(2) : null}</h6>
-          </div>
-          <div className='order-total'>
-            <h6>Total:</h6>
-            <h6>${this.state.total ? this.state.total.toFixed(2) : null}</h6>
-          </div>
-          <h6 className='empty-bag' onClick={this.deleteAllItems}>Empty bag</h6>
+          <div className={this.props.order.restaurantId ? 'order-total-container' : 'hidden'}>
+            <div className='order-total'>
+              <h6>Items Subtotal:</h6>
+              <h6>${this.state.subtotal ? this.state.subtotal.toFixed(2) : null}</h6>
+            </div>
+            <div className={this.state.deliveryFee ? 'order-total' : 'hidden'}>
+              <h6>Delivery Fee:</h6>
+              <h6>${this.state.deliveryFee ? this.state.deliveryFee.toFixed(2) : null}</h6>
+            </div>
+            <div className='order-total'>
+              <h6>Sales Tax:</h6>
+              <h6>${this.state.tax ? this.state.tax.toFixed(2) : null}</h6>
+            </div>
+            <div className='order-total'>
+              <h6>Total:</h6>
+              <h6>${this.state.total ? this.state.total.toFixed(2) : null}</h6>
+            </div>
+            <h6 className='empty-bag' onClick={this.deleteAllItems}>Empty bag</h6>
+            </div>
+        </div>
+        <div className='spacer'>
+        </div>
+
+        <div className='proceed-to-checkout-button-container'>
+          <button className='proceed-to-checkout-button'>Proceed to checkout: ${this.state.total ? this.state.total.toFixed(2) : null}</button>
         </div>
       </div>
     );

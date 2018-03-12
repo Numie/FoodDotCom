@@ -30,7 +30,7 @@ class OrderItemUnit extends React.Component {
           <div className='order-item-itemInstructions'>{itemInstructions}</div>
         </div>
 
-        <div className='order-item-price'>${price * quantity}</div>
+        <div className='order-item-price'>${(price * quantity).toFixed(2)}</div>
       </div>
     );
   }

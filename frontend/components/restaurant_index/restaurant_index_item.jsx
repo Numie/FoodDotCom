@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const RestaurantIndexItem = (props) => {
+const RestaurantIndexItem = props => {
+
   const { id, name, address, phone, img_url, cuisine, delivery_minimum, delivery_fee } = props.restaurant;
+
   return (
     <li className='restaurant-index-item'>
       <div className='index-left-side'>

@@ -1,0 +1,37 @@
+.order-container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  padding-top: 60px;
+  background-color: white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.order-header {
+  height: 50px;
+  padding: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.order-empty-background {
+  background: url('https://assets.seamless.com/img-hashed/empty-bag-9a47c6d5df5c3f99a5886ff502bfcde7.svg') 50% no-repeat;
+  color: #cacaca;
+  height: 100px;
+  background-size: contain;
+  margin-top: 30px
+}
+
+.order-empty-text {
+  padding: 25px;
+  text-align: center;
+}
+
+.order-empty-text h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #cacaca;
+}

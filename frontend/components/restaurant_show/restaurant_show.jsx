@@ -1,6 +1,7 @@
 import React from 'react';
 import MenuItem from '../menu/menu_item';
 import MenuItemModal from '../modals/menu_item_modal';
+import Order from '../order/order';
 
 export default class RestaurantShow extends React.Component {
   constructor(props) {
@@ -72,7 +73,7 @@ export default class RestaurantShow extends React.Component {
             <h2 className='menu-title'>Menu</h2>
             <ul className='menu'>
               {menuItems}
-              { menuItemModal ? <MenuItemModal menuItem={this.state.currentItem} toggleMenuItemModal={toggleMenuItemModal}/> : null }
+              { menuItemModal ? <MenuItemModal menuItem={this.state.currentItem} deliveryFee={this.props.restaurant.deliveryFee} toggleMenuItemModal={toggleMenuItemModal}/> : null }
             </ul>
           </div>
 
@@ -105,6 +106,7 @@ export default class RestaurantShow extends React.Component {
         </div>
 
         <div className='order-container'>
+          <Order />
         </div>
       </div>
     );

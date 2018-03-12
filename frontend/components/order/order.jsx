@@ -29,7 +29,8 @@ class Order extends React.Component {
       'subtotal': newProps.order.subtotal,
       'deliveryFee': newProps.order.deliveryFee,
       'tax': newProps.order.tax,
-      'total': newProps.order.total
+      'total': newProps.order.total,
+      'orderItems': newProps.orderItems
     });
   }
 

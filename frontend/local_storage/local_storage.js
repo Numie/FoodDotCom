@@ -27,3 +27,21 @@ export const saveRestaurants = restaurants => {
 
   }
 };
+
+export const saveOrder = order => {
+  try {
+    const serializedOrder = JSON.stringify(order);
+    localStorage.setItem('order', serializedOrder);
+  } catch (error) {
+
+  }
+};
+
+export const saveOrderItems = orderItems => {
+  try {
+    const serializedOrderItems = JSON.stringify(orderItems);
+    localStorage.setItem('orderItems', serializedOrderItems);
+  } catch (error) {
+    
+  }
+};

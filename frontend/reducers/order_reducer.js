@@ -1,5 +1,6 @@
 import { merge } from 'lodash';
 import { ADD_ITEM, DELETE_ITEM } from '../actions/order_item_actions';
+import { saveOrder } from '../local_storage/local_storage';
 
 const defaultState = {
   restaurantId: null,
@@ -29,6 +30,7 @@ const orderReducer = (oldState = defaultState, action) => {
       newState.total = newState.subtotal + newState.deliveryFee + newState.tax;
       newState.orderItemIds.push(action.id);
 
+      saveOrder(newState);
       return newState;
     case DELETE_ITEM:
       const modifiedState = merge({}, oldState);
@@ -36,8 +38,10 @@ const orderReducer = (oldState = defaultState, action) => {
       modifiedState.orderItemIds = modifiedState.orderItemIds.filter(e => e !== action.id);
 
       if (modifiedState.orderItemIds.length === 0) {
+        saveOrder(defaultState);
         return defaultState;
       } else {
+        saveOrder(modifiedState);
         return modifiedState;
       }
       break;

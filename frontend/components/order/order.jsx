@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
-  orderItems: Object.values(state.entities.orderItems)
+  order: state.entities.order
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -21,17 +21,25 @@ class Order extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      'subtotal': newProps.order.subtotal,
+      'deliveryFee': newProps.order.deliveryFee,
+      'tax': newProps.order.tax,
+      'total': newProps.order.total
+    });
   }
 
   render() {
+    const { subtotal, deliveryFee, tax, total } = this.props;
+
     return(
       <div>
         <div className='order-header'>
           <h3>Your order</h3>
         </div>
 
-        <div className={this.props.orderItems.length === 0 ? 'order-empty' : 'hidden'}>
+        <div className={this.props.order.restaurantId == null ? 'order-empty' : 'hidden'}>
           <div className='order-empty-background'>
           </div>
           <div className='order-empty-text'>

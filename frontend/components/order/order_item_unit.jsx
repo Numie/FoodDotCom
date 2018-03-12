@@ -34,7 +34,10 @@ class OrderItemUnit extends React.Component {
         <div className='order-item-quantity'>{quantity}</div>
 
         <div className='order-name-container'>
-          <div className='order-item-name' onClick={this.handleClick}>{name}</div>
+          <div className='order-item-name' onClick={this.handleClick}>
+            {name}
+            <div className='material-icons' id='edit-item-button'>create</div>
+          </div>
           <div className='order-item-itemInstructions'>{itemInstructions}</div>
         </div>
 

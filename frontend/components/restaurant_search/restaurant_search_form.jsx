@@ -59,7 +59,7 @@ export default class RestaurantSearchForm extends React.Component {
     const { error } = this.props;
 
     return(
-      <form className='address-search-form' onSubmit={this.handleSubmit}>
+      <form className={this.props.location.pathname === '/checkout' ? 'hidden' : 'address-search-form'} onSubmit={this.handleSubmit}>
         <input ref={(input) => { this.searchBar = input; }} className='address-search-field' type='text' placeholder='Enter your address (NYC only!)' value={this.state.address} onChange={this.update('address')} onClick={this.props.error !== "" ? this.props.clearErrors : null} />
         {this.state.address? <button className="x-close" onClick={this.clearAddress}>&times;</button> : null }
         <input type='submit' value='Find food' />

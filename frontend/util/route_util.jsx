@@ -50,10 +50,26 @@ const AddressRequired = ({ component: Component, path, address, exact }) => {
   )
 }
 
+const Checkout = ({ component: Component, path, loggedIn, address, order, exact }) => {
+  return (
+    <Route
+      path={path}
+      exact={exact}
+      render={props =>
+        loggedIn && address && order ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/" />
+        )}
+    />
+  )
+}
+
 const mapStateToProps = state => {
   return {
     loggedIn: Boolean(state.session.currentUser),
-    address: Boolean(Object.keys(state.entities.restaurants).length !== 0)
+    address: Boolean(Object.keys(state.entities.restaurants).length !== 0),
+    order: Boolean(Object.keys(state.entities.orderItems).length !== 0)
   }
 };
 
@@ -69,4 +85,8 @@ export const ProtectedRoute = withRouter(
 
 export const AddressRequiredRoute = withRouter(
   connect(mapStateToProps)(AddressRequired)
+)
+
+export const CheckoutRoute = withRouter(
+  connect(mapStateToProps)(Checkout)
 )

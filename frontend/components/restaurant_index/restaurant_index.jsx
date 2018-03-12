@@ -1,8 +1,19 @@
 import React from 'react';
 import RestaurantIndexItem from './restaurant_index_item';
 import FilterBar from './filter_bar';
+import { deleteAllItems } from '../../actions/order_item_actions';
+import { connect } from 'react-redux';
 
-export default class RestaurantIndex extends React.Component {
+const mapDispatchToProps = dispatch => ({
+  deleteAllItems: () => dispatch(deleteAllItems())
+});
+
+class RestaurantIndex extends React.Component {
+
+  componentDidMount() {
+    this.props.deleteAllItems();
+  }
+
   render() {
     const { restaurants } = this.props;
     const restaurantList = restaurants.map(restaurant => {
@@ -19,3 +30,5 @@ export default class RestaurantIndex extends React.Component {
     );
   }
 }
+
+export default connect(null, mapDispatchToProps)(RestaurantIndex);

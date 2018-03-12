@@ -25,6 +25,7 @@
 .order-item-name {
   font-size: 16px;
   color: #2b8282;
+  cursor: pointer;
 }
 
 .order-item-itemInstructions {

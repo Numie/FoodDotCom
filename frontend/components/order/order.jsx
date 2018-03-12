@@ -24,6 +24,7 @@ class Order extends React.Component {
       orderItems: this.props.orderItems
     };
 
+    this.selectItem = this.selectItem.bind(this);
     this.deleteAllItems = this.deleteAllItems.bind(this);
   }
 
@@ -37,13 +38,18 @@ class Order extends React.Component {
     });
   }
 
+  selectItem(selectedItem) {
+    this.props.toggleMenuItemModal();
+    this.props.selectItem(selectedItem);
+  }
+
   deleteAllItems() {
     this.props.deleteAllItems();
   }
 
   render() {
     const orderItemsUnits = this.state.orderItems.map(orderItem => {
-      return <OrderItemUnit key={orderItem.id} orderItem={orderItem}/>;
+      return <OrderItemUnit key={orderItem.id} orderItem={orderItem} selectItem={this.selectItem}/>;
     });
 
     return(
@@ -52,7 +58,7 @@ class Order extends React.Component {
           <h3>Your order</h3>
         </div>
 
-        <div className={this.props.order.restaurantId === null ? 'order-empty' : 'hidden'}>
+        <div className={this.state.orderItems.length === 0 ? 'order-empty' : 'hidden'}>
           <div className='order-empty-background'>
           </div>
           <div className='order-empty-text'>
@@ -65,7 +71,7 @@ class Order extends React.Component {
             {orderItemsUnits}
           </ul>
 
-          <div className={this.props.order.restaurantId ? 'order-total-container' : 'hidden'}>
+          <div className={this.state.orderItems.length > 0 ? 'order-total-container' : 'hidden'}>
             <div className='order-total'>
               <h6>Items Subtotal:</h6>
               <h6>${this.state.subtotal ? this.state.subtotal.toFixed(2) : null}</h6>
@@ -88,7 +94,7 @@ class Order extends React.Component {
         <div className='spacer'>
         </div>
 
-        <div className='proceed-to-checkout-button-container'>
+        <div className={this.state.orderItems.length > 0 ? 'proceed-to-checkout-button-container' : 'hidden'}>
           <button className='proceed-to-checkout-button'>Proceed to checkout: ${this.state.total ? this.state.total.toFixed(2) : null}</button>
         </div>
       </div>

@@ -21,8 +21,8 @@ class MenuItemModal extends React.Component {
 
     this.state = {
       price: null,
-      quantity: 1,
-      itemInstructions: ""
+      quantity: this.props.menuItem.quantity || 1,
+      itemInstructions: this.props.menuItem.itemInstructions || ""
     };
 
     this.toggleMenuItemModal = this.toggleMenuItemModal.bind(this);
@@ -32,7 +32,7 @@ class MenuItemModal extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({price: this.props.menuItem.props.menuItem.price.toFixed(2)});
+    this.setState({price: parseFloat(this.props.menuItem.price).toFixed(2)});
   }
 
   componentDidUpdate() {
@@ -86,20 +86,19 @@ class MenuItemModal extends React.Component {
   }
 
   addItem() {
-    const id = this.props.menuItem.props.menuItem.id;
-    const name = this.props.menuItem.props.menuItem.name;
+    const id = this.props.menuItem.id;
+    const name = this.props.menuItem.name;
     const price = this.state.price;
     const quantity = this.state.quantity;
     const itemInstructions = this.state.itemInstructions;
-    const restaurantId = this.props.menuItem.props.menuItem.restaurant_id;
+    const restaurantId = this.props.menuItem.restaurant_id;
     const deliveryFee = this.props.deliveryFee;
     this.props.addItem(id, name, price, quantity, itemInstructions, restaurantId, deliveryFee);
     this.props.toggleMenuItemModal();
   }
 
   render() {
-    const { menuItem } = this.props.menuItem.props;
-    const { name, price, description } = this.props.menuItem.props.menuItem;
+    const { name, price, description } = this.props.menuItem;
     const { quantityError, itemInstructionsError, clearErrors } = this.props;
 
     return(
@@ -124,7 +123,7 @@ class MenuItemModal extends React.Component {
             <h6 className='errors'>{itemInstructionsError ? itemInstructionsError : null}</h6>
 
           </div>
-          <button className={`${this.state.quantity === 0 ? 'submit-item-inactive' : 'submit-item'}`} onClick={this.addItem}>{`Add to bag: $${parseInt(this.state.quantity) ? (this.state.price * parseInt(this.state.quantity)).toFixed(2) : 0}`}</button>
+          <button className={`${this.state.quantity === 0 ? 'submit-item-inactive' : 'submit-item'}`} onClick={this.addItem}>{`${this.props.menuItem.restaurant_id ? `Add to bag` : `Update`}: $${parseInt(this.state.quantity) ? (this.state.price * parseInt(this.state.quantity)).toFixed(2) : 0}`}</button>
           <button className="x-close" onClick={this.toggleMenuItemModal}>&times;</button>
         </div>
       </div>

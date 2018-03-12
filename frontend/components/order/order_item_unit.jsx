@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteItem } from '../../actions/order_item_actions';
+import { toggleMenuItemModal } from '../../actions/modal_actions';
 
 const mapDispatchToProps = dispatch => ({
-  deleteItem: id => dispatch(deleteItem(id))
+  deleteItem: id => dispatch(deleteItem(id)),
+  toggleMenuItemModal: () => dispatch(toggleMenuItemModal())
 });
 
 class OrderItemUnit extends React.Component {
@@ -11,10 +13,16 @@ class OrderItemUnit extends React.Component {
     super(props);
 
     this.deleteItem = this.deleteItem.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   deleteItem() {
     this.props.deleteItem(this.props.orderItem.id);
+  }
+
+  handleClick() {
+    // this.props.toggleMenuItemModal();
+    this.props.selectItem(this.props.orderItem);
   }
 
   render() {
@@ -26,7 +34,7 @@ class OrderItemUnit extends React.Component {
         <div className='order-item-quantity'>{quantity}</div>
 
         <div className='order-name-container'>
-          <div className='order-item-name'>{name}</div>
+          <div className='order-item-name' onClick={this.handleClick}>{name}</div>
           <div className='order-item-itemInstructions'>{itemInstructions}</div>
         </div>
 

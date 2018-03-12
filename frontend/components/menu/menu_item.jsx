@@ -9,7 +9,7 @@ export default class MenuItem extends React.Component {
 
   handleClick() {
     this.props.toggleMenuItemModal();
-    this.props.selectItem(this);
+    this.props.selectItem(this.props.menuItem);
   }
 
   render() {

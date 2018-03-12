@@ -106,7 +106,7 @@ export default class RestaurantShow extends React.Component {
         </div>
 
         <div className='order-container'>
-          <Order />
+          <Order selectItem={this.selectItem} toggleMenuItemModal={toggleMenuItemModal}/>
         </div>
       </div>
     );

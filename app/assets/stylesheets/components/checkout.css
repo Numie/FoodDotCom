@@ -1,0 +1,66 @@
+.checkout-container {
+  display: flex;
+  position: relative;
+  top: 60px;
+  height: 100%;
+  width: 75%;
+  background: #efefef;
+}
+
+.checkout-main {
+  padding: 32px;
+  width: 100%;
+}
+
+.checkout-form h1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.checkout-form h5 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.checkout-form h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.checkout-form input {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 12px 16px;
+  background: white;
+  margin-bottom: 20px;
+}
+
+.contact-input {
+  display: block;
+  width: 50%;
+}
+
+.checkout-form input:focus {
+  box-shadow: 0 0 10px rgba(81, 150, 238, 1);
+}
+
+.checkout-form input:-moz-read-only {
+  color: rgba(0, 0, 0, 0.2);
+  cursor: not-allowed;
+}
+
+.checkout-form input:-moz-read-only:focus {
+  box-shadow: none;
+}
+
+.checkout-form input:read-only {
+  color: rgba(0, 0, 0, 0.2);
+  cursor: not-allowed;
+}
+
+.checkout-form input:read-only:focus {
+  box-shadow: none;
+}

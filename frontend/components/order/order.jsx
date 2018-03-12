@@ -1,15 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import OrderItemUnit from './order_item_unit';
 import { deleteAllItems } from '../../actions/order_item_actions';
+import { toggleSessionModal } from '../../actions/modal_actions';
 
 const mapStateToProps = state => ({
   order: state.entities.order,
-  orderItems: Object.values(state.entities.orderItems)
+  orderItems: Object.values(state.entities.orderItems),
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({
-  deleteAllItems: () => dispatch(deleteAllItems())
+  deleteAllItems: () => dispatch(deleteAllItems()),
+  toggleSessionModal: () => dispatch(toggleSessionModal())
 });
 
 class Order extends React.Component {
@@ -26,6 +30,7 @@ class Order extends React.Component {
 
     this.selectItem = this.selectItem.bind(this);
     this.deleteAllItems = this.deleteAllItems.bind(this);
+    this.handleCheckout = this.handleCheckout.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -45,6 +50,14 @@ class Order extends React.Component {
 
   deleteAllItems() {
     this.props.deleteAllItems();
+  }
+
+  handleCheckout() {
+    if (this.props.currentUser) {
+      this.props.history.push('/checkout');
+    } else {
+      this.props.toggleSessionModal();
+    }
   }
 
   render() {
@@ -95,11 +108,11 @@ class Order extends React.Component {
         </div>
 
         <div className={this.state.orderItems.length > 0 ? 'proceed-to-checkout-button-container' : 'hidden'}>
-          <button className='proceed-to-checkout-button'>Proceed to checkout: ${this.state.total ? this.state.total.toFixed(2) : null}</button>
+          <button className='proceed-to-checkout-button' onClick={this.handleCheckout}>Proceed to checkout: ${this.state.total ? this.state.total.toFixed(2) : null}</button>
         </div>
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Order);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Order));

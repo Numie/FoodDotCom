@@ -22,8 +22,8 @@ const orderReducer = (oldState = defaultState, action) => {
         newState.subtotal = 0;
         newState.orderItemIds = [];
       }
-      
-      newState.subtotal = newState.subtotal + parseFloat(action.price);
+
+      newState.subtotal = newState.subtotal + (parseFloat(action.price) * action.quantity);
       newState.deliveryFee = (action.deliveryFee ? action.deliveryFee : 0);
       newState.tax = (newState.subtotal + newState.deliveryFee) * 0.08875;
       newState.total = newState.subtotal + newState.deliveryFee + newState.tax;

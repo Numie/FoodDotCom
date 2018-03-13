@@ -4,18 +4,22 @@ import { withRouter, Redirect } from 'react-router-dom';
 import Order from '../order/order';
 import { pickBy } from 'lodash';
 import { updateTip, addCheckoutInfo } from '../../actions/checkout_actions';
+import { receiveItemInstructionsErrors, clearErrors } from '../../actions/menu_item_actions';
 import Typed from 'typed.js';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   currentAddress: state.currentAddress,
   checkoutInfo: state.entities.checkoutInfo,
-  orderSubtotal: state.entities.order.subtotal
+  orderSubtotal: state.entities.order.subtotal,
+  itemInstructionsError: state.errors.menuItem.itemInstructions
 });
 
 const mapDispatchToProps = dispatch => ({
   updateTip: amount => dispatch(updateTip(amount)),
-  addCheckoutInfo: () => dispatch(addCheckoutInfo())
+  addCheckoutInfo: () => dispatch(addCheckoutInfo()),
+  receiveItemInstructionsErrors: () => dispatch(receiveItemInstructionsErrors()),
+  clearErrors: () => dispatch(clearErrors())
 });
 
 class Checkout extends React.Component {
@@ -166,6 +170,16 @@ class Checkout extends React.Component {
     };
   }
 
+  updateDeliveryInstructions() {
+    return(e) => {
+      if (e.target.value.length > 255) {
+        this.props.receiveItemInstructionsErrors();
+      } else {
+        this.setState({'deliveryInstructions': e.target.value});
+      }
+    };
+  }
+
   handleCustomTipClick() {
     this.setState({'customTip': (parseFloat(this.state.tip) * this.props.orderSubtotal).toFixed(2)});
     this.setState({'tip': ""});
@@ -178,10 +192,10 @@ class Checkout extends React.Component {
   }
 
   render() {
-    if (this.props.checkoutInfo) {
+    if (!this.props.checkoutInfo || !this.props.location.pathname.includes('payment')) {
 
       return(
-        <div className='checkout-container'>
+        <div className='checkout-container' onClick={this.props.itemInstructionsError ? this.props.clearErrors : null}>
           <div className='checkout-main'>
             <form className='checkout-form'>
               <h1>You've entered a new address</h1>
@@ -205,7 +219,9 @@ class Checkout extends React.Component {
                 <input className='address-input' type='text' value={this.state.zip} readOnly/>
               </div>
 
-              <textarea className='deliveryInstructions' placeholder='Delivery instructions (e.g. Check in with doorman.)' value={this.state.deliveryInstructions} onChange={this.update('deliveryInstructions')}></textarea>
+              <textarea className='deliveryInstructions' placeholder='Delivery instructions (e.g. Check in with doorman.)' value={this.state.deliveryInstructions} onChange={this.updateDeliveryInstructions()}></textarea>
+
+              <h6 className='errors'>{this.props.itemInstructionsError ? this.props.itemInstructionsError : null}</h6>
 
               <button className='continue-to-payment' onClick={this.handleSubmit}>Continue to payment method</button>
             </form>

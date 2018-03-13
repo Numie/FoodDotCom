@@ -2,7 +2,7 @@ export const ADD_ITEM = 'ADD_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const DELETE_ALL_ITEMS = 'DELETE_ALL_ITEMS';
 
-export const addItem = (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryFee) => {
+export const addItem = (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee) => {
   return({
     type: ADD_ITEM,
     id,
@@ -12,6 +12,7 @@ export const addItem = (id, name, price, quantity, itemInstructions, restaurantI
     itemInstructions,
     restaurantId,
     restaurantName,
+    deliveryMinimum,
     deliveryFee
   });
 };

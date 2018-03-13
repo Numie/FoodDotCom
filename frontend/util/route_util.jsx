@@ -50,13 +50,13 @@ const AddressRequired = ({ component: Component, path, address, exact }) => {
   )
 }
 
-const Checkout = ({ component: Component, path, loggedIn, address, order, exact }) => {
+const Checkout = ({ component: Component, path, loggedIn, address, order, deliveryMinimumReached, exact }) => {
   return (
     <Route
       path={path}
       exact={exact}
       render={props =>
-        loggedIn && address && order ? (
+        loggedIn && address && order && deliveryMinimumReached ? (
           <Component {...props} />
         ) : (
           <Redirect to="/" />
@@ -69,7 +69,8 @@ const mapStateToProps = state => {
   return {
     loggedIn: Boolean(state.session.currentUser),
     address: Boolean(Object.keys(state.entities.restaurants).length !== 0),
-    order: Boolean(Object.keys(state.entities.orderItems).length !== 0)
+    order: Boolean(Object.keys(state.entities.orderItems).length !== 0),
+    deliveryMinimumReached: Boolean(state.entities.order.total >= state.entities.order.deliveryMinimum)
   }
 };
 

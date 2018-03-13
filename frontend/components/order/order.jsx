@@ -29,6 +29,7 @@ class Order extends React.Component {
       deliveryFee: this.props.order.deliveryFee || null,
       tax: this.props.order.tax || null,
       total: this.props.order.total || null,
+      tip: null,
       orderItems: this.props.orderItems
     };
 
@@ -96,24 +97,35 @@ class Order extends React.Component {
           </ul>
 
           <div className={this.state.orderItems.length > 0 ? 'order-total-container' : 'hidden'}>
+
             <div className='order-total'>
               <h6>Items Subtotal:</h6>
               <h6>${this.state.subtotal ? this.state.subtotal.toFixed(2) : null}</h6>
             </div>
+
             <div className={this.state.deliveryFee ? 'order-total' : 'hidden'}>
               <h6>Delivery Fee:</h6>
               <h6>${this.state.deliveryFee ? this.state.deliveryFee.toFixed(2) : null}</h6>
             </div>
+
             <div className='order-total'>
               <h6>Sales Tax:</h6>
               <h6>${this.state.tax ? this.state.tax.toFixed(2) : null}</h6>
             </div>
+
+            <div className={this.state.tip ? 'order-total' : 'hidden'}>
+              <h6>Tip:</h6>
+              <h6>${this.state.tip ? this.state.tip.toFixed(2) : null}</h6>
+            </div>
+
             <div className='order-total'>
               <h6>Total:</h6>
               <h6>${this.state.total ? this.state.total.toFixed(2) : null}</h6>
             </div>
+
             <h6 className={this.props.location.pathname.includes('checkout') ? 'hidden' : 'empty-bag'} onClick={this.deleteAllItems}>Empty bag</h6>
             </div>
+
         </div>
 
         <div className='delivery-minimum-error-container'>

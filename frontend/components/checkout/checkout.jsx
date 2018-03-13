@@ -8,7 +8,8 @@ import { addCheckoutInfo } from '../../actions/checkout_actions';
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
   currentAddress: state.currentAddress,
-  checkoutInfo: state.entities.checkoutInfo
+  checkoutInfo: state.entities.checkoutInfo,
+  orderSubtotal: state.entities.order.subtotal
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -34,10 +35,13 @@ class Checkout extends React.Component {
       cardNumber: "",
       expiryDate: "",
       securityCode: "",
-      postalCode: ""
+      postalCode: "",
+      tip: ".2",
+      customTip: ""
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCustomTipClick = this.handleCustomTipClick.bind(this);
   }
 
   componentDidUpdate() {
@@ -90,17 +94,31 @@ class Checkout extends React.Component {
 
   update(field) {
     return(e) => {
-      this.setState({[field]: e.target.value});
+      if (field === 'tip') {
+        this.setState({[field]: e.target.value});
+        this.setState({'customTip': ""});
+      } else if (field === 'customTip') {
+        this.setState({[field]: parseFloat(e.target.value) / this.props.orderSubtotal});
+        this.setState({'tip': ""});
+      } else {
+        this.setState({[field]: e.target.value});
+      }
     };
   }
 
-  handleClick(e) {
+  handleCustomTipClick() {
+    this.setState({'customTip': this.state.tip});
+    this.setState({'tip': ""});
+  }
+
+  handleSubmit(e) {
     e.preventDefault();
     this.props.addCheckoutInfo();
     this.props.history.push('/checkout/payment');
   }
 
   render() {
+    debugger
     if (this.props.checkoutInfo) {
 
       return(
@@ -130,7 +148,7 @@ class Checkout extends React.Component {
 
               <textarea className='deliveryInstructions' placeholder='Delivery instructions (e.g. Check in with doorman.)' value={this.state.deliveryInstructions} onChange={this.update('deliveryInstructions')}></textarea>
 
-              <button className='continue-to-payment' onClick={this.handleClick}>Continue to payment method</button>
+              <button className='continue-to-payment' onClick={this.handleSubmit}>Continue to payment method</button>
             </form>
           </div>
 
@@ -180,7 +198,25 @@ class Checkout extends React.Component {
 
             </form>
 
+            <div className='tip-entry-container'>
+
+              <div className='preset-tip-container'>
+                <h3>Add a tip</h3>
+                <button className={this.state.tip === '.15' ? 'tip-selected' : 'tip'} value='.15' onClick={this.update('tip')}>15%</button>
+                <button className={this.state.tip === '.2' ? 'tip-selected' : 'tip'} value='.2' onClick={this.update('tip')}>20%</button>
+                <button className={this.state.tip === '.25' ? 'tip-selected' : 'tip'} value='.25' onClick={this.update('tip')}>25%</button>
+                <button className={this.state.tip === '.3' ? 'tip-selected' : 'tip'} value='.3' onClick={this.update('tip')}>30%</button>
+              </div>
+
+              <div className='custom-tip-container'>
+                <button className={this.state.tip === '' ? 'tip-selected' : 'tip'} onClick={this.handleCustomTipClick}>Custom tip</button>
+                <input id='custom-tip-input' placeholder='Custom tip amount' value={this.state.customTip === "" ? "" : (parseFloat(this.state.customTip) * this.props.orderSubtotal).toFixed(2)} onChange={this.update('customTip')}/>
+              </div>
+            </div>
+
+
             <button className='place-your-order'>Place Your Order</button>
+
           </div>
 
           <div className='order-container'>

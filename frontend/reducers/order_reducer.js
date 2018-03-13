@@ -9,6 +9,7 @@ const defaultState = {
   deliveryMinimum: 0,
   deliveryFee: 0,
   tax: 0,
+  tip: null,
   total: 0,
   orderItemIds: []
 };

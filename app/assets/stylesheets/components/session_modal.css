@@ -72,8 +72,7 @@
 }
 
 .session-form input[type='submit'] {
-  display: flex;
-  justify-content: center;
+  text-align:center;
   color: white;
   background-color: #c90017;
   min-height: 44px;

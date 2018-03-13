@@ -10,6 +10,7 @@
 .checkout-main {
   padding: 32px;
   width: 100%;
+  min-height: calc(100vh - 60px);
 }
 
 .checkout-form h1 {
@@ -44,6 +45,7 @@
 }
 
 .checkout-form input:focus, .deliveryInstructions:focus {
+  border: 2px solid rgba(81, 150, 238, 1);
   box-shadow: 0 0 10px rgba(81, 150, 238, 1);
 }
 
@@ -53,6 +55,7 @@
 }
 
 .checkout-form input:-moz-read-only:focus {
+  border: 2px solid rgba(0, 0, 0, 0.2);
   box-shadow: none;
 }
 
@@ -62,6 +65,7 @@
 }
 
 .checkout-form input:read-only:focus {
+  border: 2px solid rgba(0, 0, 0, 0.2);
   box-shadow: none;
 }
 

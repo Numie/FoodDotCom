@@ -15,9 +15,11 @@ export const addItem = (id, name, price, quantity, itemInstructions, restaurantI
   });
 };
 
-export const deleteItem = id => ({
+export const deleteItem = (id, price, quantity) => ({
   type: DELETE_ITEM,
-  id
+  id,
+  price,
+  quantity
 });
 
 export const deleteAllItems = () => ({

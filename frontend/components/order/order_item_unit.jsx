@@ -4,7 +4,7 @@ import { deleteItem } from '../../actions/order_item_actions';
 import { toggleMenuItemModal } from '../../actions/modal_actions';
 
 const mapDispatchToProps = dispatch => ({
-  deleteItem: id => dispatch(deleteItem(id)),
+  deleteItem: (id, price, quantity) => dispatch(deleteItem(id, price, quantity)),
   toggleMenuItemModal: () => dispatch(toggleMenuItemModal())
 });
 
@@ -17,11 +17,14 @@ class OrderItemUnit extends React.Component {
   }
 
   deleteItem() {
-    this.props.deleteItem(this.props.orderItem.id);
+    const id = this.props.orderItem.id;
+    const price = this.props.orderItem.price;
+    const quantity = this.props.orderItem.quantity;
+
+    this.props.deleteItem(id, price, quantity);
   }
 
   handleClick() {
-    // this.props.toggleMenuItemModal();
     this.props.selectItem(this.props.orderItem);
   }
 

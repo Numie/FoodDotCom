@@ -21,10 +21,10 @@ class Order extends React.Component {
     super(props);
 
     this.state = {
-      subtotal: null,
-      deliveryFee: null,
-      tax: null,
-      total: null,
+      subtotal: this.props.order.subtotal || null,
+      deliveryFee: this.props.order.deliveryFee || null,
+      tax: this.props.order.tax || null,
+      total: this.props.order.total || null,
       orderItems: this.props.orderItems
     };
 

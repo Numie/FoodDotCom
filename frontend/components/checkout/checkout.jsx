@@ -23,7 +23,8 @@ class Checkout extends React.Component {
       crossStreet: "",
       city: "",
       state: "",
-      zip: ""
+      zip: "",
+      deliveryInstructions: ""
     };
 
   }
@@ -102,7 +103,7 @@ class Checkout extends React.Component {
               <input className='address-input' type='text' value={this.state.zip} readOnly/>
             </div>
 
-            <textarea className='deliveryInstructions' placeholder='Delivery instructions (e.g. Check in with doorman.)'></textarea>
+            <textarea className='deliveryInstructions' placeholder='Delivery instructions (e.g. Check in with doorman.)' value={this.state.deliveryInstructions} onChange={this.update('deliveryInstructions')}></textarea>
 
             <button className='continue-to-payment'>Continue to payment method</button>
           </form>

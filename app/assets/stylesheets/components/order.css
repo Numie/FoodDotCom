@@ -123,3 +123,11 @@
   font-weight: 600;
   background: #323232;
 }
+
+.delivery-minimum-error-container {
+  position: absolute;
+  bottom: 85px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}

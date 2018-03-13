@@ -1,5 +1,6 @@
 import React from 'react';
 import { receiveQuantityErrors, receiveItemInstructionsErrors, clearErrors } from '../../actions/menu_item_actions';
+import { clearCheckoutErrors } from '../../actions/checkout_actions';
 import { addItem } from '../../actions/order_item_actions';
 import { connect } from 'react-redux';
 
@@ -12,7 +13,8 @@ const mapDispatchToProps = dispatch => ({
   receiveQuantityErrors: () => dispatch(receiveQuantityErrors()),
   receiveItemInstructionsErrors: () => dispatch(receiveItemInstructionsErrors()),
   clearErrors: () => dispatch(clearErrors()),
-  addItem: (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryFee) => dispatch(addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryFee))
+  clearCheckoutErrors: () => dispatch(clearCheckoutErrors()),
+  addItem: (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee) => dispatch(addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee))
 });
 
 class MenuItemModal extends React.Component {
@@ -93,8 +95,10 @@ class MenuItemModal extends React.Component {
     const itemInstructions = this.state.itemInstructions;
     const restaurantId = this.props.menuItem.restaurant_id;
     const restaurantName = this.props.restaurantName;
+    const deliveryMinimum = this.props.deliveryMinimum;
     const deliveryFee = this.props.deliveryFee;
-    this.props.addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryFee);
+    this.props.addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee);
+    this.props.clearCheckoutErrors();
     this.props.toggleMenuItemModal();
   }
 

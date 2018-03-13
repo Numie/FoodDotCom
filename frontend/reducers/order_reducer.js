@@ -6,6 +6,7 @@ const defaultState = {
   restaurantId: null,
   restaurantName: null,
   subtotal: 0,
+  deliveryMinimum: 0,
   deliveryFee: 0,
   tax: 0,
   total: 0,
@@ -21,6 +22,7 @@ const orderReducer = (oldState = defaultState, action) => {
       if (newState.restaurantId  !== action.restaurantId) {
         newState.restaurantId = action.restaurantId;
         newState.restaurantName = action.restaurantName;
+        newState.deliveryMinimum = action.deliveryMinimum;
         newState.deliveryFee = action.deliveryFee;
         newState.subtotal = 0;
         newState.orderItemIds = [];

@@ -4,16 +4,20 @@ import { withRouter } from 'react-router-dom';
 import OrderItemUnit from './order_item_unit';
 import { deleteAllItems } from '../../actions/order_item_actions';
 import { toggleSessionModal } from '../../actions/modal_actions';
+import { receiveDeliveryMinimumErrors } from '../../actions/checkout_actions';
 
 const mapStateToProps = state => ({
   order: state.entities.order,
   orderItems: Object.values(state.entities.orderItems),
-  currentUser: state.session.currentUser
+  deliveryMinimum: state.entities.order.deliveryMinimum,
+  currentUser: state.session.currentUser,
+  checkoutError: state.errors.checkout
 });
 
 const mapDispatchToProps = dispatch => ({
   deleteAllItems: () => dispatch(deleteAllItems()),
-  toggleSessionModal: () => dispatch(toggleSessionModal())
+  toggleSessionModal: () => dispatch(toggleSessionModal()),
+  receiveDeliveryMinimumErrors: () => dispatch(receiveDeliveryMinimumErrors())
 });
 
 class Order extends React.Component {
@@ -54,7 +58,9 @@ class Order extends React.Component {
   }
 
   handleCheckout() {
-    if (this.props.currentUser) {
+    if (this.state.total < this.props.deliveryMinimum) {
+      this.props.receiveDeliveryMinimumErrors();
+    } else if (this.props.currentUser) {
       this.props.history.push('/checkout');
     } else {
       this.props.toggleSessionModal();
@@ -109,7 +115,9 @@ class Order extends React.Component {
             <h6 className={this.props.location.pathname === '/checkout' ? 'hidden' : 'empty-bag'} onClick={this.deleteAllItems}>Empty bag</h6>
             </div>
         </div>
-        <div className='spacer'>
+
+        <div className='delivery-minimum-error-container'>
+          <h6 className='errors'>{this.props.checkoutError ? this.props.checkoutError : null}</h6>
         </div>
 
         <div className={(this.state.orderItems.length > 0 && this.props.location.pathname !== '/checkout') ? 'proceed-to-checkout-button-container' : 'hidden'}>

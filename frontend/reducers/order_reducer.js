@@ -1,5 +1,6 @@
 import { merge } from 'lodash';
 import { ADD_ITEM, DELETE_ITEM, DELETE_ALL_ITEMS } from '../actions/order_item_actions';
+import { UPDATE_TIP } from '../actions/checkout_actions';
 import { saveOrder } from '../local_storage/local_storage';
 
 const defaultState = {
@@ -53,6 +54,12 @@ const orderReducer = (oldState = defaultState, action) => {
         return modifiedState;
       }
       break;
+    case UPDATE_TIP:
+      const updatedState = merge({}, oldState);
+      updatedState.tip = action.amount;
+      updatedState.total = updatedState.subtotal + updatedState.deliveryFee + updatedState.tax+ (updatedState.tip * updatedState.subtotal);
+      saveOrder(updatedState);
+      return updatedState;
     case DELETE_ALL_ITEMS:
       saveOrder(defaultState);
       return defaultState;

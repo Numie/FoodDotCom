@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch => ({
   receiveQuantityErrors: () => dispatch(receiveQuantityErrors()),
   receiveItemInstructionsErrors: () => dispatch(receiveItemInstructionsErrors()),
   clearErrors: () => dispatch(clearErrors()),
-  addItem: (id, name, price, quantity, itemInstructions, restaurantId, deliveryFee) => dispatch(addItem(id, name, price, quantity, itemInstructions, restaurantId, deliveryFee))
+  addItem: (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryFee) => dispatch(addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryFee))
 });
 
 class MenuItemModal extends React.Component {
@@ -92,8 +92,9 @@ class MenuItemModal extends React.Component {
     const quantity = this.state.quantity;
     const itemInstructions = this.state.itemInstructions;
     const restaurantId = this.props.menuItem.restaurant_id;
+    const restaurantName = this.props.restaurantName;
     const deliveryFee = this.props.deliveryFee;
-    this.props.addItem(id, name, price, quantity, itemInstructions, restaurantId, deliveryFee);
+    this.props.addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryFee);
     this.props.toggleMenuItemModal();
   }
 

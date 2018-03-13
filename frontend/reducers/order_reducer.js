@@ -4,6 +4,7 @@ import { saveOrder } from '../local_storage/local_storage';
 
 const defaultState = {
   restaurantId: null,
+  restaurantName: null,
   subtotal: 0,
   deliveryFee: 0,
   tax: 0,
@@ -19,6 +20,7 @@ const orderReducer = (oldState = defaultState, action) => {
 
       if (newState.restaurantId  !== action.restaurantId) {
         newState.restaurantId = action.restaurantId;
+        newState.restaurantName = action.restaurantName;
         newState.deliveryFee = action.deliveryFee;
         newState.subtotal = 0;
         newState.orderItemIds = [];

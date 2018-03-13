@@ -135,7 +135,7 @@ class Checkout extends React.Component {
     //   startDelay: 6500,
     //   showCursor: true
     // });
-    // 
+    //
     // const typedPostalCode = new Typed('#postal-code', {
     //   strings: ["10018"],
     //   typeSpeed: 30,
@@ -151,9 +151,14 @@ class Checkout extends React.Component {
         this.setState({'customTip': ""});
         this.props.updateTip(parseFloat(e.target.value));
       } else if (field === 'customTip') {
-        this.setState({[field]: (e.target.value === "" ? "" : parseFloat(e.target.value) / this.props.orderSubtotal)});
+
+        if (!parseFloat(e.target.value) && e.target.value !== "" && e.target.value[e.target.value.length - 1] !== '.') {
+          return;
+        }
+
+        this.setState({[field]: e.target.value});
         this.setState({'tip': ""});
-        const newTip = (e.target.value === "" ? 0 : parseFloat(e.target.value / this.props.orderSubtotal));
+        const newTip = (e.target.value === "" ? 0 : parseFloat(e.target.value) / this.props.orderSubtotal);
         this.props.updateTip(newTip);
       } else {
         this.setState({[field]: e.target.value});
@@ -162,7 +167,7 @@ class Checkout extends React.Component {
   }
 
   handleCustomTipClick() {
-    this.setState({'customTip': this.state.tip});
+    this.setState({'customTip': (parseFloat(this.state.tip) * this.props.orderSubtotal).toFixed(2)});
     this.setState({'tip': ""});
   }
 
@@ -270,7 +275,7 @@ class Checkout extends React.Component {
 
               <div className='custom-tip-container'>
                 <button className={this.state.tip === '' ? 'tip-selected' : 'tip'} onClick={this.handleCustomTipClick}>Custom tip</button>
-                <input id='custom-tip-input' placeholder='Custom tip amount' value={this.state.customTip === "" ? "" : (parseFloat(this.state.customTip) * this.props.orderSubtotal).toFixed(2)} onChange={this.update('customTip')}/>
+                <input id='custom-tip-input' placeholder='Custom tip amount' value={this.state.customTip} onChange={this.update('customTip')}/>
               </div>
             </div>
 

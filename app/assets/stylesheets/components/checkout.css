@@ -13,25 +13,25 @@
   min-height: calc(100vh - 60px);
 }
 
-.checkout-form h1 {
+.checkout-main h1 {
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 4px;
 }
 
-.checkout-form h5 {
+.checkout-main h5 {
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 40px;
 }
 
-.checkout-form h3 {
+.checkout-main h3 {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 8px;
 }
 
-.checkout-form input {
+.checkout-main input {
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   padding: 12px 16px;
@@ -44,27 +44,27 @@
   width: 50%;
 }
 
-.checkout-form input:focus, .deliveryInstructions:focus {
+.checkout-main input:focus, .deliveryInstructions:focus {
   border: 2px solid rgba(81, 150, 238, 1);
   box-shadow: 0 0 10px rgba(81, 150, 238, 1);
 }
 
-.checkout-form input:-moz-read-only {
+.checkout-main input:-moz-read-only {
   color: rgba(0, 0, 0, 0.3);
   cursor: not-allowed;
 }
 
-.checkout-form input:-moz-read-only:focus {
+.checkout-main input:-moz-read-only:focus {
   border: 2px solid rgba(0, 0, 0, 0.2);
   box-shadow: none;
 }
 
-.checkout-form input:read-only {
+.checkout-main input:read-only {
   color: rgba(0, 0, 0, 0.3);
   cursor: not-allowed;
 }
 
-.checkout-form input:read-only:focus {
+.checkout-main input:read-only:focus {
   border: 2px solid rgba(0, 0, 0, 0.2);
   box-shadow: none;
 }
@@ -107,5 +107,59 @@
 }
 
 .continue-to-payment:hover {
+  box-shadow: inset 9999px 9999px rgba(0, 0, 0, 0.3);
+}
+
+.checkout-main ul {
+  margin-bottom: 40px;
+}
+
+.checkout-main ul li:first-child {
+  text-transform: uppercase;
+}
+
+.payment-input-form {
+  display: flex;
+  width: 100%;
+
+}
+
+.payment-input-form h6 {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+}
+
+.card-number-container {
+  flex-basis: 33.333%;
+  max-width: 33.333%;
+}
+
+.expires-on-container {
+  flex-basis: 16.667%;
+  padding-left: 8px;
+}
+
+.security-code-container, .postal-code-container {
+  flex-basis: 25%;
+  padding-left: 8px;
+}
+
+.payment-input-form input {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.place-your-order {
+  width: 100%;
+  min-height: 56px;
+  background: #13aa37;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.place-your-order:hover {
   box-shadow: inset 9999px 9999px rgba(0, 0, 0, 0.3);
 }

@@ -30,7 +30,11 @@ class Checkout extends React.Component {
       city: "",
       state: "",
       zip: "",
-      deliveryInstructions: ""
+      deliveryInstructions: "",
+      cardNumber: "",
+      expiryDate: "",
+      securityCode: "",
+      postalCode: ""
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -97,42 +101,95 @@ class Checkout extends React.Component {
   }
 
   render() {
-    return(
-      <div className='checkout-container'>
-        <div className='checkout-main'>
-          <form className='checkout-form'>
-            <h1>You've entered a new address</h1>
-            <h5>Does everything below look correct?</h5>
+    if (this.props.checkoutInfo) {
 
-            <h3>Contact</h3>
-            <input className='contact-input' type='text' placeholder='First Name' value={this.state.firstName} onChange={this.update('firstName')}/>
-            <input className='contact-input' type='text' placeholder='Last Name' value={this.state.lastName} onChange={this.update('lastName')}/>
-            <input className='contact-input' type='email' value={this.state.email} readOnly/>
-            <input className='contact-input' type='text' placeholder='e.g. 555 555 1212' value={this.state.phone} onChange={this.update('phone')}/>
+      return(
+        <div className='checkout-container'>
+          <div className='checkout-main'>
+            <form className='checkout-form'>
+              <h1>You've entered a new address</h1>
+              <h5>Does everything below look correct?</h5>
 
-            <h3>Address</h3>
-            <div className='address-input-container'>
-              <input className='address-input' type='text' value={this.state.address} readOnly/>
-              <input className='address-input' type='text' placeholder='Apt, suite, floor, etc.' value={this.state.apt} onChange={this.update('apt')}/>
-              <input className='address-input' type='text' placeholder='Cross street' value={this.state.crossStreet} onChange={this.update('crossStreet')}/>
-            </div>
-            <div className='address-input-container'>
-              <input className='address-input' type='text' value={this.state.city} readOnly/>
-              <input className='address-input' type='text' value={this.state.state} readOnly/>
-              <input className='address-input' type='text' value={this.state.zip} readOnly/>
-            </div>
+              <h3>Contact</h3>
+              <input className='contact-input' type='text' placeholder='First Name' value={this.state.firstName} onChange={this.update('firstName')}/>
+              <input className='contact-input' type='text' placeholder='Last Name' value={this.state.lastName} onChange={this.update('lastName')}/>
+              <input className='contact-input' type='email' value={this.state.email} readOnly/>
+              <input className='contact-input' type='text' placeholder='e.g. 555 555 1212' value={this.state.phone} onChange={this.update('phone')}/>
 
-            <textarea className='deliveryInstructions' placeholder='Delivery instructions (e.g. Check in with doorman.)' value={this.state.deliveryInstructions} onChange={this.update('deliveryInstructions')}></textarea>
+              <h3>Address</h3>
+              <div className='address-input-container'>
+                <input className='address-input' type='text' value={this.state.address} readOnly/>
+                <input className='address-input' type='text' placeholder='Apt, suite, floor, etc.' value={this.state.apt} onChange={this.update('apt')}/>
+                <input className='address-input' type='text' placeholder='Cross street' value={this.state.crossStreet} onChange={this.update('crossStreet')}/>
+              </div>
+              <div className='address-input-container'>
+                <input className='address-input' type='text' value={this.state.city} readOnly/>
+                <input className='address-input' type='text' value={this.state.state} readOnly/>
+                <input className='address-input' type='text' value={this.state.zip} readOnly/>
+              </div>
 
-            <button className='continue-to-payment' onClick={this.handleClick}>Continue to payment method</button>
-          </form>
+              <textarea className='deliveryInstructions' placeholder='Delivery instructions (e.g. Check in with doorman.)' value={this.state.deliveryInstructions} onChange={this.update('deliveryInstructions')}></textarea>
+
+              <button className='continue-to-payment' onClick={this.handleClick}>Continue to payment method</button>
+            </form>
+          </div>
+
+          <div className='order-container'>
+            <Order />
+          </div>
         </div>
+      );
 
-        <div className='order-container'>
-          <Order />
+    } else {
+
+      return (
+        <div className='checkout-container'>
+          <div className='checkout-main'>
+            <h1>Review and place order</h1>
+            <h5>Review address, payments, and tip to complete your purchase</h5>
+
+            <h3>Your order settings</h3>
+            <ul>
+              <li>{this.state.firstName} {this.state.lastName}</li>
+              <li>{this.state.address}, {this.state.city}, {this.state.state} {this.state.zip}</li>
+              <li>{this.state.phone}</li>
+            </ul>
+
+            <h3>Payment information</h3>
+            <form className='payment-input-form'>
+
+              <div className='card-number-container'>
+                <h6>Card number</h6>
+                <input className='' type='text' value={this.state.cardNumber} onChange={this.update('expiryDate')}/>
+              </div>
+
+              <div className='expires-on-container'>
+                <h6>Expires On</h6>
+                <input className='' type='text' placeholder='MM/YY' value={this.state.expiryDate} onChange={this.update('expiryDate')}/>
+              </div>
+
+              <div className='security-code-container'>
+                <h6>Security Code</h6>
+                <input className='' type='text' value={this.state.securityCode} onChange={this.update('securityCode')}/>
+              </div>
+
+              <div className='postal-code-container'>
+                <h6>Postal Code</h6>
+                <input className='' type='text' value={this.state.postalCode} onChange={this.update('postalCode')}/>
+              </div>
+
+            </form>
+
+            <button className='place-your-order'>Place Your Order</button>
+          </div>
+
+          <div className='order-container'>
+            <Order />
+          </div>
         </div>
-      </div>
-    );
+      );
+
+    }
   }
 }
 

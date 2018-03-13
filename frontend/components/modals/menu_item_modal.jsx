@@ -79,7 +79,7 @@ class MenuItemModal extends React.Component {
     };
   }
 
-  updateitemInstructions() {
+  updateItemInstructions() {
     return(e) => {
       if (e.target.value.length > 255) {
         this.props.receiveItemInstructionsErrors();
@@ -131,7 +131,7 @@ class MenuItemModal extends React.Component {
 
             <h4>Special Instructions</h4>
             <h5 className={`${this.state.itemInstructions === "" ? 'hidden' : null}`}>Special requests may result in additional charges.</h5>
-            <textarea placeholder='Dressing on the side? No pickles? Let us know here.' value={this.state.itemInstructions} onChange={this.updateitemInstructions()}></textarea>
+            <textarea placeholder='Dressing on the side? No pickles? Let us know here.' value={this.state.itemInstructions} onChange={this.updateItemInstructions()}></textarea>
 
             <h6 className='errors'>{itemInstructionsError ? itemInstructionsError : null}</h6>
 

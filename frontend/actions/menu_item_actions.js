@@ -19,7 +19,7 @@ export const receiveQuantityErrors = () => ({
 
 export const receiveItemInstructionsErrors = () => ({
   type: RECEIVE_ITEM_INSTRUCTIONS_ERRORS,
-  error: "The maximum length of item instructions is 255 characters!"
+  error: "The maximum length of instructions is 255 characters!"
 });
 
 export const clearErrors = () => ({

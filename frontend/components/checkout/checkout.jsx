@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import Order from '../order/order';
 import { pickBy } from 'lodash';
-import { addCheckoutInfo } from '../../actions/checkout_actions';
+import { updateTip, addCheckoutInfo } from '../../actions/checkout_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  updateTip: amount => dispatch(updateTip(amount)),
   addCheckoutInfo: () => dispatch(addCheckoutInfo())
 });
 
@@ -51,6 +52,8 @@ class Checkout extends React.Component {
   }
 
   componentDidMount() {
+    this.props.updateTip(0.2);
+
     const data = this.props.currentAddress.addressComponents;
 
     const numberObj = pickBy(data, (obj) => {
@@ -97,9 +100,12 @@ class Checkout extends React.Component {
       if (field === 'tip') {
         this.setState({[field]: e.target.value});
         this.setState({'customTip': ""});
+        this.props.updateTip(parseFloat(e.target.value));
       } else if (field === 'customTip') {
-        this.setState({[field]: parseFloat(e.target.value) / this.props.orderSubtotal});
+        this.setState({[field]: (e.target.value === "" ? "" : parseFloat(e.target.value) / this.props.orderSubtotal)});
         this.setState({'tip': ""});
+        const newTip = (e.target.value === "" ? 0 : parseFloat(e.target.value / this.props.orderSubtotal));
+        this.props.updateTip(newTip);
       } else {
         this.setState({[field]: e.target.value});
       }
@@ -118,7 +124,6 @@ class Checkout extends React.Component {
   }
 
   render() {
-    debugger
     if (this.props.checkoutInfo) {
 
       return(
@@ -178,7 +183,7 @@ class Checkout extends React.Component {
 
               <div className='card-number-container'>
                 <h6>Card number</h6>
-                <input className='' type='text' value={this.state.cardNumber} onChange={this.update('expiryDate')}/>
+                <input className='' type='text' value={this.state.cardNumber} onChange={this.update('cardNumber')}/>
               </div>
 
               <div className='expires-on-container'>

@@ -1,10 +1,11 @@
 import React from 'react';
 import { receiveQuantityErrors, receiveItemInstructionsErrors, clearErrors } from '../../actions/menu_item_actions';
 import { clearCheckoutErrors } from '../../actions/checkout_actions';
-import { addItem } from '../../actions/order_item_actions';
+import { addItem, deleteItem } from '../../actions/order_item_actions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
+  orderItems: state.entities.orderItems,
   quantityError: state.errors.menuItem.quantity,
   itemInstructionsError: state.errors.menuItem.itemInstructions
 });
@@ -14,7 +15,8 @@ const mapDispatchToProps = dispatch => ({
   receiveItemInstructionsErrors: () => dispatch(receiveItemInstructionsErrors()),
   clearErrors: () => dispatch(clearErrors()),
   clearCheckoutErrors: () => dispatch(clearCheckoutErrors()),
-  addItem: (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee) => dispatch(addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee))
+  addItem: (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee) => dispatch(addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee)),
+  deleteItem: (id, price, quantity) => dispatch(deleteItem(id, price, quantity))
 });
 
 class MenuItemModal extends React.Component {
@@ -97,6 +99,12 @@ class MenuItemModal extends React.Component {
     const restaurantName = this.props.restaurantName;
     const deliveryMinimum = this.props.deliveryMinimum;
     const deliveryFee = this.props.deliveryFee;
+
+    if (Object.keys(this.props.orderItems).includes(id.toString())) {
+      const oldQuantity = this.props.orderItems[id].quantity;
+      this.props.deleteItem(id, price, oldQuantity);
+    }
+
     this.props.addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee);
     this.props.clearCheckoutErrors();
     this.props.toggleMenuItemModal();

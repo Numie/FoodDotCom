@@ -15,6 +15,10 @@ export default class RestaurantShow extends React.Component {
   }
 
   componentDidMount() {
+    if (this.props.restaurant.id !== this.props.orderRestaurantId) {
+      this.props.deleteAllItems();
+    }
+
     this.props.fetchMenuItems(this.props.match.params.id);
 
     const map = this.refs.map;
@@ -34,6 +38,13 @@ export default class RestaurantShow extends React.Component {
     });
 
     marker.setMap(this.map);
+  }
+
+  componentDidUpdate() {
+    if ((parseInt(this.props.match.params.id) !== this.props.orderRestaurantId) && (Number.isInteger(this.props.orderRestaurantId))) {
+      this.props.deleteAllItems();
+      this.props.fetchMenuItems(this.props.match.params.id);
+    }
   }
 
   selectItem(selectedItem) {

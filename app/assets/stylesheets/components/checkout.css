@@ -124,14 +124,17 @@
   margin-bottom: 60px;
 }
 
-.payment-input-form h6 {
+.payment-input-form h6, .payee-container h6 {
   color: rgba(0, 0, 0, 0.6);
   font-size: 14px;
 }
 
+.payee-container {
+  width: 33%;
+}
+
 .card-number-container {
   flex-basis: 33.333%;
-  max-width: 33.333%;
 }
 
 .expires-on-container {
@@ -144,7 +147,7 @@
   padding-left: 8px;
 }
 
-.payment-input-form input {
+.payment-input-form input, #payee {
   width: 100%;
   margin-top: 4px;
 }

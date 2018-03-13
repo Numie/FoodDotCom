@@ -4,6 +4,7 @@ import { withRouter, Redirect } from 'react-router-dom';
 import Order from '../order/order';
 import { pickBy } from 'lodash';
 import { updateTip, addCheckoutInfo } from '../../actions/checkout_actions';
+import Typed from 'typed.js';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
@@ -33,6 +34,7 @@ class Checkout extends React.Component {
       state: "",
       zip: "",
       deliveryInstructions: "",
+      payee: "",
       cardNumber: "",
       expiryDate: "",
       securityCode: "",
@@ -93,6 +95,53 @@ class Checkout extends React.Component {
       state,
       zip
     });
+
+    // const TAs = [
+    //   "Patrick Kovach-Long",
+    //   "Maurice Roach",
+    //   "Oscar Alvarez",
+    //   "Mashu Duek",
+    //   "Matthias Jenny",
+    //   "Abby Hersh",
+    //   "Brian Scott"
+    // ];
+    //
+    // const randomTA = TAs[Math.floor(Math.random() * TAs.length)];
+    //
+    // const typedPayee = new Typed('#payee', {
+    //   strings: [randomTA],
+    //   typeSpeed: 50,
+    //   startDelay: 2000,
+    //   showCursor: true
+    // });
+    //
+    // const typedCardNumber = new Typed('#card-number', {
+    //   strings: ["4593 0372 1922 4663"],
+    //   typeSpeed: 50,
+    //   startDelay: 4000,
+    //   showCursor: true
+    // });
+    //
+    // const typedExpiry = new Typed('#expiry', {
+    //   strings: ["11/20"],
+    //   typeSpeed: 30,
+    //   startDelay: 6000,
+    //   showCursor: true
+    // });
+    //
+    // const typedSecurityCode = new Typed('#security-code', {
+    //   strings: ["018"],
+    //   typeSpeed: 30,
+    //   startDelay: 6500,
+    //   showCursor: true
+    // });
+    // 
+    // const typedPostalCode = new Typed('#postal-code', {
+    //   strings: ["10018"],
+    //   typeSpeed: 30,
+    //   startDelay: 7000,
+    //   showCursor: true
+    // });
   }
 
   update(field) {
@@ -179,26 +228,32 @@ class Checkout extends React.Component {
             </ul>
 
             <h3>Payment information</h3>
+
+            <div className='payee-container'>
+              <h6>Payee</h6>
+              <input id='payee' type='text' value={this.state.payee} onChange={this.update('payee')}/>
+            </div>
+
             <form className='payment-input-form'>
 
               <div className='card-number-container'>
                 <h6>Card number</h6>
-                <input className='' type='text' value={this.state.cardNumber} onChange={this.update('cardNumber')}/>
+                <input id='card-number' type='text' value={this.state.cardNumber} onChange={this.update('cardNumber')}/>
               </div>
 
               <div className='expires-on-container'>
                 <h6>Expires On</h6>
-                <input className='' type='text' placeholder='MM/YY' value={this.state.expiryDate} onChange={this.update('expiryDate')}/>
+                <input id='expiry' type='text' placeholder='MM/YY' value={this.state.expiryDate} onChange={this.update('expiryDate')}/>
               </div>
 
               <div className='security-code-container'>
                 <h6>Security Code</h6>
-                <input className='' type='text' value={this.state.securityCode} onChange={this.update('securityCode')}/>
+                <input id='security-code' type='text' value={this.state.securityCode} onChange={this.update('securityCode')}/>
               </div>
 
               <div className='postal-code-container'>
                 <h6>Postal Code</h6>
-                <input className='' type='text' value={this.state.postalCode} onChange={this.update('postalCode')}/>
+                <input id='postal-code' type='text' value={this.state.postalCode} onChange={this.update('postalCode')}/>
               </div>
 
             </form>

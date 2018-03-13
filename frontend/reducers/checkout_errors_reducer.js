@@ -1,7 +1,7 @@
 import { merge } from 'lodash';
 import {RECEIVE_DELIVERY_MINIMUM_ERRORS, CLEAR_CHECKOUT_ERRORS} from '../actions/checkout_actions';
 
-const quantityErrorsReducer = (oldState = "", action) => {
+const checkoutErrorsReducer = (oldState = "", action) => {
   Object.freeze(oldState);
   switch(action.type) {
     case RECEIVE_DELIVERY_MINIMUM_ERRORS:
@@ -13,4 +13,4 @@ const quantityErrorsReducer = (oldState = "", action) => {
   }
 };
 
-export default quantityErrorsReducer;
+export default checkoutErrorsReducer;

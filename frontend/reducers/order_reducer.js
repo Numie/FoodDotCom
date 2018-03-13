@@ -41,6 +41,9 @@ const orderReducer = (oldState = defaultState, action) => {
         saveOrder(defaultState);
         return defaultState;
       } else {
+        modifiedState.subtotal = modifiedState.subtotal - (parseFloat(action.price) * action.quantity);
+        modifiedState.tax = (modifiedState.subtotal + modifiedState.deliveryFee) * 0.08875;
+        modifiedState.total = modifiedState.subtotal + modifiedState.deliveryFee + modifiedState.tax;
         saveOrder(modifiedState);
         return modifiedState;
       }

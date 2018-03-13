@@ -37,14 +37,14 @@ class OrderItemUnit extends React.Component {
     const { name, price, quantity, itemInstructions } = this.props.orderItem;
 
     return(
-      <div className={this.props.location.pathname === '/checkout' ? 'order-item-unit-checkout' : 'order-item-unit'}>
-        <div className={this.props.location.pathname === '/checkout' ? 'hidden' : 'material-icons'} id='delete-item-button' onClick={this.deleteItem}>delete</div>
+      <div className={this.props.location.pathname.includes('checkout') ? 'order-item-unit-checkout' : 'order-item-unit'}>
+        <div className={this.props.location.pathname.includes('checkout') ? 'hidden' : 'material-icons'} id='delete-item-button' onClick={this.deleteItem}>delete</div>
         <div className='order-item-quantity'>{quantity}</div>
 
         <div className='order-name-container'>
-          <div className={this.props.location.pathname === '/checkout' ? 'order-item-name-checkout' : 'order-item-name'} onClick={this.handleClick}>
+          <div className={this.props.location.pathname.includes('checkout') ? 'order-item-name-checkout' : 'order-item-name'} onClick={this.handleClick}>
             {name}
-            <div className={this.props.location.pathname === '/checkout' ? 'hidden' : 'material-icons'} id='edit-item-button'>create</div>
+            <div className={this.props.location.pathname.includes('checkout') ? 'hidden' : 'material-icons'} id='edit-item-button'>create</div>
           </div>
           <div className='order-item-itemInstructions'>{itemInstructions}</div>
         </div>

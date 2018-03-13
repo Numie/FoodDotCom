@@ -14,7 +14,7 @@ const App = () => {
       <Route exact path='/' component={ Main } />
       <AddressRequiredRoute exact path='/restaurants' component={ RestaurantIndexContainer }/>
       <AddressRequiredRoute exact path='/restaurants/:id' component={ RestaurantShowContainer }/>
-      <CheckoutRoute exact path='/checkout' component={ Checkout } />
+      <CheckoutRoute path='/checkout' component={ Checkout } />
     </div>
   );
 };

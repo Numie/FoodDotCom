@@ -79,7 +79,7 @@ class Order extends React.Component {
     return(
       <div className='inner-order-container'>
         <div className='order-header'>
-          <h3>Your order <span className={this.props.location.pathname === '/checkout' ? 'order-restaurant-name' : 'hidden'}>from <span onClick={this.handleClick}>{this.props.order.restaurantName}</span></span></h3>
+          <h3>Your order <span className={this.props.location.pathname.includes('checkout') ? 'order-restaurant-name' : 'hidden'}>from <span onClick={this.handleClick}>{this.props.order.restaurantName}</span></span></h3>
         </div>
 
         <div className={this.state.orderItems.length === 0 ? 'order-empty' : 'hidden'}>
@@ -112,7 +112,7 @@ class Order extends React.Component {
               <h6>Total:</h6>
               <h6>${this.state.total ? this.state.total.toFixed(2) : null}</h6>
             </div>
-            <h6 className={this.props.location.pathname === '/checkout' ? 'hidden' : 'empty-bag'} onClick={this.deleteAllItems}>Empty bag</h6>
+            <h6 className={this.props.location.pathname.includes('checkout') ? 'hidden' : 'empty-bag'} onClick={this.deleteAllItems}>Empty bag</h6>
             </div>
         </div>
 
@@ -120,11 +120,11 @@ class Order extends React.Component {
           <h6 className='errors'>{this.props.checkoutError ? this.props.checkoutError : null}</h6>
         </div>
 
-        <div className={(this.state.orderItems.length > 0 && this.props.location.pathname !== '/checkout') ? 'proceed-to-checkout-button-container' : 'hidden'}>
+        <div className={(this.state.orderItems.length > 0 && this.props.location.pathname.includes('checkout')) ? 'hidden' : 'proceed-to-checkout-button-container'}>
           <button className='proceed-to-checkout-button' onClick={this.handleCheckout}>Proceed to checkout: ${this.state.total ? this.state.total.toFixed(2) : null}</button>
         </div>
 
-        <div className={this.props.location.pathname === '/checkout' ? 'only-on-checkout' : 'hidden'}>
+        <div className={this.props.location.pathname.includes('checkout') ? 'only-on-checkout' : 'hidden'}>
           <button className='modify-order' onClick={this.handleClick}>&#10094; &nbsp;Modify your order</button>
           <div className='total-only-on-checkout'>
             <h1>TOTAL:</h1>

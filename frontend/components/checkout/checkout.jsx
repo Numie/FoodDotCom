@@ -1,12 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import Order from '../order/order';
 import { pickBy } from 'lodash';
+import { addCheckoutInfo } from '../../actions/checkout_actions';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
-  currentAddress: state.currentAddress
+  currentAddress: state.currentAddress,
+  checkoutInfo: state.entities.checkoutInfo
+});
+
+const mapDispatchToProps = dispatch => ({
+  addCheckoutInfo: () => dispatch(addCheckoutInfo())
 });
 
 class Checkout extends React.Component {
@@ -27,6 +33,13 @@ class Checkout extends React.Component {
       deliveryInstructions: ""
     };
 
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (this.props.checkoutInfo === false && this.props.location.pathname === '/checkout/payment') {
+      this.props.history.push('/checkout');
+    }
   }
 
   componentDidMount() {
@@ -77,6 +90,12 @@ class Checkout extends React.Component {
     };
   }
 
+  handleClick(e) {
+    e.preventDefault();
+    this.props.addCheckoutInfo();
+    this.props.history.push('/checkout/payment');
+  }
+
   render() {
     return(
       <div className='checkout-container'>
@@ -105,7 +124,7 @@ class Checkout extends React.Component {
 
             <textarea className='deliveryInstructions' placeholder='Delivery instructions (e.g. Check in with doorman.)' value={this.state.deliveryInstructions} onChange={this.update('deliveryInstructions')}></textarea>
 
-            <button className='continue-to-payment'>Continue to payment method</button>
+            <button className='continue-to-payment' onClick={this.handleClick}>Continue to payment method</button>
           </form>
         </div>
 
@@ -117,4 +136,4 @@ class Checkout extends React.Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps, null)(Checkout));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Checkout));

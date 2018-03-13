@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { deleteItem } from '../../actions/order_item_actions';
 import { toggleMenuItemModal } from '../../actions/modal_actions';
 
@@ -25,6 +26,10 @@ class OrderItemUnit extends React.Component {
   }
 
   handleClick() {
+    if (this.props.location.pathname === './checkout') {
+      return;
+    }
+
     this.props.selectItem(this.props.orderItem);
   }
 
@@ -32,14 +37,14 @@ class OrderItemUnit extends React.Component {
     const { name, price, quantity, itemInstructions } = this.props.orderItem;
 
     return(
-      <div className='order-item-unit'>
-        <div className='material-icons' id='delete-item-button' onClick={this.deleteItem}>delete</div>
+      <div className={this.props.location.pathname === '/checkout' ? 'order-item-unit-checkout' : 'order-item-unit'}>
+        <div className={this.props.location.pathname === '/checkout' ? 'hidden' : 'material-icons'} id='delete-item-button' onClick={this.deleteItem}>delete</div>
         <div className='order-item-quantity'>{quantity}</div>
 
         <div className='order-name-container'>
-          <div className='order-item-name' onClick={this.handleClick}>
+          <div className={this.props.location.pathname === '/checkout' ? 'order-item-name-checkout' : 'order-item-name'} onClick={this.handleClick}>
             {name}
-            <div className='material-icons' id='edit-item-button'>create</div>
+            <div className={this.props.location.pathname === '/checkout' ? 'hidden' : 'material-icons'} id='edit-item-button'>create</div>
           </div>
           <div className='order-item-itemInstructions'>{itemInstructions}</div>
         </div>
@@ -50,4 +55,4 @@ class OrderItemUnit extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(OrderItemUnit);
+export default withRouter(connect(null, mapDispatchToProps)(OrderItemUnit));

@@ -31,6 +31,7 @@ class Order extends React.Component {
     this.selectItem = this.selectItem.bind(this);
     this.deleteAllItems = this.deleteAllItems.bind(this);
     this.handleCheckout = this.handleCheckout.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -60,6 +61,10 @@ class Order extends React.Component {
     }
   }
 
+  handleClick() {
+    this.props.history.push(`/restaurants/${this.props.order.restaurantId}`);
+  }
+
   render() {
     const orderItemsUnits = this.state.orderItems.map(orderItem => {
       return <OrderItemUnit key={orderItem.id} orderItem={orderItem} selectItem={this.selectItem}/>;
@@ -68,7 +73,7 @@ class Order extends React.Component {
     return(
       <div className='inner-order-container'>
         <div className='order-header'>
-          <h3>Your order</h3>
+          <h3>Your order <span className={this.props.location.pathname === '/checkout' ? 'order-restaurant-name' : 'hidden'}>from <span onClick={this.handleClick}>{this.props.order.restaurantName}</span></span></h3>
         </div>
 
         <div className={this.state.orderItems.length === 0 ? 'order-empty' : 'hidden'}>
@@ -101,14 +106,22 @@ class Order extends React.Component {
               <h6>Total:</h6>
               <h6>${this.state.total ? this.state.total.toFixed(2) : null}</h6>
             </div>
-            <h6 className='empty-bag' onClick={this.deleteAllItems}>Empty bag</h6>
+            <h6 className={this.props.location.pathname === '/checkout' ? 'hidden' : 'empty-bag'} onClick={this.deleteAllItems}>Empty bag</h6>
             </div>
         </div>
         <div className='spacer'>
         </div>
 
-        <div className={this.state.orderItems.length > 0 ? 'proceed-to-checkout-button-container' : 'hidden'}>
+        <div className={(this.state.orderItems.length > 0 && this.props.location.pathname !== '/checkout') ? 'proceed-to-checkout-button-container' : 'hidden'}>
           <button className='proceed-to-checkout-button' onClick={this.handleCheckout}>Proceed to checkout: ${this.state.total ? this.state.total.toFixed(2) : null}</button>
+        </div>
+
+        <div className={this.props.location.pathname === '/checkout' ? 'only-on-checkout' : 'hidden'}>
+          <button className='modify-order' onClick={this.handleClick}>&#10094; &nbsp;Modify your order</button>
+          <div className='total-only-on-checkout'>
+            <h1>TOTAL:</h1>
+            <h1>${this.state.total ? this.state.total.toFixed(2) : null}</h1>
+          </div>
         </div>
       </div>
     );

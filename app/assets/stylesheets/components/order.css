@@ -22,6 +22,11 @@
   font-weight: 700;
 }
 
+.order-restaurant-name span {
+  color: #2b8282;
+  cursor: pointer;
+}
+
 .order-empty-background {
   background: url('https://assets.seamless.com/img-hashed/empty-bag-9a47c6d5df5c3f99a5886ff502bfcde7.svg') 50% no-repeat;
   color: #cacaca;
@@ -90,4 +95,31 @@
 
 .proceed-to-checkout-button:hover {
   box-shadow: inset 9999px 9999px rgba(0, 0, 0, 0.3);
+}
+
+.only-on-checkout {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.modify-order {
+  width: 100%;
+  padding: 5px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 100;
+  background: #2b8282;
+  cursor: pointer;
+}
+
+.total-only-on-checkout {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 24px;
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  background: #323232;
 }

@@ -1,7 +1,7 @@
 class Api::ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.where(resaturant_id: params[:restaurant_id])
+    @reviews = Review.includes(:user).where(restaurant_id: params[:restaurant_id])
 
     if @reviews
       render :index

@@ -14,5 +14,5 @@ class Review < ApplicationRecord
   validates :review, presence: true, length: { maximum: 2000 }
 
   belongs_to :user
-  belongs_to :review
+  belongs_to :restaurant
 end

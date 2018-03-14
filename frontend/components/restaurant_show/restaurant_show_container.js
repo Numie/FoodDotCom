@@ -1,6 +1,7 @@
 import React from 'react';
 import RestaurantShow from './restaurant_show';
 import { fetchMenuItems } from '../../actions/menu_item_actions';
+import { fetchReviews } from '../../actions/review_actions';
 import { toggleMenuItemModal } from '../../actions/modal_actions';
 import { deleteAllItems } from '../../actions/order_item_actions';
 import { connect } from 'react-redux';
@@ -15,6 +16,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchMenuItems: restaurantId => dispatch(fetchMenuItems(restaurantId)),
+  fetchReviews: restaurantId => dispatch(fetchReviews(restaurantId)),
   toggleMenuItemModal: () => dispatch(toggleMenuItemModal()),
   deleteAllItems: () => dispatch(deleteAllItems())
 });

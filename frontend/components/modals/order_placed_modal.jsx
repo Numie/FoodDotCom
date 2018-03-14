@@ -7,18 +7,23 @@ const mapStateToProps = state => ({
   orderItems: state.entities.orderItems
 });
 
+const mapDispatchToProps = dispatch => ({
+  toggleOrderPlacedModal: () => dispatch(toggleOrderPlacedModal())
+});
+
 class OrderPlacedModal extends React.Component {
   constructor(props) {
     super(props);
+
+    this.toggleOrderPlacedModal = this.toggleOrderPlacedModal.bind(this);
   }
 
   componentDidMount() {
   }
 
-  toggleSessionModal(e) {
+  toggleOrderPlacedModal(e) {
     if (e.target === e.currentTarget) {
-      this.props.toggleSessionModal();
-      this.props.clearErrors();
+      this.props.toggleOrderPlacedModal();
     }
   }
 
@@ -42,17 +47,18 @@ class OrderPlacedModal extends React.Component {
 
           <div className='modal-order-info'>
             <h5>Your order from <span id='modal-restaurant-name'>{restaurantName}</span> was:</h5>
+
             <ul>
               {orderList}
-              <div className='totals'>
-                <li>${subtotal.toFixed(2)}</li>
-                <li>{`$${deliveryFee ? deliveryFee : null}`}</li>
-                <li>${tax.toFixed(2)}</li>
-                <li>${tip}</li>
-                <li>${total.toFixed(2)}</li>
-              </div>
             </ul>
-            <h5>And you will not have to pay <span>${total.toFixed(2)}.</span></h5>
+
+            <div className='totals'>
+              <li><div>Subtotal:</div><div>${subtotal.toFixed(2)}</div></li>
+              <li><div>Delivery Fee:</div><div>{`$${deliveryFee ? deliveryFee : null}`}</div></li>
+              <li><div>Tax:</div><div>${tax.toFixed(2)}</div></li>
+              <li><div>Tip:</div><div>${(parseFloat(tip) * subtotal).toFixed(2)}</div></li>
+              <li><div>Total:</div><div>${total.toFixed(2)}</div></li>
+            </div>
           </div>
 
           <div className='modal-footer-container'>
@@ -61,11 +67,11 @@ class OrderPlacedModal extends React.Component {
             <h5>Made with the help of the staff and students at <span>App Academy.</span></h5>
           </div>
 
-          <button className="x-close" onClick={this.toggleSessionModal}>&times;</button>
+          <button className="x-close" onClick={this.toggleOrderPlacedModal}>&times;</button>
         </div>
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, null)(OrderPlacedModal);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderPlacedModal);

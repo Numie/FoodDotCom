@@ -164,10 +164,6 @@
   padding-right: 12px;
 }
 
-.tip-entry-container button {
-
-}
-
 .preset-tip-container button:first-of-type, .custom-tip-container button {
   border-left-width: 2px;
   border-top-left-radius: 4px;
@@ -221,6 +217,10 @@
   text-align: center;
   color: white;
   background: #2b8282;
+}
+
+.custom-tip-container button {
+  padding: 0;
 }
 
 #custom-tip-input {

@@ -108,53 +108,53 @@ class Checkout extends React.Component {
       zip
     });
 
-    const TAs = [
-      "Mike Boan",
-      "Patrick Kovach-Long",
-      "Maurice Roach",
-      "Oscar Alvarez",
-      "Mashu Duek",
-      "Matthias Jenny",
-      "Abby Hersh",
-      "Brian Scott"
-    ];
-
-    const randomTA = TAs[Math.floor(Math.random() * TAs.length)];
-
-    const typedPayee = new Typed('#payee', {
-      strings: [randomTA],
-      typeSpeed: 50,
-      startDelay: 2000,
-      showCursor: true
-    });
-
-    const typedCardNumber = new Typed('#card-number', {
-      strings: ["4593 0372 1922 4663"],
-      typeSpeed: 50,
-      startDelay: 4000,
-      showCursor: true
-    });
-
-    const typedExpiry = new Typed('#expiry', {
-      strings: ["11/20"],
-      typeSpeed: 30,
-      startDelay: 6000,
-      showCursor: true
-    });
-
-    const typedSecurityCode = new Typed('#security-code', {
-      strings: ["018"],
-      typeSpeed: 30,
-      startDelay: 6500,
-      showCursor: true
-    });
-
-    const typedPostalCode = new Typed('#postal-code', {
-      strings: ["10018"],
-      typeSpeed: 30,
-      startDelay: 7000,
-      showCursor: true
-    });
+    // const TAs = [
+    //   "Mike Boan",
+    //   "Patrick Kovach-Long",
+    //   "Maurice Roach",
+    //   "Oscar Alvarez",
+    //   "Mashu Duek",
+    //   "Matthias Jenny",
+    //   "Abby Hersh",
+    //   "Brian Scott"
+    // ];
+    //
+    // const randomTA = TAs[Math.floor(Math.random() * TAs.length)];
+    //
+    // const typedPayee = new Typed('#payee', {
+    //   strings: [randomTA],
+    //   typeSpeed: 50,
+    //   startDelay: 2000,
+    //   showCursor: true
+    // });
+    //
+    // const typedCardNumber = new Typed('#card-number', {
+    //   strings: ["4593 0372 1922 4663"],
+    //   typeSpeed: 50,
+    //   startDelay: 4000,
+    //   showCursor: true
+    // });
+    //
+    // const typedExpiry = new Typed('#expiry', {
+    //   strings: ["11/20"],
+    //   typeSpeed: 30,
+    //   startDelay: 6000,
+    //   showCursor: true
+    // });
+    //
+    // const typedSecurityCode = new Typed('#security-code', {
+    //   strings: ["018"],
+    //   typeSpeed: 30,
+    //   startDelay: 6500,
+    //   showCursor: true
+    // });
+    //
+    // const typedPostalCode = new Typed('#postal-code', {
+    //   strings: ["10018"],
+    //   typeSpeed: 30,
+    //   startDelay: 7000,
+    //   showCursor: true
+    // });
   }
 
   update(field) {

@@ -20,6 +20,7 @@ export default class RestaurantShow extends React.Component {
     }
 
     this.props.fetchMenuItems(this.props.match.params.id);
+    this.props.fetchReviews(this.props.match.params.id);
 
     const map = this.refs.map;
     const lat = this.props.restaurant.latitude;

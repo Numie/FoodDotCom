@@ -23,6 +23,7 @@ class User < ApplicationRecord
   validates :session_token, uniqueness: { message: 'Error logging in, please try again!' }
 
   has_many :orders
+  has_many :reviews
 
   has_many :order_items,
     through: :orders,

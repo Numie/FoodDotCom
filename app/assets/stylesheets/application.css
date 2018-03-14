@@ -30,6 +30,6 @@
   font-style: italic;
 }
 
-.hidden {
+.hidden, #hidden {
   display: none;
 }

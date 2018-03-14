@@ -15,7 +15,7 @@ export default class RestaurantShow extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.restaurant.id !== this.props.orderRestaurantId) {
+    if (this.props.restaurant.id !== parseInt(this.props.orderRestaurantId)) {
       this.props.deleteAllItems();
     }
 

@@ -6,6 +6,8 @@ import { pickBy } from 'lodash';
 import { updateTip, addCheckoutInfo } from '../../actions/checkout_actions';
 import { receiveItemInstructionsErrors, clearErrors } from '../../actions/menu_item_actions';
 import { toggleOrderPlacedModal } from '../../actions/modal_actions';
+import { createOrder } from '../../actions/order_item_actions';
+import { merge } from 'lodash';
 import Typed from 'typed.js';
 
 const mapStateToProps = state => ({
@@ -13,6 +15,8 @@ const mapStateToProps = state => ({
   currentAddress: state.currentAddress,
   checkoutInfo: state.entities.checkoutInfo,
   orderSubtotal: state.entities.order.subtotal,
+  order: state.entities.order,
+  orderItems: Object.values(state.entities.orderItems),
   itemInstructionsError: state.errors.menuItem.itemInstructions
 });
 
@@ -20,6 +24,7 @@ const mapDispatchToProps = dispatch => ({
   updateTip: amount => dispatch(updateTip(amount)),
   addCheckoutInfo: () => dispatch(addCheckoutInfo()),
   receiveItemInstructionsErrors: () => dispatch(receiveItemInstructionsErrors()),
+  createOrder: payload => dispatch(createOrder(payload)),
   clearErrors: () => dispatch(clearErrors()),
   toggleOrderPlacedModal: () => dispatch(toggleOrderPlacedModal())
 });
@@ -196,8 +201,25 @@ class Checkout extends React.Component {
 
   placeOrder(e) {
     e.preventDefault();
-    this.props.history.push('/');
-    this.props.toggleOrderPlacedModal();
+
+    const payload = merge({}, this.props.order);
+
+    const toUnderscore = (string) => {
+    	return string.replace(/([A-Z])/g, ($1) => {return "_"+$1.toLowerCase();});
+    };
+
+    this.props.orderItems.forEach(obj => {
+      obj.item_instructions = obj.itemInstructions;
+      obj.menu_item_id = obj.id;
+    });
+
+    payload.order_items_attributes = this.props.orderItems;
+
+    this.props.createOrder(payload)
+    .then(() => {
+      this.props.history.push('/');
+      this.props.toggleOrderPlacedModal();
+    });
   }
 
   render() {

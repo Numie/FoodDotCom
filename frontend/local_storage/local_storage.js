@@ -37,11 +37,27 @@ export const saveOrder = order => {
   }
 };
 
+export const deleteOrder = () => {
+  try {
+    localStorage.removeItem('order');
+  } catch (error) {
+
+  }
+};
+
 export const saveOrderItems = orderItems => {
   try {
     const serializedOrderItems = JSON.stringify(orderItems);
     localStorage.setItem('orderItems', serializedOrderItems);
   } catch (error) {
-    
+
+  }
+};
+
+export const deleteOrderItems = () => {
+  try {
+    localStorage.removeItem('orderItems');
+  } catch (error) {
+
   }
 };

@@ -3,6 +3,7 @@ import { receiveQuantityErrors, receiveItemInstructionsErrors, clearErrors } fro
 import { clearCheckoutErrors } from '../../actions/checkout_actions';
 import { addItem, deleteItem } from '../../actions/order_item_actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => ({
   orderItems: state.entities.orderItems,
@@ -95,7 +96,7 @@ class MenuItemModal extends React.Component {
     const price = this.state.price;
     const quantity = this.state.quantity;
     const itemInstructions = this.state.itemInstructions;
-    const restaurantId = this.props.menuItem.restaurant_id;
+    const restaurantId = this.props.match.params.id;
     const restaurantName = this.props.restaurantName;
     const deliveryMinimum = this.props.deliveryMinimum;
     const deliveryFee = this.props.deliveryFee;
@@ -144,4 +145,4 @@ class MenuItemModal extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MenuItemModal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MenuItemModal));

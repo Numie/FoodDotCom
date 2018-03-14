@@ -46,7 +46,7 @@ class Order extends React.Component {
       'tax': newProps.order.tax,
       'total': newProps.order.total,
       'tip': newProps.order.tip * newProps.order.subtotal,
-      'orderItems': newProps.orderItems
+      'orderItems': Object.values(newProps.orderItems)
     });
   }
 
@@ -133,7 +133,7 @@ class Order extends React.Component {
           <h6 className='errors'>{this.props.checkoutError ? this.props.checkoutError : null}</h6>
         </div>
 
-        <div className={(this.state.orderItems.length > 0 && this.props.location.pathname.includes('checkout')) ? 'hidden' : 'proceed-to-checkout-button-container'}>
+        <div className={(this.state.orderItems.length === 0 || this.props.location.pathname.includes('checkout')) ? 'hidden' : 'proceed-to-checkout-button-container'}>
           <button className='proceed-to-checkout-button' onClick={this.handleCheckout}>Proceed to checkout: ${this.state.total ? this.state.total.toFixed(2) : null}</button>
         </div>
 

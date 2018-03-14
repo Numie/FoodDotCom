@@ -1,4 +1,7 @@
 import React from 'react';
+import { deleteAllItems } from '../../actions/order_item_actions';
+import { deleteOrder, deleteOrderItems } from '../../local_storage/local_storage';
+import { removeCheckoutInfo } from '../../actions/checkout_actions';
 import { toggleOrderPlacedModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 
@@ -8,6 +11,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  deleteAllItems: () => dispatch(deleteAllItems()),
+  removeCheckoutInfo: () => dispatch(removeCheckoutInfo()),
   toggleOrderPlacedModal: () => dispatch(toggleOrderPlacedModal())
 });
 
@@ -23,6 +28,10 @@ class OrderPlacedModal extends React.Component {
 
   toggleOrderPlacedModal(e) {
     if (e.target === e.currentTarget) {
+      this.props.deleteAllItems();
+      this.props.removeCheckoutInfo();
+      deleteOrder();
+      deleteOrderItems();
       this.props.toggleOrderPlacedModal();
     }
   }
@@ -54,7 +63,7 @@ class OrderPlacedModal extends React.Component {
 
             <div className='totals'>
               <li><div>Subtotal:</div><div>${subtotal.toFixed(2)}</div></li>
-              <li><div>Delivery Fee:</div><div>{`$${deliveryFee ? deliveryFee : null}`}</div></li>
+              <li id={deliveryFee === 0 ? 'hidden' : null}><div>Delivery Fee:</div><div>${deliveryFee}</div></li>
               <li><div>Tax:</div><div>${tax.toFixed(2)}</div></li>
               <li><div>Tip:</div><div>${(parseFloat(tip) * subtotal).toFixed(2)}</div></li>
               <li><div>Total:</div><div>${total.toFixed(2)}</div></li>

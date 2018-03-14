@@ -5,6 +5,7 @@ import Order from '../order/order';
 import { pickBy } from 'lodash';
 import { updateTip, addCheckoutInfo } from '../../actions/checkout_actions';
 import { receiveItemInstructionsErrors, clearErrors } from '../../actions/menu_item_actions';
+import { toggleOrderPlacedModal } from '../../actions/modal_actions';
 import Typed from 'typed.js';
 
 const mapStateToProps = state => ({
@@ -19,7 +20,8 @@ const mapDispatchToProps = dispatch => ({
   updateTip: amount => dispatch(updateTip(amount)),
   addCheckoutInfo: () => dispatch(addCheckoutInfo()),
   receiveItemInstructionsErrors: () => dispatch(receiveItemInstructionsErrors()),
-  clearErrors: () => dispatch(clearErrors())
+  clearErrors: () => dispatch(clearErrors()),
+  toggleOrderPlacedModal: () => dispatch(toggleOrderPlacedModal())
 });
 
 class Checkout extends React.Component {
@@ -49,6 +51,7 @@ class Checkout extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCustomTipClick = this.handleCustomTipClick.bind(this);
+    this.placeOrder = this.placeOrder.bind(this);
   }
 
   componentDidUpdate() {
@@ -191,6 +194,12 @@ class Checkout extends React.Component {
     this.props.history.push('/checkout/payment');
   }
 
+  placeOrder(e) {
+    e.preventDefault();
+    this.props.history.push('/');
+    this.props.toggleOrderPlacedModal();
+  }
+
   render() {
     if (!this.props.checkoutInfo || !this.props.location.pathname.includes('payment')) {
 
@@ -296,7 +305,7 @@ class Checkout extends React.Component {
             </div>
 
 
-            <button className='place-your-order'>Place Your Order</button>
+            <button className='place-your-order' onClick={this.placeOrder}>Place Your Order</button>
 
           </div>
 

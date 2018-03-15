@@ -69,6 +69,7 @@
 }
 
 .price-container {
+  display: flex;
   position: relative;
   margin-top: 6px;
   font-weight: 300;
@@ -76,6 +77,10 @@
 
 .price-base {
   color: #cacaca;
+}
+
+.price-black {
+  color: rgba(0, 0, 0, 0.87);
 }
 
 .price-rating {

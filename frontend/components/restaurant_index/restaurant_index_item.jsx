@@ -26,8 +26,12 @@ const RestaurantIndexItem = props => {
           <h6 className='rating-count'>{rating_count} ratings</h6>
         </div>
         <div className='price-container'>
-          <div className='price-base'>$$$$$</div>
-          <div className='price-rating'>$$$</div>
+          <div className='price-black'>$</div>
+          <div className={delivery_minimum > 5 ? 'price-black' : 'price-base'}>$</div>
+          <div className={delivery_minimum > 8 ? 'price-black' : 'price-base'}>$</div>
+          <div className={delivery_minimum > 10 ? 'price-black' : 'price-base'}>$</div>
+          <div className={delivery_minimum > 12 ? 'price-black' : 'price-base'}>$</div>
+
         </div>
         <div className='minimum-container'>
           <h3>

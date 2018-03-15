@@ -109,7 +109,6 @@ class Checkout extends React.Component {
     });
 
     // const TAs = [
-    //   "Mike Boan",
     //   "Patrick Kovach-Long",
     //   "Maurice Roach",
     //   "Oscar Alvarez",
@@ -155,6 +154,7 @@ class Checkout extends React.Component {
     //   startDelay: 7000,
     //   showCursor: true
     // });
+
   }
 
   update(field) {

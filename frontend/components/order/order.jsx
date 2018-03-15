@@ -116,7 +116,7 @@ class Order extends React.Component {
 
             <div className={this.props.location.pathname.includes('payment') ? 'order-total' : 'hidden'}>
               <h6>Tip:</h6>
-              <h6>${this.state.tip ? this.state.tip.toFixed(2) : null}</h6>
+              <h6>${this.state.tip ? this.state.tip.toFixed(2) : 0}</h6>
             </div>
 
             <div className='order-total'>

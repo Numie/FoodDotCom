@@ -8,7 +8,7 @@ const defaultModalsUI = {
   signupModal: false,
   menuItemModal: false,
   orderPlacedModal: false,
-  reviewModal: true
+  reviewModal: false
 };
 
 const modalsReducer = (oldState = defaultModalsUI, action) => {

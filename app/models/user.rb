@@ -38,6 +38,23 @@ class User < ApplicationRecord
     user && user.is_password?(password) ? user : nil
   end
 
+  def self.last_order_from_restaurant
+    User.select(:created_at)
+      .joins(:orders)
+      .order(:orders.created_at)
+      .limit(1)
+  end
+
+  def self.all_with_reviewable_restaurants
+    User.find_by_sql("
+      SELECT users.*, restaurant_id
+      FROM users
+      JOIN orders ON users.id = orders.user_id
+      JOIN reviews ON orders.restaurant_id = reviews.restaurant_id
+
+    ")
+  end
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)

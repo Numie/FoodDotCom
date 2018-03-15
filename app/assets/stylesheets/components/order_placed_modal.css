@@ -31,7 +31,7 @@
 
 .modal-order-info {
   min-width: 60%;
-  margin: 30px 0;
+  margin: 30px 0 0;
 }
 
 .order-placed-modal span {
@@ -90,6 +90,14 @@
 
 .totals li:last-of-type {
   font-weight: 700;
+}
+
+.review-link {
+  color: #2b8282;
+  font-weight: 700;
+  text-decoration: underline;
+  margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .modal-footer-container h5 {

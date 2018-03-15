@@ -2,7 +2,8 @@ import React from 'react';
 import { deleteAllItems } from '../../actions/order_item_actions';
 import { deleteOrder, deleteOrderItems } from '../../local_storage/local_storage';
 import { removeCheckoutInfo } from '../../actions/checkout_actions';
-import { toggleOrderPlacedModal } from '../../actions/modal_actions';
+import { toggleOrderPlacedModal, toggleReviewModal } from '../../actions/modal_actions';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
@@ -13,7 +14,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   deleteAllItems: () => dispatch(deleteAllItems()),
   removeCheckoutInfo: () => dispatch(removeCheckoutInfo()),
-  toggleOrderPlacedModal: () => dispatch(toggleOrderPlacedModal())
+  toggleOrderPlacedModal: () => dispatch(toggleOrderPlacedModal()),
+  toggleReviewModal: () => dispatch(toggleReviewModal())
 });
 
 class OrderPlacedModal extends React.Component {
@@ -21,6 +23,7 @@ class OrderPlacedModal extends React.Component {
     super(props);
 
     this.toggleOrderPlacedModal = this.toggleOrderPlacedModal.bind(this);
+    this.goToReview = this.goToReview.bind(this);
   }
 
   componentDidMount() {
@@ -34,6 +37,17 @@ class OrderPlacedModal extends React.Component {
       deleteOrderItems();
       this.props.toggleOrderPlacedModal();
     }
+  }
+
+  goToReview() {
+    const restaurantId = this.props.order.restaurantId;
+    this.props.deleteAllItems();
+    this.props.removeCheckoutInfo();
+    deleteOrder();
+    deleteOrderItems();
+    this.props.toggleOrderPlacedModal();
+    this.props.toggleReviewModal();
+    this.props.history.push(`/restaurants/${restaurantId}`);
   }
 
   render() {
@@ -70,6 +84,8 @@ class OrderPlacedModal extends React.Component {
             </div>
           </div>
 
+          <div className={'review-link'} onClick={this.goToReview}>Review {restaurantName}</div>
+
           <div className='modal-footer-container'>
             <h5>If you're actually hungry, git checkout master...I mean go check out <span><a href='www.seamless.com'>seamless.com</a></span>.</h5>
 
@@ -83,4 +99,4 @@ class OrderPlacedModal extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrderPlacedModal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OrderPlacedModal));

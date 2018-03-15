@@ -21,7 +21,7 @@ const Main = (props) => {
 
       <div className='bottom'>
         <div className='bottom-header'>
-          <h1>How to Seamless</h1>
+          <h1>How to Use Food.com</h1>
           <h4>Ordering from your favorite restaurant is even easier than eating.</h4>
         </div>
         <div className='bottom-body'>

@@ -105,7 +105,7 @@ class ReviewModal extends React.Component {
             <textarea className='write-review-field' placeholder='Writing this review gets you one step closer to earning Top Reviewer status. Tell us what you loved about this order.' value={this.state.review} onChange={this.update('review')}></textarea>
             <h6 className={this.state.review.length > 2000 ? 'chars-remaining-red' : 'chars-remaining-gray'}>{2000 - this.state.review.length} characters remaining.</h6>
 
-            <button className={this.state.review.length <= 2000 ? 'review-submit-button' : 'review-submit-button-inactive'} onClick={this.submitReview}>Submit your Rating & Review</button>
+            <button className={this.state.review.length <= 2000 && this.state.review.length > 0 ? 'review-submit-button' : 'review-submit-button-inactive'} onClick={this.submitReview}>Submit your Rating & Review</button>
           </div>
 
         </div>

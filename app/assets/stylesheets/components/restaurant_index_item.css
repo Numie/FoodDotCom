@@ -89,10 +89,16 @@
 }
 
 .fee-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   min-width: 68px;
+}
+
+.fee-container h6:last-of-type {
+  position: absolute;
+  bottom: 0;
 }
 
 .index-right-side h3 {

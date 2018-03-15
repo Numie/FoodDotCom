@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const RestaurantIndexItem = props => {
 
-  const { id, name, address, phone, img_url, cuisine, delivery_minimum, delivery_fee } = props.restaurant;
+  const { id, name, address, phone, img_url, cuisine, delivery_minimum, delivery_fee, distance } = props.restaurant;
 
   return (
     <li className='restaurant-index-item'>
@@ -40,6 +40,7 @@ const RestaurantIndexItem = props => {
             { delivery_fee ? '$' + delivery_fee.toFixed(2) : 'Free' }
           </h3>
           <h6>{ delivery_fee ? 'Delivery Fee' : 'Delivery' }</h6>
+          <h6>{distance.toFixed(2)} mi</h6>
         </div>
       </div>
     </li>

@@ -180,9 +180,18 @@ restaurant_ids.each do |id|
   end
 end
 
+def random_review
+  number_of_lines = (1..12).to_a.sample
+  review = ""
+  number_of_lines.times do
+    review += Faker::ChuckNorris.fact
+  end
+  review
+end
+
 Review.destroy_all
 restaurant_ids.each do |id|
   3.times do
-    Review.create!(user_id: User.all.pluck(:id).sample, restaurant_id: id, rating: [1, 2, 3, 4, 5].sample, review: Faker::ChuckNorris.fact)
+    Review.create!(user_id: User.all.pluck(:id).sample, restaurant_id: id, rating: [1, 2, 3, 4, 5].sample, review: random_review)
   end
 end

@@ -15,11 +15,13 @@ class ReviewModal extends React.Component {
 
     this.state={
       currentRating: 0,
-      ratingSaved: false
+      ratingSaved: false,
+      review: ""
     };
 
     this.toggleReviewModal = this.toggleReviewModal.bind(this);
     this.handleRatingClick = this.handleRatingClick.bind(this);
+    this.handleResetRatingClick = this.handleResetRatingClick.bind(this);
   }
 
   handleMouseMovement(number) {
@@ -34,11 +36,15 @@ class ReviewModal extends React.Component {
     this.setState({'ratingSaved': true});
   }
 
-  // update(field) {
-  //   return(e) => {
-  //     this.setState({[field]: e.target.value});
-  //   };
-  // }
+  handleResetRatingClick() {
+    this.setState({'ratingSaved': false});
+  }
+
+  update(field) {
+    return(e) => {
+      this.setState({[field]: e.target.value});
+    };
+  }
 
   toggleReviewModal(e) {
     if (e.target === e.currentTarget) {
@@ -69,6 +75,22 @@ class ReviewModal extends React.Component {
             <div className={this.state.currentRating === 4 ? 'rating-text' : 'hidden'}>This hit the spot</div>
             <div className={this.state.currentRating === 5 ? 'rating-text' : 'hidden'}>I loved this place!</div>
           </div>
+
+          <div className={this.state.ratingSaved ? 'write-review-container' : 'hidden'}>
+
+            <div className='write-review-heading-container'>
+              <h3>Write a review</h3>
+              <h5 onClick={this.handleResetRatingClick}>Change Rating</h5>
+            </div>
+
+            <textarea className='write-review-field' placeholder='Writing this review gets you one step closer to earning Top Reviewer status. Tell us what you loved about this order.' value={this.state.review} onChange={this.update('review')}></textarea>
+            <h6 className={this.state.review.length > 2000 ? 'chars-remaining-red' : 'chars-remaining-gray'}>{2000 - this.state.review.length} characters remaining.</h6>
+
+
+            <button className={this.state.review.length <= 2000 ? 'review-submit-button' : 'review-submit-button-inactive'}>Submit your Rating & Review</button>
+
+          </div>
+
         </div>
       </div>
     );

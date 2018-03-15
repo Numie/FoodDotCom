@@ -38,3 +38,8 @@
   color: rgba(0, 0, 0, 0.2);
   margin-right: 3px;
 }
+
+.rating-text-container {
+  width: max-content;
+  margin: 0 auto;
+}

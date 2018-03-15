@@ -50,7 +50,14 @@
 .top-restaurant-info .stars-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
   font-size: 28px;
+}
+
+.stars-container h6 {
+  font-size: 12px;
+  font-weight: 300;
+  margin-left: 10px;
 }
 
 .top-restaurant-info .star-icon:nth-of-type(2n) {

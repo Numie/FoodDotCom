@@ -1,4 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => ({
+  currentUser: state.session.currentUser
+});
 
 const Review = props => {
   const { first_name, rating, review } = props.review;
@@ -6,8 +11,8 @@ const Review = props => {
   return(
     <div className='review-container'>
       <div className='review-name-container'>
-        <div className='initial-circle'>{first_name ? first_name[0] : props.currentUserFirstName[0]}</div>
-        <h3 className='review-name'>{first_name || props.currentUserFirstName}</h3>
+        <div className='initial-circle'>{first_name ? first_name[0] : props.currentUser.first_name[0]}</div>
+        <h3 className='review-name'>{first_name || props.currentUser.first_name}</h3>
       </div>
       <div className='review-rating-container'>
         <div className={rating > 0 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
@@ -21,4 +26,4 @@ const Review = props => {
   );
 };
 
-export default Review;
+export default connect(mapStateToProps, null)(Review);

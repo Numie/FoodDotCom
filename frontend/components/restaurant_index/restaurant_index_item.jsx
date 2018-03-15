@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const RestaurantIndexItem = props => {
 
-  const { id, name, address, phone, img_url, cuisine, delivery_minimum, delivery_fee, distance } = props.restaurant;
+  const { id, name, address, phone, img_url, cuisine, delivery_minimum, delivery_fee, distance, rating_avg, rating_count } = props.restaurant;
 
   return (
     <li className='restaurant-index-item'>
@@ -17,13 +17,13 @@ const RestaurantIndexItem = props => {
       <div className='index-right-side'>
         <div className='stars-container'>
           <div className='stars'>
-            <div className='star-icon'></div>
-            <div className='star-icon'></div>
-            <div className='star-icon'></div>
-            <div className='star-icon'></div>
-            <div className='star-icon'></div>
+            <div className={parseInt(rating_avg) > 0 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
+            <div className={parseInt(rating_avg) > 1 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
+            <div className={parseInt(rating_avg) > 2 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
+            <div className={parseInt(rating_avg) > 3 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
+            <div className={parseInt(rating_avg) > 4 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
           </div>
-          <h6>347 ratings</h6>
+          <h6 className='rating-count'>{rating_count} ratings</h6>
         </div>
         <div className='price-container'>
           <div className='price-base'>$$$$$</div>

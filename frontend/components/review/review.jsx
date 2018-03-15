@@ -6,8 +6,8 @@ const Review = props => {
   return(
     <div className='review-container'>
       <div className='review-name-container'>
-        <div className='initial-circle'>{first_name[0]}</div>
-        <h3 className='review-name'>{first_name}</h3>
+        <div className='initial-circle'>{first_name ? first_name[0] : props.currentUserFirstName[0]}</div>
+        <h3 className='review-name'>{first_name || props.currentUserFirstName}</h3>
       </div>
       <div className='review-rating-container'>
         <div className={rating > 0 ? 'star-icon-yellow' : 'star-icon-gray'}></div>

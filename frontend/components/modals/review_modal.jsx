@@ -1,11 +1,15 @@
 import React from 'react';
+import { createReview } from '../../actions/review_actions';
 import { toggleReviewModal } from '../../actions/modal_actions';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
+  currentUserId: state.session.currentUser.id
 });
 
 const mapDispatchToProps = dispatch => ({
+  createReview: review => dispatch(createReview(review)),
   toggleReviewModal: () => dispatch(toggleReviewModal())
 });
 
@@ -22,6 +26,7 @@ class ReviewModal extends React.Component {
     this.toggleReviewModal = this.toggleReviewModal.bind(this);
     this.handleRatingClick = this.handleRatingClick.bind(this);
     this.handleResetRatingClick = this.handleResetRatingClick.bind(this);
+    this.submitReview = this.submitReview.bind(this);
   }
 
   handleMouseMovement(number) {
@@ -50,6 +55,20 @@ class ReviewModal extends React.Component {
     if (e.target === e.currentTarget) {
       this.props.toggleReviewModal();
     }
+  }
+
+  submitReview(e) {
+    e.preventDefault();
+
+    const review = {
+      user_id: this.props.currentUserId,
+      restaurant_id: this.props.match.params.id,
+      rating: this.state.currentRating,
+      review: this.state.review
+    };
+
+    this.props.createReview(review)
+    .then(() => this.props.toggleReviewModal());
   }
 
   render() {
@@ -86,9 +105,7 @@ class ReviewModal extends React.Component {
             <textarea className='write-review-field' placeholder='Writing this review gets you one step closer to earning Top Reviewer status. Tell us what you loved about this order.' value={this.state.review} onChange={this.update('review')}></textarea>
             <h6 className={this.state.review.length > 2000 ? 'chars-remaining-red' : 'chars-remaining-gray'}>{2000 - this.state.review.length} characters remaining.</h6>
 
-
-            <button className={this.state.review.length <= 2000 ? 'review-submit-button' : 'review-submit-button-inactive'}>Submit your Rating & Review</button>
-
+            <button className={this.state.review.length <= 2000 ? 'review-submit-button' : 'review-submit-button-inactive'} onClick={this.submitReview}>Submit your Rating & Review</button>
           </div>
 
         </div>
@@ -97,4 +114,4 @@ class ReviewModal extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewModal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ReviewModal));

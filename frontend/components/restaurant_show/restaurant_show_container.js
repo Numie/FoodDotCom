@@ -12,8 +12,9 @@ const mapStateToProps = (state, ownProps) => ({
   menuItems: Object.values(state.entities.menuItems),
   menuItemModal: state.ui.modals.menuItemModal,
   orderRestaurantId: state.entities.order.restaurantId,
-  reviews: Object.values(state.entities.reviews),
-  reviewModal: state.ui.modals.reviewModal
+  reviews: state.entities.reviews,
+  reviewModal: state.ui.modals.reviewModal,
+  currentUserFirstName: state.session.currentUser.first_name
 });
 
 const mapDispatchToProps = dispatch => ({

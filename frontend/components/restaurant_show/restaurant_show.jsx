@@ -62,14 +62,14 @@ export default class RestaurantShow extends React.Component {
 
   render() {
     const { name, address, city, state, zip, phone, img_url, open_time, close_time, latitude, longitude, distance } = this.props.restaurant;
-    const { toggleMenuItemModal, menuItemModal, reviewModal } = this.props;
+    const { currentUserFirstName, toggleMenuItemModal, menuItemModal, reviewModal } = this.props;
 
     const menuItems = this.props.menuItems.map(menuItem => {
       return <MenuItem key={menuItem.id}  menuItem={menuItem} selectItem={this.selectItem} toggleMenuItemModal={toggleMenuItemModal} />;
     });
 
     const reviews = this.props.reviews.map(review => {
-      return <Review key={review.id} review={review} />;
+      return <Review key={review.id} review={review} currentUserFirstName={currentUserFirstName}/>;
     });
 
     return (

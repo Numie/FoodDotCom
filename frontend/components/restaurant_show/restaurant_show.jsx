@@ -2,6 +2,7 @@ import React from 'react';
 import MenuItem from '../menu/menu_item';
 import MenuItemModal from '../modals/menu_item_modal';
 import Order from '../order/order';
+import Review from '../review/review';
 
 export default class RestaurantShow extends React.Component {
   constructor(props) {
@@ -60,6 +61,10 @@ export default class RestaurantShow extends React.Component {
       return <MenuItem key={menuItem.id}  menuItem={menuItem} selectItem={this.selectItem} toggleMenuItemModal={toggleMenuItemModal} />;
     });
 
+    const reviews = this.props.reviews.map(review => {
+      return <Review key={review.id} review={review} />;
+    });
+
     return (
       <div className='restaurant-show-container'>
         <div className='restaurant-show-main'>
@@ -114,6 +119,12 @@ export default class RestaurantShow extends React.Component {
                   </ul>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div className='reviews-container'>
+            <div className='reviews-heading'><div><h1>Reviews for {name}</h1></div>
+            {reviews}
             </div>
           </div>
         </div>

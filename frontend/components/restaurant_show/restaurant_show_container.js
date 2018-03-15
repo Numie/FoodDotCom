@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => ({
   restaurant: state.entities.restaurants[ownProps.match.params.id],
   menuItems: Object.values(state.entities.menuItems),
   menuItemModal: state.ui.modals.menuItemModal,
-  orderRestaurantId: state.entities.order.restaurantId
+  orderRestaurantId: state.entities.order.restaurantId,
+  reviews: Object.values(state.entities.reviews)
 });
 
 const mapDispatchToProps = dispatch => ({

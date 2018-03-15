@@ -75,13 +75,13 @@
 
 .bottom-info-container {
   display: flex;
-  padding: 35px 20px 15px;
+  padding: 35px 8% 15px;
   background: #efefef;
 }
 
 .left-location-info {
-  margin-left: 80px;
   margin-right: 40px;
+  flex-basis: 50%
 }
 
 .left-location-info h1 {
@@ -92,7 +92,7 @@
 }
 
 .map {
-  width: 350px;
+  width: 100%;
   height: 100px;
 }
 
@@ -115,6 +115,10 @@
   padding: 15px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.right-hours-info {
+  flex-basis: 50%;
 }
 
 .right-hours-info h3 {
@@ -145,4 +149,16 @@
 
 .hours li:last-of-type {
   color: rgba(0, 0, 0, 0.40);
+}
+
+.reviews-container {
+  background: #efefef;
+}
+
+.reviews-heading h1 {
+  margin: 0 8% 40px;
+  padding: 40px 0;
+  font-size: 24px;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }

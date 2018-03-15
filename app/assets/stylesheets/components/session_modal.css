@@ -68,6 +68,7 @@
 .session-form input[type="text"]:focus,
 .session-form input[type=email]:focus,
 .session-form input[type=password]:focus {
+  border: 2px solid rgba(81, 150, 238, 1);
   box-shadow: 0 0 10px rgba(81, 150, 238, 1);
 }
 

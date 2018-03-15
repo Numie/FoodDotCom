@@ -204,6 +204,8 @@ class Checkout extends React.Component {
     e.preventDefault();
 
     const payload = merge({}, this.props.order);
+    payload.delivery_fee = payload.deliveryFee;
+    payload.delivery_instructions = this.state.deliveryInstructions;
 
     const toUnderscore = (string) => {
     	return string.replace(/([A-Z])/g, ($1) => {return "_"+$1.toLowerCase();});
@@ -234,8 +236,8 @@ class Checkout extends React.Component {
               <h5>Does everything below look correct?</h5>
 
               <h3>Contact</h3>
-              <input className='contact-input' type='text' placeholder='First Name' value={this.state.firstName} onChange={this.update('firstName')}/>
-              <input className='contact-input' type='text' placeholder='Last Name' value={this.state.lastName} onChange={this.update('lastName')}/>
+              <input className='contact-input' type='text' value={this.state.firstName} readOnly/>
+              <input className='contact-input' type='text' value={this.state.lastName} readOnly/>
               <input className='contact-input' type='email' value={this.state.email} readOnly/>
               <input className='contact-input' type='text' placeholder='e.g. 555 555 1212' value={this.state.phone} onChange={this.update('phone')}/>
 

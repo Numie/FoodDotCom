@@ -50,22 +50,24 @@
 }
 
 .checkout-main input:-moz-read-only {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.7);
+  border-color: rgba(0, 0, 0, 0.4);
   cursor: not-allowed;
 }
 
 .checkout-main input:-moz-read-only:focus {
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.4);
   box-shadow: none;
 }
 
 .checkout-main input:read-only {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.7);
+  border-color: rgba(0, 0, 0, 0.4);
   cursor: not-allowed;
 }
 
 .checkout-main input:read-only:focus {
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.4);
   box-shadow: none;
 }
 

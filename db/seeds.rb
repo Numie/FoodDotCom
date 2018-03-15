@@ -95,6 +95,30 @@ NAMES = [
   'Kumo Sushi'
 ]
 
+CUISINES = [
+  'American',
+  'Asian',
+  'BBQ',
+  'Chinese',
+  'Deli',
+  'Greek',
+  'Hamburgers',
+  'Indian',
+  'Italian',
+  'Japanese',
+  'Korean',
+  'Kosher',
+  'Halal',
+  'Mediterranean',
+  'Pizza',
+  'Salads',
+  'Sandwiches',
+  'Seafood',
+  'Steak',
+  'Sushi',
+  'Thai'
+]
+
 def random_manhattan_zip
   zip = (10001..10025).to_a.sample
   zip.to_s
@@ -106,6 +130,15 @@ def formatted_phone
     phone = Faker::PhoneNumber.phone_number
   end
   phone
+end
+
+def random_cuisines
+  cuisine1 = CUISINES.sample
+  cuisine2 = CUISINES.sample
+  until cuisine1 != cuisine2
+    cuisine2 = CUISINES.sample
+  end
+  "#{cuisine1}, #{cuisine2}..."
 end
 
 def random_manhattan_latitude
@@ -149,10 +182,10 @@ User.create(first_name: 'Jason', last_name: 'Numeroff', email: 'jnumeroff@hotmai
 end
 
 Restaurant.destroy_all
-300.times do
+200.times do
   Restaurant.create!(name: NAMES.sample, address: Faker::Address.street_address,
     zip: random_manhattan_zip, phone: formatted_phone, img_url: INDEX_IMAGE_URLS.sample,
-    cuisine: 'Asian, Dim Sum...', delivery_minimum: [0, 0, 0, 8, 10, 10, 12, 15, 15].sample,
+    cuisine: random_cuisines, delivery_minimum: [0, 0, 0, 8, 10, 10, 12, 15, 15].sample,
     delivery_fee: [0, 0, 0, 1, 1.99, 2, 2.99, 3.99, 5].sample, open_time: '11:00am', close_time: '9:00pm',
     latitude: random_manhattan_latitude, longitude: random_manhattan_longitude)
 end
@@ -191,7 +224,7 @@ end
 
 Review.destroy_all
 restaurant_ids.each do |id|
-  3.times do
+  (6..14).to_a.sample.times do
     Review.create!(user_id: User.all.pluck(:id).sample, restaurant_id: id, rating: [1, 2, 3, 4, 5].sample, review: random_review)
   end
 end

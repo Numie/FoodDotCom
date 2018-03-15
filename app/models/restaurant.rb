@@ -35,18 +35,10 @@ class Restaurant < ApplicationRecord
   geocoded_by :address
   after_initialize :ensure_geocode
 
-  def rating_count
-    Restaurant
+  def self.all_with_ratings
+    Restaurant.select('restaurants.*, COUNT(rating) AS rating_count, AVG(rating) AS rating_avg')
       .joins(:reviews)
-      .where(id: self.id)
-      .count
-  end
-
-  def rating_avg
-    Restaurant
-      .joins(:reviews)
-      .where(id: self.id)
-      .average(:rating).round
+      .group('restaurants.id')
   end
 
   private

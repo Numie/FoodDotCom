@@ -7,6 +7,8 @@
 
 .review-name-container {
   display: flex;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .initial-circle {
@@ -21,7 +23,7 @@
   background: #43c1c1;
   font-size: 18px;
   font-weight: 700;
-  margin: 0 12px 8px 0;
+  margin-right: 12px;
 }
 
 .review-name {
@@ -32,16 +34,4 @@
 .review-rating-container {
   display: flex;
   margin-bottom: 20px;
-}
-
-.star-icon-yellow:before {
-  content: "\2605";
-  color: #faae1d;
-  margin-right: 3px;
-}
-
-.star-icon-gray:before {
-  content: "\2605";
-  color: rgba(0, 0, 0, 0.2);
-  margin-right: 3px;
 }

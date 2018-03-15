@@ -33,3 +33,21 @@
 .hidden, #hidden {
   display: none;
 }
+
+.star-icon-yellow:before {
+  content: "\2605";
+  color: #faae1d;
+  margin-right: 3px;
+}
+
+.star-icon-gray:before {
+  content: "\2605";
+  color: rgba(0, 0, 0, 0.2);
+  margin-right: 3px;
+}
+
+.star-icon-light-gray:before {
+  content: "\2605";
+  color: hsla(0, 0%, 100%, 0.6);
+  margin-right: 3px;
+}

@@ -45,6 +45,7 @@
 }
 
 .stars-container {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -53,11 +54,13 @@
   display: flex;
   font-size: 12px;
   margin-bottom: 4px;
+  margin-right: -3px;
 }
 
-.star-icon:before {
-  content: "\2605";
-  color: #faae1d;
+.rating-count {
+  position: absolute;
+  right: 0;
+  top: 24px;
 }
 
 .index-right-side h6 {

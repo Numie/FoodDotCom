@@ -61,15 +61,15 @@ export default class RestaurantShow extends React.Component {
   }
 
   render() {
-    const { name, address, city, state, zip, phone, img_url, open_time, close_time, latitude, longitude, distance } = this.props.restaurant;
-    const { currentUserFirstName, toggleMenuItemModal, menuItemModal, reviewModal } = this.props;
+    const { name, address, city, state, zip, phone, img_url, open_time, close_time, latitude, longitude, distance, rating_avg, rating_count } = this.props.restaurant;
+    const { currentUserFirstName, toggleMenuItemModal, menuItemModal, reviewModal, currentUser } = this.props;
 
     const menuItems = this.props.menuItems.map(menuItem => {
       return <MenuItem key={menuItem.id}  menuItem={menuItem} selectItem={this.selectItem} toggleMenuItemModal={toggleMenuItemModal} />;
     });
 
     const reviews = this.props.reviews.map(review => {
-      return <Review key={review.id} review={review} currentUserFirstName={currentUserFirstName}/>;
+      return <Review key={review.id} review={review} />;
     });
 
     return (
@@ -84,11 +84,13 @@ export default class RestaurantShow extends React.Component {
                 <h6>{phone}</h6>
               </div>
               <div className='stars-container'>
-                <div className='star-icon'></div>
-                <div className='star-icon'></div>
-                <div className='star-icon'></div>
-                <div className='star-icon'></div>
-                <div className='star-icon'></div>
+                <div className={parseInt(rating_avg) > 0 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
+                <div className={parseInt(rating_avg) > 1 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
+                <div className={parseInt(rating_avg) > 2 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
+                <div className={parseInt(rating_avg) > 3 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
+                <div className={parseInt(rating_avg) > 4 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
+
+                <h6>{rating_count} Ratings</h6>
               </div>
             </div>
           </div>
@@ -132,7 +134,7 @@ export default class RestaurantShow extends React.Component {
           <div className='reviews-container'>
             <div className='reviews-heading'>
               <div><h1>Reviews for {name}</h1></div>
-              <button className='review-button' onClick={this.toggleReviewModal}>Rate your last order</button>
+              <button className={currentUser ? 'review-button' : 'hidden'} onClick={this.toggleReviewModal}>Rate your last order</button>
               { reviewModal ? <ReviewModal restaurantName={name}/> : null }
             </div>
             {reviews}

@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => ({
   orderRestaurantId: state.entities.order.restaurantId,
   reviews: state.entities.reviews,
   reviewModal: state.ui.modals.reviewModal,
-  currentUserFirstName: state.session.currentUser.first_name
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({

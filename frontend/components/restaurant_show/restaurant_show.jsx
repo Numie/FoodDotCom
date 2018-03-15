@@ -3,6 +3,7 @@ import MenuItem from '../menu/menu_item';
 import MenuItemModal from '../modals/menu_item_modal';
 import Order from '../order/order';
 import Review from '../review/review';
+import ReviewModal from '../modals/review_modal';
 
 export default class RestaurantShow extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class RestaurantShow extends React.Component {
     };
 
     this.selectItem = this.selectItem.bind(this);
+    this.toggleReviewModal = this.toggleReviewModal.bind(this);
   }
 
   componentDidMount() {
@@ -53,9 +55,14 @@ export default class RestaurantShow extends React.Component {
     this.setState({currentItem: selectedItem});
   }
 
+  toggleReviewModal(e) {
+    e.preventDefault();
+    this.props.toggleReviewModal();
+  }
+
   render() {
     const { name, address, city, state, zip, phone, img_url, open_time, close_time, latitude, longitude, distance } = this.props.restaurant;
-    const { toggleMenuItemModal, menuItemModal } = this.props;
+    const { toggleMenuItemModal, menuItemModal, reviewModal } = this.props;
 
     const menuItems = this.props.menuItems.map(menuItem => {
       return <MenuItem key={menuItem.id}  menuItem={menuItem} selectItem={this.selectItem} toggleMenuItemModal={toggleMenuItemModal} />;
@@ -123,9 +130,12 @@ export default class RestaurantShow extends React.Component {
           </div>
 
           <div className='reviews-container'>
-            <div className='reviews-heading'><div><h1>Reviews for {name}</h1></div>
-            {reviews}
+            <div className='reviews-heading'>
+              <div><h1>Reviews for {name}</h1></div>
+              <button className='review-button' onClick={this.toggleReviewModal}>Rate your last order</button>
+              { reviewModal ? <ReviewModal restaurantName={name}/> : null }
             </div>
+            {reviews}
           </div>
         </div>
 

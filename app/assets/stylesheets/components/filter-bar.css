@@ -69,15 +69,21 @@
 }
 
 .prices-teal {
+  display; flex;
+  align-items: center;
   color: #2b8282;
-  font-size: 20px;
+  font-size: 16px;
+  height: 48px;
   cursor: default;
 }
 
 .prices-white {
+  display; flex;
+  align-items: center;
   color: white;
   background: #2b8282;
   border-color: #2b8282;
-  font-size: 20px;
+  font-size: 16px;
+  height: 48px;
   cursor: default;
 }

@@ -69,7 +69,7 @@
 }
 
 .prices-teal {
-  display; flex;
+  display: flex;
   align-items: center;
   color: #2b8282;
   font-size: 16px;
@@ -78,7 +78,7 @@
 }
 
 .prices-white {
-  display; flex;
+  display: flex;
   align-items: center;
   color: white;
   background: #2b8282;

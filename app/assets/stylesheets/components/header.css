@@ -17,6 +17,7 @@
 
 .header-left {
     display: flex;
+    align-items: center;
 }
 
 .logo {
@@ -29,8 +30,7 @@
   position: static;
   display: flex;
   align-items: center;
-  margin-top: 22px;
-  height: 60px;;
+  height: 60px;
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }

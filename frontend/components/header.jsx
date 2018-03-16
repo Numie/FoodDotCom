@@ -9,7 +9,7 @@ const Header = (props) => {
     <header className='header'>
       <div className='header-left'>
         <Link to='/'>
-          <img className='logo' src={window.staticImages.logo} alt='FoodDotCom' />
+          <div className='logo'><img src={window.staticImages.logo} alt='FoodDotCom' /></div>
         </Link>
         <AddressRequiredRoute path='/(.+)' component={RestaurantSearchFormContainer} />
       </div>

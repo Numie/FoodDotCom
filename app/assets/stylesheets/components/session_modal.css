@@ -16,16 +16,12 @@
   z-index: 3;
 }
 
-.session-modal .logo {
-  margin: -20px 0;
-}
-
 .heading {
   color: black;
   font-size: 20px;
   font-weight: 700;
   display: block;
-  margin: 10px 0;
+  margin: 20px 0;
 }
 
 .session-form {

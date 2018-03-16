@@ -51,3 +51,13 @@
   color: hsla(0, 0%, 100%, 0.6);
   margin-right: 3px;
 }
+
+.star-icon-teal:before {
+  content: "\2605";
+  color: #2b8282;
+}
+
+.star-icon-white:before {
+  content: "\2605";
+  color: white;
+}

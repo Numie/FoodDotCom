@@ -1,5 +1,3 @@
-
-
 # Food.com
 
 Food.com is a clone of Seamless.com. Why the name Food.com? Because it's a simpler, more basic version of Seamless, obviously. It allows users to find local restaurants near them, view menus, place orders and write reviews. See it live [here](https://fooddotcom.herokuapp.com/). For comparison, check out Seamless [here](http://seamless.com/).
@@ -36,6 +34,8 @@ Users must be logged in to proceed to the checkout page. If they are not logged 
 ### *Reviews*
 
 After ordering, users are prompted to review the restaurant. Reviews are displayed at the bottom of restaurant menu pegas and are listed in order of recency.
+
+![Reviews](https://github.com/Numie/FoodDotCom/blob/master/screenshots/Screen%20Shot%202018-03-18%20at%209.51.01%20PM.png)
 
 ### *UI*
 

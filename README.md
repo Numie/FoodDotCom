@@ -21,6 +21,8 @@ The restaurant search feature requires the application the navigate the Google M
 
 Receiving the address is not as simple as adding an input field and button. The application needs some control over the format of the address in order to geocode it correctly. Thus, I used the Google Autocomplete API to present users with a dropdown list of matching (and well-formatted) addresses to choose from. Once the address is entered The Ruby Geocoder gem allows form returning restaurants within a chosen radius. Food.com only returns resturants one mile away from the user or closer.
 
+![Search Dropdown](https://github.com/Numie/FoodDotCom/blob/master/screenshots/Screen%20Shot%202018-03-18%20at%209.41.44%20PM.png)
+
 ### *Menus*
 
 Each restaurant has a unique menu. Users may add items to their orders, edit items, remove items or empty their bag and remove all items at once. The menu item modal requires some edge case error handling such as only allowing items to be added to order in quantities that are integers, preventing users from decreasing the quantity below 1, and preventing accidentally large orders (the maximum quantity is set to 99).
@@ -32,6 +34,8 @@ Users must be logged in to proceed to the checkout page. If they are not logged 
 ### *Reviews*
 
 After ordering, users are prompted to review the restaurant. Reviews are displayed at the bottom of restaurant menu pegas and are listed in order of recency.
+
+![Reviews](https://github.com/Numie/FoodDotCom/blob/master/screenshots/Screen%20Shot%202018-03-18%20at%209.51.01%20PM.png)
 
 ### *UI*
 

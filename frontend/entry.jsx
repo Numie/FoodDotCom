@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 import { merge } from 'lodash';
-import { fetchMenuItems } from './util/menu_util';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -32,9 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   store = preloadedState ? configureStore(preloadedState) : configureStore();
-
-  window.getState = store.getState;
-  window.fetchMenuItems = fetchMenuItems;
 
   ReactDOM.render(<Root store={store}/>, root);
 });

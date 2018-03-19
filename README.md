@@ -1,3 +1,5 @@
+
+
 # Food.com
 
 Food.com is a clone of Seamless.com. Why the name Food.com? Because it's a simpler, more basic version of Seamless, obviously. It allows users to find local restaurants near them, view menus, place orders and write reviews. See it live [here](https://fooddotcom.herokuapp.com/). For comparison, check out Seamless [here](http://seamless.com/).
@@ -20,6 +22,8 @@ The restaurant search feature requires the application the navigate the Google M
 1. Returning a filtered list of restaurants that are in range.
 
 Receiving the address is not as simple as adding an input field and button. The application needs some control over the format of the address in order to geocode it correctly. Thus, I used the Google Autocomplete API to present users with a dropdown list of matching (and well-formatted) addresses to choose from. Once the address is entered The Ruby Geocoder gem allows form returning restaurants within a chosen radius. Food.com only returns resturants one mile away from the user or closer.
+
+![Search Dropdown](https://github.com/Numie/FoodDotCom/blob/master/screenshots/Screen%20Shot%202018-03-18%20at%209.41.44%20PM.png)
 
 ### *Menus*
 

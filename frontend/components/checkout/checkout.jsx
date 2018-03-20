@@ -8,7 +8,6 @@ import { receiveItemInstructionsErrors, clearErrors } from '../../actions/menu_i
 import { toggleOrderPlacedModal } from '../../actions/modal_actions';
 import { createOrder } from '../../actions/order_item_actions';
 import { merge } from 'lodash';
-import Typed from 'typed.js';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
@@ -107,53 +106,6 @@ class Checkout extends React.Component {
       state,
       zip
     });
-
-    // const TAs = [
-    //   "Patrick Kovach-Long",
-    //   "Maurice Roach",
-    //   "Oscar Alvarez",
-    //   "Mashu Duek",
-    //   "Matthias Jenny",
-    //   "Abby Hersh",
-    //   "Brian Scott"
-    // ];
-    //
-    // const randomTA = TAs[Math.floor(Math.random() * TAs.length)];
-    //
-    // const typedPayee = new Typed('#payee', {
-    //   strings: [randomTA],
-    //   typeSpeed: 50,
-    //   startDelay: 2000,
-    //   showCursor: true
-    // });
-    //
-    // const typedCardNumber = new Typed('#card-number', {
-    //   strings: ["4593 0372 1922 4663"],
-    //   typeSpeed: 50,
-    //   startDelay: 4000,
-    //   showCursor: true
-    // });
-    //
-    // const typedExpiry = new Typed('#expiry', {
-    //   strings: ["11/20"],
-    //   typeSpeed: 30,
-    //   startDelay: 6000,
-    //   showCursor: true
-    // });
-    //
-    // const typedSecurityCode = new Typed('#security-code', {
-    //   strings: ["018"],
-    //   typeSpeed: 30,
-    //   startDelay: 6500,
-    //   showCursor: true
-    // });
-    //
-    // const typedPostalCode = new Typed('#postal-code', {
-    //   strings: ["10018"],
-    //   typeSpeed: 30,
-    //   startDelay: 7000,
-    //   showCursor: true
-    // });
 
   }
 

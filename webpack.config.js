@@ -1,5 +1,26 @@
 const path = require('path');
 
+const plugins = [];
+
+const devPlugins = [];
+
+const prodPlugins = [
+  new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': JSON.stringify('production')
+    }
+  }),
+  new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: true
+    }
+  })
+];
+
+plugins = plugins.concat(
+  process.env.NODE_ENV === 'production' ? prodPlugins : devPlugins
+)
+
 module.exports = {
   context: __dirname,
   entry: './frontend/entry.jsx',
@@ -10,6 +31,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '*']
   },
+  plugins: plugins,
   module: {
     loaders: [
       {

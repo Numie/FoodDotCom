@@ -14,20 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
     delete window.currentUser;
   }
 
-  if (localStorage.address) {
-    preloadedState = merge(preloadedState, { currentAddress: JSON.parse(localStorage.address) });
+  if (sessionStorage.address) {
+    preloadedState = merge(preloadedState, { currentAddress: JSON.parse(sessionStorage.address) });
   }
 
-  if (localStorage.restaurants) {
-    preloadedState = merge(preloadedState, {entities: {restaurants: JSON.parse(localStorage.restaurants)}});
+  if (sessionStorage.restaurants) {
+    preloadedState = merge(preloadedState, {entities: {restaurants: JSON.parse(sessionStorage.restaurants)}});
   }
 
-  if (localStorage.order) {
-    preloadedState = merge(preloadedState, {entities: {order: JSON.parse(localStorage.order)}});
+  if (sessionStorage.order) {
+    preloadedState = merge(preloadedState, {entities: {order: JSON.parse(sessionStorage.order)}});
   }
 
-  if (localStorage.orderItems) {
-    preloadedState = merge(preloadedState, {entities: {orderItems: JSON.parse(localStorage.orderItems)}});
+  if (sessionStorage.orderItems) {
+    preloadedState = merge(preloadedState, {entities: {orderItems: JSON.parse(sessionStorage.orderItems)}});
   }
 
   store = preloadedState ? configureStore(preloadedState) : configureStore();

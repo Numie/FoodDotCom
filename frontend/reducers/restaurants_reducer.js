@@ -1,6 +1,6 @@
 import { merge } from 'lodash';
 import { RESTAURANTS, FILTER_RATING, FILTER_PRICE, FILTER_DELIVERY_FEE } from '../actions/restaurant_actions';
-import { saveRestaurants } from '../local_storage/local_storage';
+import { saveRestaurants } from '../session_storage/session_storage';
 
 const restaurantsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);

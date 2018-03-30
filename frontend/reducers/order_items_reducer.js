@@ -1,6 +1,6 @@
 import { merge } from 'lodash';
 import { ADD_ITEM, DELETE_ITEM, DELETE_ALL_ITEMS } from '../actions/order_item_actions';
-import { saveOrderItems } from '../local_storage/local_storage';
+import { saveOrderItems } from '../session_storage/session_storage';
 
 
 const orderItemsReducer = (oldState = {}, action) => {

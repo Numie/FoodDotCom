@@ -1,7 +1,7 @@
 import { merge } from 'lodash';
 import { ADD_ITEM, DELETE_ITEM, DELETE_ALL_ITEMS } from '../actions/order_item_actions';
 import { UPDATE_TIP } from '../actions/checkout_actions';
-import { saveOrder } from '../local_storage/local_storage';
+import { saveOrder } from '../session_storage/session_storage';
 
 const defaultState = {
   restaurantId: null,

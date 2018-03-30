@@ -1,6 +1,6 @@
 import React from 'react';
 import { deleteAllItems } from '../../actions/order_item_actions';
-import { deleteOrder, deleteOrderItems } from '../../local_storage/local_storage';
+import { deleteOrder, deleteOrderItems } from '../../session_storage/session_storage';
 import { removeCheckoutInfo } from '../../actions/checkout_actions';
 import { toggleOrderPlacedModal, toggleReviewModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router-dom';

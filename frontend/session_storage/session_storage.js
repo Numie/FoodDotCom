@@ -1,6 +1,6 @@
 export const loadAddress = () => {
   try {
-    const address = localStorage.getItem('address');
+    const address = sessionStorage.getItem('address');
     if (address === null) {
       return undefined;
     }
@@ -13,7 +13,7 @@ export const loadAddress = () => {
 export const saveAddress = (address) => {
   try {
     const serializedAddress = JSON.stringify(address);
-    localStorage.setItem('address', serializedAddress);
+    sessionStorage.setItem('address', serializedAddress);
   } catch (error) {
 
   }
@@ -22,7 +22,7 @@ export const saveAddress = (address) => {
 export const saveRestaurants = restaurants => {
   try {
     const serializedRestaurants = JSON.stringify(restaurants);
-    localStorage.setItem('restaurants', serializedRestaurants);
+    sessionStorage.setItem('restaurants', serializedRestaurants);
   } catch (error) {
 
   }
@@ -31,7 +31,7 @@ export const saveRestaurants = restaurants => {
 export const saveOrder = order => {
   try {
     const serializedOrder = JSON.stringify(order);
-    localStorage.setItem('order', serializedOrder);
+    sessionStorage.setItem('order', serializedOrder);
   } catch (error) {
 
   }
@@ -39,7 +39,7 @@ export const saveOrder = order => {
 
 export const deleteOrder = () => {
   try {
-    localStorage.removeItem('order');
+    sessionStorage.removeItem('order');
   } catch (error) {
 
   }
@@ -48,7 +48,7 @@ export const deleteOrder = () => {
 export const saveOrderItems = orderItems => {
   try {
     const serializedOrderItems = JSON.stringify(orderItems);
-    localStorage.setItem('orderItems', serializedOrderItems);
+    sessionStorage.setItem('orderItems', serializedOrderItems);
   } catch (error) {
 
   }
@@ -56,7 +56,7 @@ export const saveOrderItems = orderItems => {
 
 export const deleteOrderItems = () => {
   try {
-    localStorage.removeItem('orderItems');
+    sessionStorage.removeItem('orderItems');
   } catch (error) {
 
   }

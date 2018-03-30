@@ -1,6 +1,6 @@
 import { merge } from 'lodash';
 import { GEOCODE } from '../actions/address_actions';
-import { saveAddress } from '../local_storage/local_storage';
+import { saveAddress } from '../session_storage/session_storage';
 
 const addressReducer = (oldState = null, action) => {
   Object.freeze(oldState);

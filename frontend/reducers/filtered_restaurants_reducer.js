@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import { FILTER_RATING, FILTER_PRICE, FILTER_DELIVERY_FEE, CLEAR_FILTERS, changeFilterRating, changeFilterPrice, changeFilterDeliveryFee } from '../actions/restaurant_actions';
+import { FILTER_RATING, FILTER_PRICE, FILTER_DELIVERY_FEE, CLEAR_FILTERS } from '../actions/restaurant_actions';
 
 const filteredRestaurantsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);

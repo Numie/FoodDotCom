@@ -17,11 +17,11 @@ const RestaurantIndexItem = props => {
       <div className='index-right-side'>
         <div className='stars-container'>
           <div className='stars'>
-            <div className={parseInt(rating_avg) > 0 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
-            <div className={parseInt(rating_avg) > 1 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
-            <div className={parseInt(rating_avg) > 2 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
-            <div className={parseInt(rating_avg) > 3 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
-            <div className={parseInt(rating_avg) > 4 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
+            <div className={parseFloat(rating_avg) >= 0.5 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
+            <div className={parseFloat(rating_avg) >= 1.5 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
+            <div className={parseFloat(rating_avg) >= 2.5 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
+            <div className={parseFloat(rating_avg) >= 3.5 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
+            <div className={parseFloat(rating_avg) >= 4.5 ? 'star-icon-yellow' : 'star-icon-gray'}></div>
           </div>
           <h6 className='rating-count'>{rating_count} ratings</h6>
         </div>

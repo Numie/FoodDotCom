@@ -84,11 +84,11 @@ export default class RestaurantShow extends React.Component {
                 <h6>{phone}</h6>
               </div>
               <div className='stars-container'>
-                <div className={parseInt(rating_avg) > 0 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
-                <div className={parseInt(rating_avg) > 1 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
-                <div className={parseInt(rating_avg) > 2 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
-                <div className={parseInt(rating_avg) > 3 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
-                <div className={parseInt(rating_avg) > 4 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
+                <div className={parseFloat(rating_avg) >= 0.5 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
+                <div className={parseFloat(rating_avg) >= 1.5 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
+                <div className={parseFloat(rating_avg) >= 2.5 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
+                <div className={parseFloat(rating_avg) >= 3.5 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
+                <div className={parseFloat(rating_avg) >= 4.5 ? 'star-icon-yellow' : 'star-icon-light-gray'}></div>
 
                 <h6>{rating_count} Ratings</h6>
               </div>

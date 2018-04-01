@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchRestaurants, filterRating, filterPrice, filterDeliveryFee, clearFilters } from '../../actions/restaurant_actions';
+import { fetchRestaurants, filterRating, filterPrice, filterDeliveryFee, filterAll, clearFilters } from '../../actions/restaurant_actions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
@@ -12,6 +12,7 @@ const mapDispatchToProps = dispatch => ({
   filterRating: (rating, restaurants) => dispatch(filterRating(rating, restaurants)),
   filterPrice: (price, restaurants) => dispatch(filterPrice(price, restaurants)),
   filterDeliveryFee: (deliveryFee, restaurants) => dispatch(filterDeliveryFee(deliveryFee, restaurants)),
+  filterAll: (rating, price, deliveryFee, restaurants) => dispatch(filterAll(rating, price, deliveryFee, restaurants)),
   clearFilters: () => dispatch(clearFilters())
 });
 
@@ -107,6 +108,16 @@ class FilterBar extends React.Component {
         restaurants = this.props.filteredRestaurants;
       }
       this.props.filterDeliveryFee(deliveryFee, restaurants);
+    };
+  }
+
+  filterAll() {
+    return() => {
+      const restaurants = this.props.restaurants;
+      const rating = (this.state.selectedRating === 0 ? null : this.state.selectedRating);
+      const price = (this.state.selectedPrice === 0 ? null : this.state.selectedPrice);
+      const deliveryFee = (this.state.selectedDeliveryFee === 0 ? null : this.state.selectedDeliveryFee);
+      this.props.filterAll(rating, price, deliveryFee, restaurants);
     };
   }
 

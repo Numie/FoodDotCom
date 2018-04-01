@@ -4,9 +4,7 @@ export const RESTAURANTS = 'RESTAURANTS';
 export const FILTER_RATING = 'FILTER_RATING';
 export const FILTER_PRICE = 'FILTER_PRICE';
 export const FILTER_DELIVERY_FEE = 'FILTER_DELIVERY_FEE';
-export const CHANGE_FILTER_RATING = 'CHANGE_FILTER_RATING';
-export const CHANGE_FILTER_PRICE = 'CHANGE_FILTER_PRICE';
-export const CHANGE_FILTER_DELIVERY_FEE = 'CHANGE_FILTER_DELIVERY_FEE';
+export const FILTER_ALL = 'FILTER_ALL';
 export const CLEAR_FILTERS = 'CLEAR_FILTERS';
 export const RECEIVE_FILTER_ERRORS = 'RECEIVE_FILTER_ERRORS';
 
@@ -41,26 +39,15 @@ export const filterDeliveryFee = (deliveryFee, restaurants) => {
   });
 };
 
-export const changeFilterRating = rating => {
+export const filterAll = (rating, price, deliveryFee, restaurants) => {
   return ({
-    type: CHANGE_FILTER_RATING,
-    rating
+    type: FILTER_ALL,
+    rating,
+    price,
+    deliveryFee,
+    restaurants
   });
-};
-
-export const changeFilterPrice = price => {
-  return ({
-    type: CHANGE_FILTER_PRICE,
-    price
-  });
-};
-
-export const changeFilterDeliveryFee = deliveryFee => {
-  return ({
-    type: CHANGE_FILTER_DELIVERY_FEE,
-    deliveryFee
-  });
-};
+}
 
 export const clearFilters = () => {
   return ({

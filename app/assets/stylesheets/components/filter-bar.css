@@ -26,7 +26,7 @@
 }
 
 .ratings-filter {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .ratings-filter h3 {
@@ -37,7 +37,7 @@
 .ratings-options {
   display: flex;
   justify-content: space-around;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .ratings-options li {

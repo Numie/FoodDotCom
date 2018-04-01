@@ -73,52 +73,65 @@ class FilterBar extends React.Component {
   }
 
   filterRating(rating) {
-    return() => {
-      this.setState({'selectedRating': rating});
+    return(e) => {
       let restaurants;
       if (Object.values(this.props.filteredRestaurants).length === 0 || this.props.filters.selectedRating) {
         restaurants = this.props.restaurants;
       } else {
         restaurants = this.props.filteredRestaurants;
       }
-      this.props.filterRating(rating, restaurants);
+      if (this.props.filters.selectedRating) {
+        this.setState({'selectedRating': rating}, () => {
+          this.filterAll();
+        });
+      } else {
+        this.props.filterRating(rating, restaurants);
+      }
     };
   }
 
   filterPrice(price) {
-    return() => {
-      this.setState({'selectedPrice': price});
+    return(e) => {
       let restaurants;
       if (Object.values(this.props.filteredRestaurants).length === 0 || this.props.filters.selectedPrice) {
         restaurants = this.props.restaurants;
       } else {
         restaurants = this.props.filteredRestaurants;
       }
-      this.props.filterPrice(price, restaurants);
+      if (this.props.filters.selectedPrice) {
+        this.setState({'selectedPrice': price}, () => {
+          this.filterAll();
+        });
+      } else {
+        this.props.filterPrice(price, restaurants);
+      }
     };
   }
 
   filterDeliveryFee(deliveryFee) {
-    return() => {
-      this.setState({'selectedDeliveryFee': deliveryFee});
+    return(e) => {
       let restaurants;
       if (Object.values(this.props.filteredRestaurants).length === 0 || this.props.filters.selectedDeliveryFee) {
         restaurants = this.props.restaurants;
       } else {
         restaurants = this.props.filteredRestaurants;
       }
-      this.props.filterDeliveryFee(deliveryFee, restaurants);
+      if (this.props.filters.selectedDeliveryFee) {
+        this.setState({'selectedDeliveryFee': deliveryFee}, () => {
+          this.filterAll();
+        });
+      } else {
+        this.props.filterDeliveryFee(deliveryFee, restaurants);
+      }
     };
   }
 
   filterAll() {
-    return() => {
-      const restaurants = this.props.restaurants;
-      const rating = (this.state.selectedRating === 0 ? null : this.state.selectedRating);
-      const price = (this.state.selectedPrice === 0 ? null : this.state.selectedPrice);
-      const deliveryFee = (this.state.selectedDeliveryFee === 0 ? null : this.state.selectedDeliveryFee);
-      this.props.filterAll(rating, price, deliveryFee, restaurants);
-    };
+    const restaurants = this.props.restaurants;
+    const rating = (this.state.selectedRating === 0 ? null : this.state.selectedRating);
+    const price = (this.state.selectedPrice === 0 ? null : this.state.selectedPrice);
+    const deliveryFee = (this.state.selectedDeliveryFee === 0 ? null : this.state.selectedDeliveryFee);
+    this.props.filterAll(rating, price, deliveryFee, restaurants);
   }
 
   clearFilters() {

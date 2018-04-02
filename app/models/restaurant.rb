@@ -41,17 +41,20 @@ class Restaurant < ApplicationRecord
       .group('restaurants.id')
   end
 
-  def last_order(user_id)
-    Order.select(:created_at)
-      .where(restaurant_id: self.id, user_id: user_id)
+  def reviewable?(user_id)
+    last_order = Order.where(restaurant_id: self.id, user_id: user_id)
+      .order(created_at: :desc)
       .limit(1)
-  end
+      .pluck(:created_at)
+      .first
 
-  def last_review(user_id)
-    Review.select(:created_at)
-      .joins(:reviews)
-      .where('restaurant_id = ? AND user_id = ?', self.id, user_id)
+    last_review = Review.where(restaurant_id: self.id, user_id: user_id)
+      .order(created_at: :desc)
       .limit(1)
+      .pluck(:created_at)
+      .first
+
+    last_order > last_review
   end
 
   private

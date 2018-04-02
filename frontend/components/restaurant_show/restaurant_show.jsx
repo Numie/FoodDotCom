@@ -37,8 +37,7 @@ export default class RestaurantShow extends React.Component {
     });
 
     const marker = new google.maps.Marker({
-      position: {lat, lng},
-        map
+      position: {lat, lng}
     });
 
     marker.setMap(this.map);

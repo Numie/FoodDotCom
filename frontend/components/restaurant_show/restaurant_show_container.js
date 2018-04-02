@@ -1,7 +1,7 @@
 import React from 'react';
 import RestaurantShow from './restaurant_show';
 import { fetchMenuItems } from '../../actions/menu_item_actions';
-import { fetchReviews, reviewable } from '../../actions/review_actions';
+import { fetchReviews, fetchReviewable } from '../../actions/review_actions';
 import { toggleMenuItemModal, toggleReviewModal } from '../../actions/modal_actions';
 import { deleteAllItems } from '../../actions/order_item_actions';
 import { connect } from 'react-redux';
@@ -15,13 +15,13 @@ const mapStateToProps = (state, ownProps) => ({
   reviews: state.entities.reviews,
   reviewModal: state.ui.modals.reviewModal,
   currentUser: state.session.currentUser,
-  restaurantReviewable: state.session.reviewable
+  reviewable: state.session.reviewable
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchMenuItems: restaurantId => dispatch(fetchMenuItems(restaurantId)),
   fetchReviews: restaurantId => dispatch(fetchReviews(restaurantId)),
-  reviewable: restaurantId => dispatch(reviewable(restaurantId)),
+  fetchReviewable: restaurantId => dispatch(fetchReviewable(restaurantId)),
   toggleMenuItemModal: () => dispatch(toggleMenuItemModal()),
   toggleReviewModal: () => dispatch(toggleReviewModal()),
   deleteAllItems: () => dispatch(deleteAllItems())

@@ -26,7 +26,7 @@ export default class RestaurantShow extends React.Component {
     this.props.fetchReviews(this.props.match.params.id);
 
     if (this.props.currentUser) {
-      this.props.reviewable(this.props.match.params.id);
+      this.props.fetchReviewable(this.props.match.params.id);
     }
 
     const map = this.refs.map;
@@ -65,8 +65,8 @@ export default class RestaurantShow extends React.Component {
 
   render() {
     const { name, address, city, state, zip, phone, img_url, open_time, close_time, latitude, longitude, distance, rating_avg, rating_count } = this.props.restaurant;
-    const { currentUserFirstName, toggleMenuItemModal, menuItemModal, reviewModal, currentUser, restaurantReviewable } = this.props;
-    const canReview = restaurantReviewable === null ? null : restaurantReviewable.reviewable;
+    const { currentUserFirstName, toggleMenuItemModal, menuItemModal, reviewModal, currentUser, reviewable } = this.props;
+    const canReview = reviewable === null ? null : reviewable.reviewable;
 
     const menuItems = this.props.menuItems.map(menuItem => {
       return <MenuItem key={menuItem.id}  menuItem={menuItem} selectItem={this.selectItem} toggleMenuItemModal={toggleMenuItemModal} />;

@@ -13,7 +13,7 @@ export const createReview = review => {
   });
 };
 
-export const reviewable = restaurantId => {
+export const fetchReviewable = restaurantId => {
   return $.ajax({
     method: 'GET',
     url: `/api/restaurants/${restaurantId}`

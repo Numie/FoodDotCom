@@ -14,7 +14,7 @@ export const receiveReview = review => ({
   review
 });
 
-export const receiveReviewableBool = bool => ({
+export const receiveReviewable = bool => ({
   type: REVIEWABLE,
   bool
 });
@@ -33,9 +33,9 @@ export const createReview = review => dispatch => {
   );
 };
 
-export const reviewable = restaurantId => dispatch => {
+export const fetchReviewable = restaurantId => dispatch => {
   return(
-    ReviewUtil.reviewable(restaurantId)
-    .then(bool => dispatch(receiveReviewableBool(bool)))
+    ReviewUtil.fetchReviewable(restaurantId)
+    .then(bool => dispatch(receiveReviewable(bool)))
   );
 };

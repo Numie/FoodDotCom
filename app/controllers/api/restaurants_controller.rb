@@ -2,7 +2,7 @@ class Api::RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.all_with_ratings.near(params[:address], 1)
-    
+
     if @restaurants
       render :index
     else
@@ -12,6 +12,7 @@ class Api::RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find_by(id: params[:id])
+    @restaurant.reviewable = @restaurant.reviewable?(current_user)
 
     if @restaurant
       render :show

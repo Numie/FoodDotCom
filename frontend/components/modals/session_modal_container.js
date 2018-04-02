@@ -1,8 +1,7 @@
 import React from "react";
 import SessionModal from './session_modal';
 import { login, signup, clearErrors } from '../../actions/session_actions';
-import { toggleSessionModal } from '../../actions/modal_actions';
-import { toggleSignupModal } from '../../actions/modal_actions';
+import { toggleSessionModal, toggleSignupModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({

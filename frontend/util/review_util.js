@@ -12,3 +12,10 @@ export const createReview = review => {
     data: { review }
   });
 };
+
+export const reviewable = restaurantId => {
+  return $.ajax({
+    method: 'GET',
+    url: `/api/restaurants/${restaurantId}`
+  });
+};

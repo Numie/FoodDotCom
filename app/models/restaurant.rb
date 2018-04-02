@@ -32,6 +32,8 @@ class Restaurant < ApplicationRecord
     through: :orders,
     source: :order_items
 
+  attr_accessor :reviewable
+
   geocoded_by :address
   after_initialize :ensure_geocode
 

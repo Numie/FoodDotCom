@@ -1,16 +1,10 @@
-import { merge } from 'lodash';
-import { RECEIVE_CURRENT_USER, receiveCurrentUser } from '../actions/session_actions';
+import { combineReducers } from 'redux';
+import currentUserReducer from './current_user_reducer';
+import reviewableReducer from './reviewable_reducer';
 
-const _nullUser = { currentUser: null };
-
-const sessionReducer = (oldState = _nullUser, action) => {
-  Object.freeze(oldState);
-  switch (action.type) {
-    case RECEIVE_CURRENT_USER:
-      return merge({}, oldState, { currentUser: action.user });
-    default:
-      return oldState;
-  }
-};
+const sessionReducer = combineReducers({
+  currentUser: currentUserReducer,
+  reviewable: reviewableReducer
+});
 
 export default sessionReducer;

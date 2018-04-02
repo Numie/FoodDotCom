@@ -25,6 +25,10 @@ export default class RestaurantShow extends React.Component {
     this.props.fetchMenuItems(this.props.match.params.id);
     this.props.fetchReviews(this.props.match.params.id);
 
+    if (this.props.currentUser) {
+      this.props.reviewable(this.props.match.params.id);
+    }
+
     const map = this.refs.map;
     const lat = this.props.restaurant.latitude;
     const lng = this.props.restaurant.longitude;
@@ -61,7 +65,8 @@ export default class RestaurantShow extends React.Component {
 
   render() {
     const { name, address, city, state, zip, phone, img_url, open_time, close_time, latitude, longitude, distance, rating_avg, rating_count } = this.props.restaurant;
-    const { currentUserFirstName, toggleMenuItemModal, menuItemModal, reviewModal, currentUser } = this.props;
+    const { currentUserFirstName, toggleMenuItemModal, menuItemModal, reviewModal, currentUser, restaurantReviewable } = this.props;
+    const canReview = restaurantReviewable === null ? null : restaurantReviewable.reviewable;
 
     const menuItems = this.props.menuItems.map(menuItem => {
       return <MenuItem key={menuItem.id}  menuItem={menuItem} selectItem={this.selectItem} toggleMenuItemModal={toggleMenuItemModal} />;
@@ -133,7 +138,7 @@ export default class RestaurantShow extends React.Component {
           <div className='reviews-container'>
             <div className='reviews-heading'>
               <div><h1>Reviews for {name}</h1></div>
-              <button className={currentUser ? 'review-button' : 'hidden'} onClick={this.toggleReviewModal}>Rate your last order</button>
+              <button className={canReview ? 'review-button' : 'hidden'} onClick={this.toggleReviewModal}>Rate your last order</button>
               { reviewModal ? <ReviewModal restaurantName={name}/> : null }
             </div>
             {reviews}

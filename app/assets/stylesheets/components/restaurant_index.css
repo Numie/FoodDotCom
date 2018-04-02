@@ -10,3 +10,43 @@
   left: 25%;
   width: 75%;
 }
+
+.no-filter-results {
+  position: absolute;
+  top: 100px;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.inner-no-filter-results {
+  display: flex;
+  width: max-content;
+  text-align: left;
+}
+
+.no-filter-results img {
+  margin: -35px 10px 0 0 ;
+  width: 200px;
+  height: 200px;
+}
+
+.no-filter-results h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.no-filter-results h5 {
+  margin: 10px 0 20px;
+  font-size: 16px;
+}
+
+.no-filter-results button {
+  padding: 16px;
+  border: 2px solid #2b8282;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #2b8282;
+}

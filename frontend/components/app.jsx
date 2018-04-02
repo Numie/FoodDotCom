@@ -3,7 +3,7 @@ import { AuthRoute, ProtectedRoute, AddressRequiredRoute, CheckoutRoute } from '
 import { Link, Route, Switch } from 'react-router-dom';
 import Header from './header';
 import Main from './main';
-import RestaurantIndexContainer from './restaurant_index/restaurant_index_container';
+import RestaurantIndex from './restaurant_index/restaurant_index';
 import RestaurantShowContainer from './restaurant_show/restaurant_show_container';
 import Checkout from './checkout/checkout.jsx';
 
@@ -12,7 +12,7 @@ const App = () => {
     <div>
       <Header />
       <Route exact path='/' component={ Main } />
-      <AddressRequiredRoute exact path='/restaurants' component={ RestaurantIndexContainer }/>
+      <AddressRequiredRoute exact path='/restaurants' component={ RestaurantIndex }/>
       <AddressRequiredRoute exact path='/restaurants/:id' component={ RestaurantShowContainer }/>
       <CheckoutRoute path='/checkout' component={ Checkout } />
     </div>

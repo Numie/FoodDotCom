@@ -29,28 +29,21 @@ class RestaurantIndex extends React.Component {
       return <RestaurantIndexItem key={restaurant.id} restaurant={restaurant} />;
     });
 
-    // if (this.props.filteredRestaurants.length === 0 && this.props.activeFilters) {
-    //   return (
-    //     <div>No matching results!
-    //     </div>
-    //   );
-    // } else {
-      return (
-        <div className='restaurant-index-full-page'>
-          <FilterBar />
-          {this.props.filteredRestaurants.length === 0 && this.props.activeFilters ?
-            <div className='restaurant-index'><div className='no-filter-results'><div className='inner-no-filter-results'>
-              <img src={window.staticImages.no_results} />
-              <div>
-                <h1>No matching results near you!</h1>
-                <h5>We didn't find any restaurants in your area matching your search filters.</h5>
-                <button onClick={this.props.clearFilters}>See all restaurants nearby</button>
-              </div>
-            </div></div></div> :
-            <ul className='restaurant-index'>{ restaurantList }</ul>}
-        </div>
-      );
-    // }
+    return (
+      <div className='restaurant-index-full-page'>
+        <FilterBar />
+        {this.props.filteredRestaurants.length === 0 && this.props.activeFilters ?
+          <div className='restaurant-index'><div className='no-filter-results'><div className='inner-no-filter-results'>
+            <img src={window.staticImages.no_results} />
+            <div>
+              <h1>No matching results near you!</h1>
+              <h5>We didn't find any restaurants in your area matching your search filters.</h5>
+              <button onClick={this.props.clearFilters}>See all restaurants nearby</button>
+            </div>
+          </div></div></div> :
+          <ul className='restaurant-index'>{ restaurantList }</ul>}
+      </div>
+    );
   }
 }
 

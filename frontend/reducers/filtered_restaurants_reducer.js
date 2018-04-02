@@ -6,7 +6,7 @@ const filteredRestaurantsReducer = (oldState = {}, action) => {
   switch(action.type) {
     case FILTER_RATING:
       const newRatingState = {};
-      const filteredRatingKeys = Object.keys(action.restaurants).filter(key => parseInt(action.restaurants[key].rating_avg) >= action.rating);
+      const filteredRatingKeys = Object.keys(action.restaurants).filter(key => Math.round(parseFloat(action.restaurants[key].rating_avg)) >= action.rating);
       filteredRatingKeys.forEach(key => newRatingState[key] = action.restaurants[key]);
       return newRatingState;
     case FILTER_PRICE:
@@ -23,7 +23,7 @@ const filteredRestaurantsReducer = (oldState = {}, action) => {
     case FILTER_ALL:
       let ratingState = {};
       if (action.rating) {
-        const ratingKeys = Object.keys(action.restaurants).filter(key => parseInt(action.restaurants[key].rating_avg) >= action.rating);
+        const ratingKeys = Object.keys(action.restaurants).filter(key => Math.round(parseFloat(action.restaurants[key].rating_avg)) >= action.rating);
         ratingKeys.forEach(key => ratingState[key] = action.restaurants[key]);
       } else {
         ratingState = action.restaurants;
@@ -45,7 +45,7 @@ const filteredRestaurantsReducer = (oldState = {}, action) => {
       } else {
         deliveryFeeState = priceState;
       }
-
+      
       return deliveryFeeState;
     case CLEAR_FILTERS:
       return {};

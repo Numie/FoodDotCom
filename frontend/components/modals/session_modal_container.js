@@ -2,7 +2,9 @@ import React from "react";
 import SessionModal from './session_modal';
 import { login, signup, clearErrors } from '../../actions/session_actions';
 import { toggleSessionModal, toggleSignupModal } from '../../actions/modal_actions';
+import { fetchReviewable } from '../../actions/review_actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => ({
   sessionModal: state.ui.modals.sessionModal,
@@ -15,7 +17,8 @@ const mapDispatchToProps = dispatch => ({
   signup: (user) => dispatch(signup(user)),
   toggleSessionModal: () => dispatch(toggleSessionModal()),
   toggleSignupModal: () => dispatch(toggleSignupModal()),
-  clearErrors: () => dispatch(clearErrors())
+  clearErrors: () => dispatch(clearErrors()),
+  fetchReviewable: restaurantId => dispatch(fetchReviewable(restaurantId))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SessionModal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SessionModal));

@@ -23,7 +23,16 @@ export default class SessionModal extends React.Component {
     if (this.props.signupModal) {
       this.props.signup(user);
     } else {
-      this.props.login(user);
+      const pathname = this.props.location.pathname;
+      const index = pathname.search(/\d+/);
+      if (index === -1) {
+        this.props.login(user);
+      } else {
+        const id = pathname.slice(index);
+        this.props.login(user).then(() => {
+          this.props.fetchReviewable(id);
+        });
+      }
     }
   }
 

@@ -66,7 +66,6 @@ export default class RestaurantShow extends React.Component {
   render() {
     const { name, address, city, state, zip, phone, img_url, open_time, close_time, latitude, longitude, distance, rating_avg, rating_count } = this.props.restaurant;
     const { currentUserFirstName, toggleMenuItemModal, menuItemModal, reviewModal, currentUser, reviewable } = this.props;
-    const canReview = reviewable === null ? null : reviewable.reviewable;
 
     const menuItems = this.props.menuItems.map(menuItem => {
       return <MenuItem key={menuItem.id}  menuItem={menuItem} selectItem={this.selectItem} toggleMenuItemModal={toggleMenuItemModal} />;
@@ -138,7 +137,7 @@ export default class RestaurantShow extends React.Component {
           <div className='reviews-container'>
             <div className='reviews-heading'>
               <div><h1>Reviews for {name}</h1></div>
-              <button className={canReview ? 'review-button' : 'hidden'} onClick={this.toggleReviewModal}>Rate your last order</button>
+              <button className={reviewable ? 'review-button' : 'hidden'} onClick={this.toggleReviewModal}>Rate your last order</button>
               { reviewModal ? <ReviewModal restaurantName={name}/> : null }
             </div>
             {reviews}

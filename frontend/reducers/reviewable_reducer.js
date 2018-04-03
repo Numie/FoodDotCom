@@ -6,7 +6,7 @@ const reviewableReducer = (oldState = null, action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case REVIEWABLE:
-      return action.bool;
+      return action.bool.reviewable;
     case RECEIVE_CURRENT_USER:
       if (action.user === null) {
         return null;

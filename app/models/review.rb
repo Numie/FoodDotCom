@@ -7,6 +7,8 @@
 #  restaurant_id :integer          not null
 #  rating        :integer          default(5), not null
 #  review        :text             not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class Review < ApplicationRecord

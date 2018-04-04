@@ -16,5 +16,13 @@ class MenuItem < ApplicationRecord
 
   belongs_to :restaurant
   has_many :order_items
+  has_many :item_option_sections,
+    class_name: "ItemOptionSection",
+    primary_key: :id,
+    foreign_key: :item_id
+
+  has_many :item_options,
+    through: :item_option_sections,
+    source: :item_options
 
 end

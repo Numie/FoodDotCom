@@ -16,4 +16,6 @@ class OrderItem < ApplicationRecord
 
   belongs_to :order, inverse_of: :order_items
   belongs_to :menu_item
+
+  has_many :order_item_options
 end

@@ -15,4 +15,5 @@ class ItemOption < ApplicationRecord
   validates :name, :price, presence: true
 
   belongs_to :item_option_section
+  has_many :order_item_options
 end

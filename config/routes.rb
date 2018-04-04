@@ -7,10 +7,13 @@ Rails.application.routes.draw do
     resources :restaurants, only: [:index]
     resources :restaurants, only: [:show] do
       resources :menu_items, only: [:index]
+      resources :item_option_sections, only: [:index]
+      resources :item_options, only: [:index]
       resources :reviews, only: [:index, :create]
     end
     resources :orders, only: [:create] do
       resources :order_items, only: [:create]
+      resouces :order_item_options, only: [:create]
     end
   end
 end

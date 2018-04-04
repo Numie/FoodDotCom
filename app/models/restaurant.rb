@@ -28,9 +28,21 @@ class Restaurant < ApplicationRecord
   has_many :orders
   has_many :reviews
 
+  has_many :item_option_sections,
+    through: :menu_items,
+    source: :item_option_sections
+
+  has_many :item_options,
+    through: :item_option_sections,
+    source: :item_options
+
   has_many :order_items,
     through: :orders,
     source: :order_items
+
+  has_many :order_item_options,
+    through: :order_items,
+    source: :order_item_options
 
   attr_accessor :reviewable
 

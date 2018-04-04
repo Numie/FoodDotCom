@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402153731) do
+ActiveRecord::Schema.define(version: 20180404211255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "item_option_sections", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.boolean "required?", default: false, null: false
+    t.integer "min_allowed", null: false
+    t.integer "max_allowed", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_item_option_sections_on_item_id"
+  end
+
+  create_table "item_options", force: :cascade do |t|
+    t.integer "item_option_section_id", null: false
+    t.string "name", null: false
+    t.string "description"
+    t.float "price", default: 0.0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_option_section_id"], name: "index_item_options_on_item_option_section_id"
+  end
 
   create_table "menu_items", force: :cascade do |t|
     t.integer "restaurant_id", null: false

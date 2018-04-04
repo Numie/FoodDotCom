@@ -159,7 +159,7 @@ class FilterBar extends React.Component {
 
         <div className='ratings-filter'>
           <h3>Price</h3>
-          <ul className='ratings-options' onMouseLeave={this.updatePrice(0)}>
+          <ul id='dollars' className='ratings-options' onMouseLeave={this.updatePrice(0)}>
             <li onMouseOver={this.handleMouseOver('selectedPrice', 5)} onClick={this.filterPrice(5)} className={this.state.selectedPrice >= 5 ? 'prices-white' : 'prices-teal'}>$</li>
             <li onMouseOver={this.handleMouseOver('selectedPrice', 8)} onClick={this.filterPrice(8)} className={this.state.selectedPrice >= 8 ? 'prices-white' : 'prices-teal'}>$$</li>
             <li onMouseOver={this.handleMouseOver('selectedPrice', 10)} onClick={this.filterPrice(10)} className={this.state.selectedPrice >= 10 ? 'prices-white' : 'prices-teal'}>$$$</li>

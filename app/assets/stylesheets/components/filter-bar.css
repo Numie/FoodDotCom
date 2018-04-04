@@ -88,3 +88,7 @@
   height: 48px;
   cursor: default;
 }
+
+#dollars li {
+  font-size: 1.3vw;
+}

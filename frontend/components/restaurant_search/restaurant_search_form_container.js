@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => ({
   address: state.currentAddress,
+  restaurants: Object.values(state.entities.restaurants),
   error: state.errors.address
 });
 

@@ -30,18 +30,36 @@ export default class RestaurantSearchForm extends React.Component {
 
   handleSubmitOnSelection() {
     if (this.props.location.pathname !== '/') {
-      this.props.fetchGeocode(this.state.address);
-      this.props.fetchRestaurants(this.state.address).then(() => {
-        this.props.history.push('/restaurants');
+      this.props.fetchGeocode(this.state.address).then(() => {
+        if (this.props.address.addressComponents[0].types.includes("street number")) {
+          this.props.fetchRestaurants(this.state.address).then(() => {
+            if (this.props.restaurants.length === 0) {
+              this.props.receiveErrors();
+            } else {
+              this.props.history.push('/restaurants');
+            }
+          });
+        } else {
+          this.props.receiveErrors();
+        }
       });
     }
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.fetchGeocode(this.state.address);
-    this.props.fetchRestaurants(this.state.address).then(() => {
-      this.props.history.push('/restaurants');
+    this.props.fetchGeocode(this.state.address).then(() => {
+      if (this.props.address.addressComponents[0].types.includes("street_number")) {
+        this.props.fetchRestaurants(this.state.address).then(() => {
+          if (this.props.restaurants.length === 0) {
+            this.props.receiveErrors();
+          } else {
+            this.props.history.push('/restaurants');
+          }
+        });
+      } else {
+        this.props.receiveErrors();
+      }
     });
   }
 

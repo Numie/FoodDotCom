@@ -1,4 +1,5 @@
 import React from 'react';
+import ItemOptionSection from '../menu/item_option_section';
 import { receiveQuantityErrors, receiveItemInstructionsErrors, clearErrors } from '../../actions/menu_item_actions';
 import { clearCheckoutErrors } from '../../actions/checkout_actions';
 import { addItem, deleteItem } from '../../actions/order_item_actions';
@@ -112,8 +113,12 @@ class MenuItemModal extends React.Component {
   }
 
   render() {
-    const { name, price, description } = this.props.menuItem;
+    const { name, price, description, item_option_sections } = this.props.menuItem;
     const { quantityError, itemInstructionsError, clearErrors } = this.props;
+
+    const itemOptionSections = item_option_sections.map(itemOptionSection => {
+      return <ItemOptionSection key={itemOptionSection.id} itemOptionSection={itemOptionSection}/>;
+    });
 
     return(
       <div className='modal-container' onClick={this.toggleMenuItemModal}>
@@ -129,6 +134,10 @@ class MenuItemModal extends React.Component {
             </div>
 
             <h6 className='errors'>{quantityError ? quantityError : null}</h6>
+
+            <ul>
+              {itemOptionSections}
+            </ul>
 
             <h4>Special Instructions</h4>
             <h5 className={`${this.state.itemInstructions === "" ? 'hidden' : null}`}>Special requests may result in additional charges.</h5>

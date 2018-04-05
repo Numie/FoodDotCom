@@ -6,6 +6,7 @@ export const RECEIVE_ITEM_INSTRUCTIONS_ERRORS = 'RECEIVE_ITEM_INSTRUCTIONS_ERROR
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 export const receiveMenuItems = menuItems => {
+  debugger
   return ({
     type: MENU_ITEMS,
     menuItems

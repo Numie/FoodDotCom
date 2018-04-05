@@ -213,6 +213,13 @@ restaurant_ids.each do |id|
   end
 end
 
+menu_item_ids = MenuItem.all.pluck(:id).to_a
+
+ItemOptionSection.destroy_all
+menu_item_ids.each do |id|
+  ItemOptionSection.create!(item_id: id, name: 'Choose your side.', required?: true, min_allowed: 1, max_allowed: 1)
+end
+
 def random_review
   number_of_lines = (1..12).to_a.sample
   review = ""

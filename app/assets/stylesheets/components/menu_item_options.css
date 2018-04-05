@@ -2,6 +2,7 @@
   background-color: #e4e4e4;
   border-radius: 4px;
   padding: 20px 20px 0 20px;
+  margin-top: 10px;
 }
 
 .item-option-section h3 {
@@ -22,7 +23,7 @@
 }
 
 .item-option input {
-  margin-right: 4px;
+  margin-right: 8px;
 }
 
 .item-option label {

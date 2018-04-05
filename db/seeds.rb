@@ -220,6 +220,16 @@ menu_item_ids.each do |id|
   ItemOptionSection.create!(item_id: id, name: 'Choose your side.', required?: true, min_allowed: 1, max_allowed: 1)
 end
 
+item_option_section_ids = ItemOptionSection.all.pluck(:id).to_a
+
+ItemOption.destroy_all
+item_option_section_ids.each do |id|
+  ItemOption.create!(item_option_section_id: id, name: 'French Fries')
+  ItemOption.create!(item_option_section_id: id, name: 'Baked Potato')
+  ItemOption.create!(item_option_section_id: id, name: 'Onion Rings')
+  ItemOption.create!(item_option_section_id: id, name: 'Side Salad')
+end
+
 def random_review
   number_of_lines = (1..12).to_a.sample
   review = ""

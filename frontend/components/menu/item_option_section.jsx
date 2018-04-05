@@ -1,4 +1,5 @@
 import React from 'react';
+import ItemOption from './item_option';
 
 export default class ItemOptionSection extends React.Component {
   constructor(props) {
@@ -7,16 +8,20 @@ export default class ItemOptionSection extends React.Component {
   }
 
   render() {
-    const { id, name, description, isRequired, minAllowed, maxAllowed } = this.props.itemOptionSection;
+    const { id, name, description, isRequired, minAllowed, maxAllowed, item_options } = this.props.itemOptionSection;
+
+    const itemOptions = item_options.map(itemOption => {
+      return <ItemOption key={itemOption.id} itemOption={itemOption} />;
+    });
 
     return(
-      <div>
-        <h6>{name}</h6>
+      <li className='item-option-section'>
+        <h3>{name}</h3>
         <h6>{description}</h6>
-        <h6>{isRequired.toString()}</h6>
-        <h6>{minAllowed}</h6>
-        <h6>{maxAllowed}</h6>
-      </div>
+        <div className='item-option-container'>
+          {itemOptions}
+        </div>
+      </li>
     );
   }
 }

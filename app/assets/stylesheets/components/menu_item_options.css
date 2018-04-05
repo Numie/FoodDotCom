@@ -1,0 +1,31 @@
+.item-option-section {
+  background-color: #e4e4e4;
+  border-radius: 4px;
+  padding: 20px 20px 0 20px;
+}
+
+.item-option-section h3 {
+  font-weight: 700;
+}
+
+.item-option-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.item-option {
+  min-width: 33%;
+  flex-basis: 33%;
+  margin-bottom: 20px;
+}
+
+.item-option input {
+  margin-right: 4px;
+}
+
+.item-option label {
+  position: relative;
+  top: 2px;
+}

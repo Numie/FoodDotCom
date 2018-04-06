@@ -35,9 +35,9 @@ class OrderItemUnit extends React.Component {
 
   render() {
     const { name, price, quantity, itemInstructions, options } = this.props.orderItem;
-    
+
     const optionsList = Array.from(options.values()).map(option => {
-      return option.name;
+      return <li className='order-item-options'>{option.name}</li>;
     });
 
     return(
@@ -50,6 +50,9 @@ class OrderItemUnit extends React.Component {
             {name}
             <div className={this.props.location.pathname.includes('checkout') ? 'hidden' : 'material-icons'} id='edit-item-button'>create</div>
           </div>
+          <ul className='order-item-options'>
+            {optionsList}
+          </ul>
           <div className='order-item-itemInstructions'>{itemInstructions}</div>
         </div>
 

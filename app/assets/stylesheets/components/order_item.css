@@ -46,7 +46,11 @@
   padding-left: 5px;
 }
 
-.order-item-itemInstructions {
+.order-item-options {
+  list-style: default;
+}
+
+.order-item-options, .order-item-itemInstructions {
   margin: 10px 0;
   color: rgba(0, 0, 0, 0.8);
   font-size: 12px;

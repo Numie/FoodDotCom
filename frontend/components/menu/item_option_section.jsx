@@ -9,9 +9,10 @@ export default class ItemOptionSection extends React.Component {
 
   render() {
     const { id, name, description, isRequired, minAllowed, maxAllowed, item_options } = this.props.itemOptionSection;
+    const addOption = this.props.addOption;
 
     const itemOptions = item_options.map(itemOption => {
-      return <ItemOption key={itemOption.id} itemOption={itemOption} />;
+      return <ItemOption key={itemOption.id} itemOption={itemOption} sectionName={name} addOption={addOption}/>;
     });
 
     return(

@@ -28,17 +28,24 @@ class MenuItemModal extends React.Component {
     this.state = {
       price: null,
       quantity: this.props.menuItem.quantity || 1,
-      itemInstructions: this.props.menuItem.itemInstructions || ""
+      itemInstructions: this.props.menuItem.itemInstructions || "",
+      options: {}
     };
 
     this.toggleMenuItemModal = this.toggleMenuItemModal.bind(this);
     this.addQuantity = this.addQuantity.bind(this);
     this.subtractQuantity = this.subtractQuantity.bind(this);
     this.addItem = this.addItem.bind(this);
+    this.addOption = this.addOption.bind(this);
   }
 
   componentDidMount() {
     this.setState({price: parseFloat(this.props.menuItem.price).toFixed(2)});
+
+    const self = this;
+    this.props.menuItem.item_option_sections.forEach(itemOptionSection => {
+      self.state.options[itemOptionSection.id];
+    });
   }
 
   componentDidUpdate() {
@@ -112,12 +119,18 @@ class MenuItemModal extends React.Component {
     this.props.toggleMenuItemModal();
   }
 
+  addOption(optionSectionId, option) {
+    const options = Object.assign({}, this.state.options);
+    options[[optionSectionId]] = option;
+    this.setState({options});
+  }
+
   render() {
     const { name, price, description, item_option_sections } = this.props.menuItem;
     const { quantityError, itemInstructionsError, clearErrors } = this.props;
 
     const itemOptionSections = item_option_sections.map(itemOptionSection => {
-      return <ItemOptionSection key={itemOptionSection.id} itemOptionSection={itemOptionSection}/>;
+      return <ItemOptionSection key={itemOptionSection.id} itemOptionSection={itemOptionSection} addOption={this.addOption}/>;
     });
 
     return(

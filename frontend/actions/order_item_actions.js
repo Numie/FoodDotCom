@@ -5,6 +5,7 @@ export const DELETE_ITEM = 'DELETE_ITEM';
 export const DELETE_ALL_ITEMS = 'DELETE_ALL_ITEMS';
 
 export const addItem = (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee, options) => {
+  debugger
   return({
     type: ADD_ITEM,
     id,

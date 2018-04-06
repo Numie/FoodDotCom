@@ -46,8 +46,13 @@ export const deleteOrder = () => {
 };
 
 export const saveOrderItems = orderItems => {
+  debugger
   try {
+    for (let id in orderItems) {
+      orderItems[id].options = [...orderItems[id].options];
+    }
     const serializedOrderItems = JSON.stringify(orderItems);
+    debugger
     sessionStorage.setItem('orderItems', serializedOrderItems);
   } catch (error) {
 

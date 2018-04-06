@@ -29,7 +29,7 @@ class MenuItemModal extends React.Component {
       price: null,
       quantity: this.props.menuItem.quantity || 1,
       itemInstructions: this.props.menuItem.itemInstructions || "",
-      options: {}
+      options: new Map()
     };
 
     this.toggleMenuItemModal = this.toggleMenuItemModal.bind(this);
@@ -41,11 +41,13 @@ class MenuItemModal extends React.Component {
 
   componentDidMount() {
     this.setState({price: parseFloat(this.props.menuItem.price).toFixed(2)});
-
-    const self = this;
+    
+    const options = new Map(this.state.options);
     this.props.menuItem.item_option_sections.forEach(itemOptionSection => {
-      self.state.options[itemOptionSection.id];
+      options.set(itemOptionSection.id, null);
     });
+
+    this.setState({options});
   }
 
   componentDidUpdate() {
@@ -121,8 +123,8 @@ class MenuItemModal extends React.Component {
   }
 
   addOption(optionSectionId, option) {
-    const options = Object.assign({}, this.state.options);
-    options[[optionSectionId]] = option;
+    const options = new Map(this.state.options);
+    options.set(optionSectionId, option);
     this.setState({options});
   }
 

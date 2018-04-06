@@ -34,7 +34,9 @@ class OrderItemUnit extends React.Component {
   }
 
   render() {
-    const { name, price, quantity, itemInstructions } = this.props.orderItem;
+    const { name, price, quantity, itemInstructions, options } = this.props.orderItem;
+
+    let optionsList;
 
     return(
       <div className={this.props.location.pathname.includes('checkout') ? 'order-item-unit-checkout' : 'order-item-unit'}>

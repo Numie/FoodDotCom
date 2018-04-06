@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
   receiveItemInstructionsErrors: () => dispatch(receiveItemInstructionsErrors()),
   clearErrors: () => dispatch(clearErrors()),
   clearCheckoutErrors: () => dispatch(clearCheckoutErrors()),
-  addItem: (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee) => dispatch(addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee)),
+  addItem: (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee, options) => dispatch(addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee, options)),
   deleteItem: (id, price, quantity) => dispatch(deleteItem(id, price, quantity))
 });
 
@@ -108,13 +108,14 @@ class MenuItemModal extends React.Component {
     const restaurantName = this.props.restaurantName;
     const deliveryMinimum = this.props.deliveryMinimum;
     const deliveryFee = this.props.deliveryFee;
+    const options = this.state.options;
 
     if (Object.keys(this.props.orderItems).includes(id.toString())) {
       const oldQuantity = this.props.orderItems[id].quantity;
       this.props.deleteItem(id, price, oldQuantity);
     }
 
-    this.props.addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee);
+    this.props.addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee, options);
     this.props.clearCheckoutErrors();
     this.props.toggleMenuItemModal();
   }

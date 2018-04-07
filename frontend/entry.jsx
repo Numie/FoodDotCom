@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
       orderItems[id].options = new Map(orderItems[id].options);
     }
     preloadedState = merge(preloadedState, {entities: {orderItems}});
+    // preloadedState = merge(preloadedState, {entities: {orderItems: JSON.parse(sessionStorage.orderItems)}});
   }
 
   store = preloadedState ? configureStore(preloadedState) : configureStore();

@@ -10,6 +10,6 @@
 #
 
 class OrderItemOption < ApplicationRecord
-  belongs_to :order_item, inverse_of: :order_item_options
+  belongs_to :order_item
   belongs_to :item_option
 end

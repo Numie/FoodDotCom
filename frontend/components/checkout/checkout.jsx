@@ -2,12 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Redirect } from 'react-router-dom';
 import Order from '../order/order';
-import { pickBy } from 'lodash';
+import { pick, pickBy, merge } from 'lodash';
 import { updateTip, addCheckoutInfo } from '../../actions/checkout_actions';
 import { receiveItemInstructionsErrors, clearErrors } from '../../actions/menu_item_actions';
 import { toggleOrderPlacedModal } from '../../actions/modal_actions';
 import { createOrder } from '../../actions/order_item_actions';
-import { merge } from 'lodash';
 
 const mapStateToProps = state => ({
   currentUser: state.session.currentUser,
@@ -155,23 +154,22 @@ class Checkout extends React.Component {
   placeOrder(e) {
     e.preventDefault();
 
-    const payload = merge({}, this.props.order);
+    let payload = merge({}, this.props.order);
+    payload.user_id = this.props.currentUser.id;
+    payload.restaurant_id = payload.restaurantId;
     payload.delivery_fee = payload.deliveryFee;
     payload.delivery_instructions = this.state.deliveryInstructions;
 
-    const toUnderscore = (string) => {
-    	return string.replace(/([A-Z])/g, ($1) => {return "_"+$1.toLowerCase();});
-    };
-
-    this.props.orderItems.forEach(obj => {
+    payload.order_items_attributes = this.props.orderItems;
+    payload.order_items_attributes.forEach(obj => {
       obj.item_instructions = obj.itemInstructions;
       obj.menu_item_id = obj.id;
+      obj = pick(obj, ['menu_item_id', 'quantity', 'item_instructions']);
     });
 
-    payload.order_items_attributes = this.props.orderItems;
+    payload = pick(payload, ['user_id', 'restaurant_id', 'subtotal', 'tax', 'tip', 'delivery_fee', 'total', 'delivery_instructions', 'order_items_attributes']);
 
-    this.props.createOrder(payload)
-    .then(() => {
+    this.props.createOrder(payload).then(() => {
       this.props.history.push('/');
       this.props.toggleOrderPlacedModal();
     });

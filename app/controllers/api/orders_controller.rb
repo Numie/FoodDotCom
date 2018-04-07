@@ -2,8 +2,6 @@ class Api::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @order.restaurant_id = params[:order][:restaurantId]
-    @order.user_id = current_user.id
 
     if @order.save
       render :show
@@ -15,7 +13,7 @@ class Api::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:restaurant_id, :subtotal, :tax, :tip, :delivery_fee, :total, :delivery_instructions,
+    params.require(:order).permit(:user_id, :restaurant_id, :subtotal, :tax, :tip, :delivery_fee, :total, :delivery_instructions,
       order_items_attributes: [:order_id, :menu_item_id, :quantity, :item_instructions],
       order_item_options_attributes: [:order_item_id, :item_option_id]
     )

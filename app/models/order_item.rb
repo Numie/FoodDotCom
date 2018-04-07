@@ -14,7 +14,6 @@
 class OrderItem < ApplicationRecord
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 100 }
 
-  # belongs_to :order, inverse_of: :order_items
   belongs_to :order
   belongs_to :menu_item
 

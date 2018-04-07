@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
   receiveItemInstructionsErrors: () => dispatch(receiveItemInstructionsErrors()),
   clearErrors: () => dispatch(clearErrors()),
   clearCheckoutErrors: () => dispatch(clearCheckoutErrors()),
-  addItem: (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee, options) => dispatch(addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee, options)),
+  addItem: (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee, item_option_sections, options) => dispatch(addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee, item_option_sections, options)),
   deleteItem: (id, price, quantity) => dispatch(deleteItem(id, price, quantity))
 });
 
@@ -41,7 +41,7 @@ class MenuItemModal extends React.Component {
 
   componentDidMount() {
     this.setState({price: parseFloat(this.props.menuItem.price).toFixed(2)});
-    
+
     const options = new Map(this.state.options);
     this.props.menuItem.item_option_sections.forEach(itemOptionSection => {
       options.set(itemOptionSection.id, null);
@@ -110,6 +110,7 @@ class MenuItemModal extends React.Component {
     const restaurantName = this.props.restaurantName;
     const deliveryMinimum = this.props.deliveryMinimum;
     const deliveryFee = this.props.deliveryFee;
+    const item_option_sections = this.props.menuItem.item_option_sections;
     const options = this.state.options;
 
     if (Object.keys(this.props.orderItems).includes(id.toString())) {
@@ -117,7 +118,7 @@ class MenuItemModal extends React.Component {
       this.props.deleteItem(id, price, oldQuantity);
     }
 
-    this.props.addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee, options);
+    this.props.addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee, item_option_sections, options);
     this.props.clearCheckoutErrors();
     this.props.toggleMenuItemModal();
   }
@@ -129,11 +130,11 @@ class MenuItemModal extends React.Component {
   }
 
   render() {
-    const { name, price, description, item_option_sections } = this.props.menuItem;
+    const { id, name, price, description, item_option_sections } = this.props.menuItem;
     const { quantityError, itemInstructionsError, clearErrors } = this.props;
 
     const itemOptionSections = item_option_sections.map(itemOptionSection => {
-      return <ItemOptionSection key={itemOptionSection.id} itemOptionSection={itemOptionSection} addOption={this.addOption}/>;
+      return <ItemOptionSection key={itemOptionSection.id} itemId={id} itemOptionSection={itemOptionSection} addOption={this.addOption}/>;
     });
 
     return(

@@ -7,7 +7,8 @@ const orderItemsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   switch(action.type) {
     case ADD_ITEM:
-      const newState = merge({}, oldState, {[action.id]: {id: action.id, name: action.name, price: action.price, quantity: action.quantity, itemInstructions: action.itemInstructions, options: action.options}});
+      const newState = merge({}, oldState, {[action.id]: {id: action.id, name: action.name, price: action.price, quantity: action.quantity,
+        itemInstructions: action.itemInstructions, item_option_sections: action.item_option_sections, options: action.options}});
       saveOrderItems(newState);
       return newState;
     case DELETE_ITEM:

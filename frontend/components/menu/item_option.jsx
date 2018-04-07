@@ -1,6 +1,11 @@
 import React from 'react';
+import  { connect } from 'react-redux';
 
-export default class ItemOption extends React.Component {
+const mapStateToProps = state => ({
+  orderItems: state.entities.orderItems
+});
+
+class ItemOption extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,9 +24,12 @@ export default class ItemOption extends React.Component {
 
     return(
       <div className='item-option'>
-        <input type='radio' name={this.props.sectionName} onClick={this.handleClick}/>
+      <input type='radio' name={this.props.sectionName} onClick={this.handleClick} defaultChecked={this.props.orderItems[this.props.itemId] &&
+        this.props.orderItems[this.props.itemId].options.get(item_option_section_id) && this.props.orderItems[this.props.itemId].options.get(item_option_section_id).id === id}/>
         <label id={name}>{name}</label>
       </div>
     );
   }
 }
+
+export default connect(mapStateToProps, null)(ItemOption);

@@ -24,10 +24,8 @@ class Order < ApplicationRecord
 
   has_many :order_item_options,
     through: :order_items,
-    source: :order_item_options,
-    inverse_of: :order
+    source: :order_item_options
 
   accepts_nested_attributes_for :order_items
-  accepts_nested_attributes_for :order_item_options
 
 end

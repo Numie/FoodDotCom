@@ -161,10 +161,19 @@ class Checkout extends React.Component {
     payload.delivery_instructions = this.state.deliveryInstructions;
 
     payload.order_items_attributes = this.props.orderItems;
-    payload.order_items_attributes.forEach(obj => {
-      obj.item_instructions = obj.itemInstructions;
-      obj.menu_item_id = obj.id;
-      obj = pick(obj, ['menu_item_id', 'quantity', 'item_instructions']);
+    payload.order_items_attributes.forEach((orderItem, idx) => {
+      orderItem.item_instructions = orderItem.itemInstructions;
+      orderItem.menu_item_id = orderItem.id;
+
+      if (orderItem.options) {
+        orderItem.order_item_options_attributes = Array.from(orderItem.options.values());
+        orderItem.order_item_options_attributes.forEach((option, idx) => {
+          option.item_option_id = option.id;
+          orderItem.order_item_options_attributes[idx] = pick(option, 'item_option_id');
+        });
+      }
+
+      payload.order_items_attributes[idx] = pick(orderItem, ['menu_item_id', 'quantity', 'item_instructions', 'order_item_options_attributes']);
     });
 
     payload = pick(payload, ['user_id', 'restaurant_id', 'subtotal', 'tax', 'tip', 'delivery_fee', 'total', 'delivery_instructions', 'order_items_attributes']);

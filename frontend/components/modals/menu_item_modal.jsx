@@ -42,9 +42,17 @@ class MenuItemModal extends React.Component {
   componentDidMount() {
     this.setState({price: parseFloat(this.props.menuItem.price).toFixed(2)});
 
+    const orderItem = this.props.orderItems[this.props.menuItem.id];
+
     const options = new Map(this.state.options);
     this.props.menuItem.item_option_sections.forEach(itemOptionSection => {
-      options.set(itemOptionSection.id, null);
+      let option;
+      if (orderItem && orderItem.options.get(itemOptionSection.id)) {
+        option = orderItem.options.get(itemOptionSection.id);
+      } else {
+        option = null;
+      }
+      options.set(itemOptionSection.id, option);
     });
 
     this.setState({options});

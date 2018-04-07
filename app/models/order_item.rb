@@ -16,7 +16,6 @@ class OrderItem < ApplicationRecord
 
   belongs_to :order
   belongs_to :menu_item
-
   has_many :order_item_options, inverse_of: :order_item
 
   accepts_nested_attributes_for :order_item_options

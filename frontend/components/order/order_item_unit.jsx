@@ -37,7 +37,7 @@ class OrderItemUnit extends React.Component {
     const { name, price, quantity, itemInstructions, options } = this.props.orderItem;
 
     const optionsList = Array.from(options.values()).map(option => {
-      return <li className='order-item-options'>{option.name}</li>;
+      return <li key={option.id} className='order-item-options'>{option.name}</li>;
     });
 
     return(

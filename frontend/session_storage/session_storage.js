@@ -46,13 +46,15 @@ export const deleteOrder = () => {
 };
 
 export const saveOrderItems = orderItems => {
-  const orderItemsCopy = Object.assign({}, orderItems);
   try {
-    for (let id in orderItemsCopy) {
-      orderItemsCopy[id].options = [...orderItemsCopy[id].options];
+    for (let id in orderItems) {
+      orderItems[id].options = [...orderItems[id].options];
     }
-    const serializedOrderItems = JSON.stringify(orderItemsCopy);
+    const serializedOrderItems = JSON.stringify(orderItems);
     sessionStorage.setItem('orderItems', serializedOrderItems);
+    for (let id in orderItems) {
+      orderItems[id].options = new Map(orderItems[id].options);
+    }
   } catch (error) {
 
   }

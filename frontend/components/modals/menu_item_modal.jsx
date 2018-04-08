@@ -1,6 +1,6 @@
 import React from 'react';
 import ItemOptionSection from '../menu/item_option_section';
-import { receiveQuantityErrors, receiveItemInstructionsErrors, clearErrors } from '../../actions/menu_item_actions';
+import { receiveQuantityErrors, receiveItemInstructionsErrors, receiveRequiredOptionsErrors, clearErrors } from '../../actions/menu_item_actions';
 import { clearCheckoutErrors } from '../../actions/checkout_actions';
 import { addItem, deleteItem } from '../../actions/order_item_actions';
 import { connect } from 'react-redux';
@@ -9,12 +9,14 @@ import { withRouter } from 'react-router-dom';
 const mapStateToProps = state => ({
   orderItems: state.entities.orderItems,
   quantityError: state.errors.menuItem.quantity,
-  itemInstructionsError: state.errors.menuItem.itemInstructions
+  itemInstructionsError: state.errors.menuItem.itemInstructions,
+  requiredOptionsError: state.errors.menuItem.requiredOptions
 });
 
 const mapDispatchToProps = dispatch => ({
   receiveQuantityErrors: () => dispatch(receiveQuantityErrors()),
   receiveItemInstructionsErrors: () => dispatch(receiveItemInstructionsErrors()),
+  receiveRequiredOptionsErrors: () => dispatch(receiveRequiredOptionsErrors()),
   clearErrors: () => dispatch(clearErrors()),
   clearCheckoutErrors: () => dispatch(clearCheckoutErrors()),
   addItem: (id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee, item_option_sections, options) => dispatch(addItem(id, name, price, quantity, itemInstructions, restaurantId, restaurantName, deliveryMinimum, deliveryFee, item_option_sections, options)),
@@ -109,6 +111,11 @@ class MenuItemModal extends React.Component {
   }
 
   addItem() {
+    if (Array.from(this.state.options.values()).some(o => o === null)) {
+      this.props.receiveRequiredOptionsErrors();
+      return;
+    }
+
     const id = this.props.menuItem.id;
     const name = this.props.menuItem.name;
     const price = this.state.price;
@@ -139,7 +146,7 @@ class MenuItemModal extends React.Component {
 
   render() {
     const { id, name, price, description, item_option_sections } = this.props.menuItem;
-    const { quantityError, itemInstructionsError, clearErrors } = this.props;
+    const { quantityError, itemInstructionsError, requiredOptionsError, clearErrors } = this.props;
 
     const itemOptionSections = item_option_sections.map(itemOptionSection => {
       return <ItemOptionSection key={itemOptionSection.id} itemId={id} itemOptionSection={itemOptionSection} addOption={this.addOption}/>;
@@ -147,7 +154,7 @@ class MenuItemModal extends React.Component {
 
     return(
       <div className='modal-container' onClick={this.toggleMenuItemModal}>
-        <div className='menu-item-modal' onClick={quantityError || itemInstructionsError ? clearErrors : null}>
+        <div className='menu-item-modal' onClick={quantityError || itemInstructionsError || requiredOptionsError ? clearErrors : null}>
           <div className='menu-item-modal-info'>
             <h1>{name}</h1>
             <h1>${parseInt(this.state.quantity) ? (this.state.price * parseInt(this.state.quantity)).toFixed(2) : 0}</h1>
@@ -169,6 +176,7 @@ class MenuItemModal extends React.Component {
             <textarea placeholder='Dressing on the side? No pickles? Let us know here.' value={this.state.itemInstructions} onChange={this.updateItemInstructions()}></textarea>
 
             <h6 className='errors'>{itemInstructionsError ? itemInstructionsError : null}</h6>
+            <h6 className='errors'>{requiredOptionsError ? requiredOptionsError : null}</h6>
 
           </div>
           <button className={`${this.state.quantity === 0 ? 'submit-item-inactive' : 'submit-item'}`} onClick={this.addItem}>{`${this.props.menuItem.restaurant_id ? `Add to bag` : `Update`}: $${parseInt(this.state.quantity) ? (this.state.price * parseInt(this.state.quantity)).toFixed(2) : 0}`}</button>

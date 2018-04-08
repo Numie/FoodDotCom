@@ -17,8 +17,10 @@ export default class ItemOptionSection extends React.Component {
 
     return(
       <li className='item-option-section'>
+        <img src='https://assets.seamless.com/img-hashed/flag_vertical-19fe2093de277d769ec8e5eb2618abab.svg' />
         <h3>{name}</h3>
-        <h6>{description}</h6>
+        <p>{description}</p>
+        <h6>{isRequired ? 'Required — Choose 1.' : 'Optional — Choose as many as you like.'}</h6>
         <div className='item-option-container'>
           {itemOptions}
         </div>

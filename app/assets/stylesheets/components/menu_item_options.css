@@ -1,19 +1,33 @@
 .item-option-section {
+  position: relative;
   background-color: #e4e4e4;
   border-radius: 4px;
   padding: 20px 20px 0 20px;
   margin-top: 10px;
 }
 
+.item-option-section img {
+  position: absolute;
+  left: -19px;
+  width: 25px;
+  height: 25px;
+}
+
 .item-option-section h3 {
+  font-size: 18px;
   font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.item-option-section h6 {
+  font-size: 15px;
 }
 
 .item-option-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .item-option {

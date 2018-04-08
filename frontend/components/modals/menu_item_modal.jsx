@@ -5,6 +5,7 @@ import { clearCheckoutErrors } from '../../actions/checkout_actions';
 import { addItem, deleteItem } from '../../actions/order_item_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { isEqual } from 'lodash';
 
 const mapStateToProps = state => ({
   orderItems: state.entities.orderItems,
@@ -141,8 +142,14 @@ class MenuItemModal extends React.Component {
   addOption(optionSectionId, option) {
     const options = new Map(this.state.options);
     if (options.get(optionSectionId) instanceof Set) {
-      if (options.get(optionSectionId).has(option)) {
-        options.get(optionSectionId).delete(option);
+      let match;
+      options.get(optionSectionId).forEach(obj => {
+        if (isEqual(obj, option)) {
+          match = obj;
+        }
+      });
+      if (match) {
+        options.get(optionSectionId).delete(match);
       } else {
         options.get(optionSectionId).add(option);
       }

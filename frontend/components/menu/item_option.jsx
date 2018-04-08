@@ -14,8 +14,8 @@ class ItemOption extends React.Component {
 
   handleClick() {
     this.props.addOption(this.props.itemOption.item_option_section_id,
-      // {id: this.props.itemOption.id, name: this.props.itemOption.name}
-      this.props.itemOption
+      {id: this.props.itemOption.id, name: this.props.itemOption.name}
+      // this.props.itemOption
     );
   }
 
@@ -23,7 +23,6 @@ class ItemOption extends React.Component {
     const { id, name, description, price, item_option_section_id } = this.props.itemOption;
     const self = this.props.itemOption;
     const isRequired = this.props.isRequired;
-    debugger
     return(
       <div className='item-option'>
       <input type={isRequired ? 'radio' : 'checkbox'} name={this.props.sectionName} onClick={this.handleClick}

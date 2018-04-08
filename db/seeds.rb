@@ -222,8 +222,8 @@ menu_item_ids.each do |id|
   elsif id % 2 === 0
     ItemOptionSection.create!(item_id: id, name: 'Add toppings', required?: false, min_allowed: 0, max_allowed: 6)
   else
-    ItemOptionSection.create!(item_id: id, name: 'Choose your side', required?: true, min_allowed: 1, max_allowed: 1)
     ItemOptionSection.create!(item_id: id, name: 'Add toppings', required?: false, min_allowed: 0, max_allowed: 6)
+    ItemOptionSection.create!(item_id: id, name: 'Choose your side', required?: true, min_allowed: 1, max_allowed: 1)
   end
 end
 
@@ -232,19 +232,19 @@ optional_item_option_section_ids = ItemOptionSection.where(name: 'Add toppings')
 
 ItemOption.destroy_all
 required_item_option_section_ids.each do |id|
-  ItemOption.create!(item_option_section_id: id, name: 'Side Salad')
+  ItemOption.create!(item_option_section_id: id, name: 'French Fries')
   ItemOption.create!(item_option_section_id: id, name: 'Baked Potato')
   ItemOption.create!(item_option_section_id: id, name: 'Onion Rings')
-  ItemOption.create!(item_option_section_id: id, name: 'French Fries')
+  ItemOption.create!(item_option_section_id: id, name: 'Side Salad')
 end
 
 optional_item_option_section_ids.each do |id|
-  ItemOption.create!(item_option_section_id: id, name: 'Reese\'s Peanut Butter Cups')
-  ItemOption.create!(item_option_section_id: id, name: 'Chopped Oreo\'s')
-  ItemOption.create!(item_option_section_id: id, name: 'Cookie Dough')
-  ItemOption.create!(item_option_section_id: id, name: 'marshmallows')
-  ItemOption.create!(item_option_section_id: id, name: 'Chocolate Chips')
   ItemOption.create!(item_option_section_id: id, name: 'Sprinkles')
+  ItemOption.create!(item_option_section_id: id, name: 'Chocolate Chips')
+  ItemOption.create!(item_option_section_id: id, name: 'Marshmallows')
+  ItemOption.create!(item_option_section_id: id, name: 'Cookie Dough')
+  ItemOption.create!(item_option_section_id: id, name: 'Chopped Oreo\'s')
+  ItemOption.create!(item_option_section_id: id, name: 'Reese\'s Peanut Butter Cups')
 end
 
 def random_review

@@ -1,9 +1,12 @@
 .item-option-section {
   position: relative;
-  background-color: #e4e4e4;
   border-radius: 4px;
   padding: 20px 20px 0 20px;
   margin-top: 10px;
+}
+
+.item-option-section-required {
+  background-color: #e4e4e4;
 }
 
 .item-option-section img {

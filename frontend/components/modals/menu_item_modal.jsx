@@ -52,7 +52,7 @@ class MenuItemModal extends React.Component {
       if (orderItem && orderItem.options.get(itemOptionSection.id)) {
         option = orderItem.options.get(itemOptionSection.id);
       } else {
-        option = null;
+        option = itemOptionSection.props.isRequired ? null : [];
       }
       options.set(itemOptionSection.id, option);
     });

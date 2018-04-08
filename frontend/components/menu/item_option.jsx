@@ -21,12 +21,13 @@ class ItemOption extends React.Component {
   render() {
     const { id, name, description, price, item_option_section_id } = this.props.itemOption;
     const self = this.props.itemOption;
+    const isRequired = this.props.isRequired;
 
     return(
       <div className='item-option'>
-      <input type='radio' name={this.props.sectionName} onClick={this.handleClick} defaultChecked={this.props.orderItems[this.props.itemId] &&
+      <input type={isRequired ? 'radio' : 'checkbox'} name={this.props.sectionName} onClick={this.handleClick} defaultChecked={this.props.orderItems[this.props.itemId] &&
         this.props.orderItems[this.props.itemId].options.get(item_option_section_id) && this.props.orderItems[this.props.itemId].options.get(item_option_section_id).id === id}/>
-        <label id={name}>{name}</label>
+      <label id={name}>{name}</label>
       </div>
     );
   }

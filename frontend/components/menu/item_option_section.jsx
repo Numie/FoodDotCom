@@ -12,12 +12,12 @@ export default class ItemOptionSection extends React.Component {
     const addOption = this.props.addOption;
 
     const itemOptions = item_options.map(itemOption => {
-      return <ItemOption key={itemOption.id} itemId={this.props.itemId} itemOption={itemOption} sectionName={name} addOption={addOption}/>;
+      return <ItemOption key={itemOption.id} itemId={this.props.itemId} itemOption={itemOption} sectionName={name} isRequired={isRequired} addOption={addOption}/>;
     });
 
     return(
-      <li className='item-option-section'>
-        <img src='https://assets.seamless.com/img-hashed/flag_vertical-19fe2093de277d769ec8e5eb2618abab.svg' />
+      <li className={isRequired ? 'item-option-section item-option-section-required' : 'item-option-section'}>
+        {isRequired ? <img src='https://assets.seamless.com/img-hashed/flag_vertical-19fe2093de277d769ec8e5eb2618abab.svg' /> : null}
         <h3>{name}</h3>
         <p>{description}</p>
         <h6>{isRequired ? 'Required — Choose 1.' : 'Optional — Choose as many as you like.'}</h6>

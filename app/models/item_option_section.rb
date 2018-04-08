@@ -14,8 +14,8 @@
 #
 
 class ItemOptionSection < ApplicationRecord
-  validates :name, :required?, :min_allowed, :max_allowed, presence: true
-  validates :required?, inclusion: { in: [true, false] }
+  validates :name, :min_allowed, :max_allowed, presence: true
+  validates :required?, inclusion: { in: [true, false], allow_nil: false }
 
   belongs_to :item,
     class_name: "MenuItem",

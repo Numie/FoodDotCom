@@ -177,12 +177,12 @@ INDEX_IMAGE_URLS = [
 User.destroy_all
 User.create(first_name: 'Guest', last_name: 'Demo', email: 'guest@food.com', password: 'guestdemo')
 User.create(first_name: 'Jason', last_name: 'Numeroff', email: 'jnumeroff@hotmail.com', password: 'starwars')
-200.times do
+50.times do
   User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.unique.email, password: 'starwars')
 end
 
 Restaurant.destroy_all
-200.times do
+100.times do
   Restaurant.create!(name: NAMES.sample, address: Faker::Address.street_address,
     zip: random_manhattan_zip, phone: formatted_phone, img_url: INDEX_IMAGE_URLS.sample,
     cuisine: random_cuisines, delivery_minimum: [0, 0, 0, 8, 10, 10, 12, 15, 15].sample,
@@ -208,7 +208,7 @@ end
 
 MenuItem.destroy_all
 restaurant_ids.each do |id|
-  20.times do
+  16.times do
     MenuItem.create!(restaurant_id: id, name: Faker::Food.dish, description: random_descripion, price: random_price)
   end
 end
@@ -217,17 +217,34 @@ menu_item_ids = MenuItem.all.pluck(:id).to_a
 
 ItemOptionSection.destroy_all
 menu_item_ids.each do |id|
-  ItemOptionSection.create!(item_id: id, name: 'Choose your side.', required?: true, min_allowed: 1, max_allowed: 1)
+  if id % 3 === 0
+    ItemOptionSection.create!(item_id: id, name: 'Choose your side', required?: true, min_allowed: 1, max_allowed: 1)
+  elsif id % 2 === 0
+    ItemOptionSection.create!(item_id: id, name: 'Add toppings', required?: false, min_allowed: 0, max_allowed: 6)
+  else
+    ItemOptionSection.create!(item_id: id, name: 'Choose your side', required?: true, min_allowed: 1, max_allowed: 1)
+    ItemOptionSection.create!(item_id: id, name: 'Add toppings', required?: false, min_allowed: 0, max_allowed: 6)
+  end
 end
 
-item_option_section_ids = ItemOptionSection.all.pluck(:id).to_a
+required_item_option_section_ids = ItemOptionSection.where(name: 'Choose your side').pluck(:id).to_a
+optional_item_option_section_ids = ItemOptionSection.where(name: 'Add toppings').pluck(:id).to_a
 
 ItemOption.destroy_all
-item_option_section_ids.each do |id|
-  ItemOption.create!(item_option_section_id: id, name: 'French Fries')
+required_item_option_section_ids.each do |id|
+  ItemOption.create!(item_option_section_id: id, name: 'Side Salad')
   ItemOption.create!(item_option_section_id: id, name: 'Baked Potato')
   ItemOption.create!(item_option_section_id: id, name: 'Onion Rings')
-  ItemOption.create!(item_option_section_id: id, name: 'Side Salad')
+  ItemOption.create!(item_option_section_id: id, name: 'French Fries')
+end
+
+optional_item_option_section_ids.each do |id|
+  ItemOption.create!(item_option_section_id: id, name: 'Reese\'s Peanut Butter Cups')
+  ItemOption.create!(item_option_section_id: id, name: 'Chopped Oreo\'s')
+  ItemOption.create!(item_option_section_id: id, name: 'Cookie Dough')
+  ItemOption.create!(item_option_section_id: id, name: 'marshmallows')
+  ItemOption.create!(item_option_section_id: id, name: 'Chocolate Chips')
+  ItemOption.create!(item_option_section_id: id, name: 'Sprinkles')
 end
 
 def random_review
@@ -241,7 +258,7 @@ end
 
 Review.destroy_all
 restaurant_ids.each do |id|
-  (6..14).to_a.sample.times do
+  (3..7).to_a.sample.times do
     Review.create!(user_id: User.all.pluck(:id).sample, restaurant_id: id, rating: [1, 2, 3, 4, 5].sample, review: random_review)
   end
 end

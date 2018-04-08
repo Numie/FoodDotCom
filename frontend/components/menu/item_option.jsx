@@ -14,7 +14,8 @@ class ItemOption extends React.Component {
 
   handleClick() {
     this.props.addOption(this.props.itemOption.item_option_section_id,
-      {id: this.props.itemOption.id, name: this.props.itemOption.name}
+      // {id: this.props.itemOption.id, name: this.props.itemOption.name}
+      this.props.itemOption
     );
   }
 

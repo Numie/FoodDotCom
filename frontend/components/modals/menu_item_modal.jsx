@@ -52,7 +52,7 @@ class MenuItemModal extends React.Component {
       if (orderItem && orderItem.options.get(itemOptionSection.id)) {
         option = orderItem.options.get(itemOptionSection.id);
       } else {
-        option = itemOptionSection.props.isRequired ? null : [];
+        option = itemOptionSection.isRequired ? null : new Set();
       }
       options.set(itemOptionSection.id, option);
     });
@@ -140,7 +140,15 @@ class MenuItemModal extends React.Component {
 
   addOption(optionSectionId, option) {
     const options = new Map(this.state.options);
-    options.set(optionSectionId, option);
+    if (options.get(optionSectionId) instanceof Set) {
+      if (options.get(optionSectionId).has(option)) {
+        options.get(optionSectionId).delete(option);
+      } else {
+        options.get(optionSectionId).add(option);
+      }
+    } else {
+      options.set(optionSectionId, option);
+    }
     this.setState({options});
   }
 

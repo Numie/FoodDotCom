@@ -36,9 +36,16 @@ class OrderItemUnit extends React.Component {
   render() {
     const { name, price, quantity, itemInstructions, options } = this.props.orderItem;
 
-    const optionsList = Array.from(options.values()).map(option => {
+    const optionsList = new Array();
+    Array.from(options.values()).forEach(option => {
       if (option === null) return null;
-      return <li key={option.id} className='order-item-options'>{option.name}</li>;
+      if (option instanceof Set) {
+        option.forEach(item => {
+          optionsList.push(<li key={item.id} className='order-item-options'>{item.name}</li>);
+        });
+      } else {
+        optionsList.push(<li key={option.id} className='order-item-options'>{option.name}</li>);
+      }
     });
 
     return(

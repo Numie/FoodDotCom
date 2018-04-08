@@ -15,7 +15,6 @@ class ItemOption extends React.Component {
   handleClick() {
     this.props.addOption(this.props.itemOption.item_option_section_id,
       {id: this.props.itemOption.id, name: this.props.itemOption.name}
-      // this.props.itemOption
     );
   }
 
@@ -28,8 +27,8 @@ class ItemOption extends React.Component {
       <input type={isRequired ? 'radio' : 'checkbox'} name={this.props.sectionName} onClick={this.handleClick}
         defaultChecked={this.props.orderItems[this.props.itemId] &&
         this.props.orderItems[this.props.itemId].options.get(item_option_section_id) &&
-        (this.props.orderItems[this.props.itemId].options.get(item_option_section_id) instanceof Set ?
-        Array.from(this.props.orderItems[this.props.itemId].options.get(item_option_section_id).values()).some(obj => obj.id === id) :
+        (this.props.orderItems[this.props.itemId].options.get(item_option_section_id) instanceof Array ?
+        this.props.orderItems[this.props.itemId].options.get(item_option_section_id).some(obj => obj.id === id) :
         this.props.orderItems[this.props.itemId].options.get(item_option_section_id).id === id)}/>
       <label id={name}>{name}</label>
       </div>

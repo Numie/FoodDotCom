@@ -53,7 +53,7 @@ class MenuItemModal extends React.Component {
       if (orderItem && orderItem.options.get(itemOptionSection.id)) {
         option = orderItem.options.get(itemOptionSection.id);
       } else {
-        option = itemOptionSection.isRequired ? null : new Set();
+        option = itemOptionSection.isRequired ? null : new Array();
       }
       options.set(itemOptionSection.id, option);
     });
@@ -141,7 +141,7 @@ class MenuItemModal extends React.Component {
 
   addOption(optionSectionId, option) {
     const options = new Map(this.state.options);
-    if (options.get(optionSectionId) instanceof Set) {
+    if (options.get(optionSectionId) instanceof Array) {
       let match;
       options.get(optionSectionId).forEach(obj => {
         if (isEqual(obj, option)) {
@@ -149,9 +149,10 @@ class MenuItemModal extends React.Component {
         }
       });
       if (match) {
-        options.get(optionSectionId).delete(match);
+        const idx = options.get(optionSectionId).indexOf(match);
+        options.get(optionSectionId).splice(idx, 1);
       } else {
-        options.get(optionSectionId).add(option);
+        options.get(optionSectionId).push(option);
       }
     } else {
       options.set(optionSectionId, option);

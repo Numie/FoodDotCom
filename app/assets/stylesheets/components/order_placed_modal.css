@@ -25,7 +25,13 @@
   margin: 20px 0;
 }
 
+.modal-review-subheader {
+  display: flex;
+  justify-content: space-between;
+}
+
 .modal-order-info {
+  margin-top: 10px;
   min-width: 60%;
 }
 
@@ -38,7 +44,15 @@
 }
 
 .modal-order-info h5 {
+  margin-bottom: 10px;
+}
+
+.review-link {
+  color: #2b8282;
+  font-weight: 700;
+  text-decoration: underline;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .modal-order-list {
@@ -61,6 +75,10 @@
   font-weight: 400;
 }
 
+.modal-options-list {
+  margin-left: 5%;
+}
+
 .modal-order-item-instructions {
   margin: 5px 0 20px;
   color: rgba(0, 0, 0, 0.8);
@@ -80,24 +98,31 @@
 #modal-price {
   flex-basis: 10%;
   font-weight: 700;
+  text-align: right;
+
 }
 
 .totals {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding: 0 20px;
-  margin-bottom: 20px;
-  border-bottom: 1px dashed black;
-  padding-bottom: 20px;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px 10px;
   list-style: none;
+}
+
+.totals-container {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  border-top: 1px dashed black;
+  border-bottom: 1px dashed black;
+  padding: 10px 0;
 }
 
 .totals li {
   margin: 2px 0;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  text-align: right;
 }
 
 .totals li:last-of-type {
@@ -105,35 +130,32 @@
   font-weight: 700;
 }
 
-.review-link {
-  color: #2b8282;
-  font-weight: 700;
-  text-decoration: underline;
-  margin-bottom: 20px;
-  cursor: pointer;
+.totals-amounts {
+  margin-left: 40px;
 }
 
 .modal-footer-container {
   display: none;
-  text-align: center;
+  width: 320px;
 }
 
 .modal-footer-container h5 {
+  font-size: 14px;
   margin-bottom: 5px;
 }
 
 .modal-email-send-container {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .modal-footer-container input[type="email"] {
-  width: 360px;
+  width: 250px;
   text-align: left;
   border-radius: 4px;
-  padding: 12px 16px;
+  padding: 12px 10px;
   color: black;
   font-size: 14px;
-  min-height: 44px;
+  height: 30px;
   border: 2px solid rgba(0, 0, 0, 0.3);
 }
 
@@ -149,7 +171,7 @@
   text-align: center;
   color: white;
   background-color: #2b8282;
-  min-height: 44px;
+  height: 30px;
   font-size: 14px;
   font-weight: 400;
 }

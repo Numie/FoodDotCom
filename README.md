@@ -31,6 +31,8 @@ Filter restaurant search results by rating, price and delivery fee (and more fil
 
 Menus are complicated. Every restaurant has menu items. Each item has option sections that can be required or optional. Each option section has multiple options. Users may add items to their orders, edit items, remove items or empty their bag and remove all items at once and they may take all of those actions with options as well.
 
+![Menu Item Modal](https://media.giphy.com/media/6GFcK6OWBCydfB5wt5/giphy.gif)
+
 ### *Ordering*
 
 Users must be logged in to proceed to the checkout page. If they are not logged in, they are prompted to do so. Credit card fields are only present to mimic the Seamless layout, but are not necessary to complete an order. The order, every item in the order and every option for every item is saved to its respective database table with a single AJAX request.

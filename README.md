@@ -23,13 +23,17 @@ Receiving the address is not as simple as adding an input field and button. The 
 
 ![Search Dropdown](https://media.giphy.com/media/1zhpf3fL01JHD0OjFa/giphy.gif)
 
+### *Filters*
+
+Filter restaurant search results by rating, price and delivery fee (and more filter options to come!) In order to implement this feature, the application must track which filters are active, keep a list of currently filtered restaurants and know when to show the filtered list versus the total list.
+
 ### *Menus*
 
-Each restaurant has a unique menu. Users may add items to their orders, edit items, remove items or empty their bag and remove all items at once. The menu item modal requires some edge case error handling such as only allowing items to be added to order in quantities that are integers, preventing users from decreasing the quantity below 1, and preventing accidentally large orders (the maximum quantity is set to 99).
+Menus are complicated. Every restaurant has menu items. Each item has option sections that can be required or optional. Each option section has multiple options. Users may add items to their orders, edit items, remove items or empty their bag and remove all items at once and they may take all of those actions with options as well.
 
 ### *Ordering*
 
-Users must be logged in to proceed to the checkout page. If they are not logged in, they are promopted to do so. The checkout page allows users to add a tip and delivery instructions. Credit card fields are only present to mimic the Seamless layout, but are not necessary to complete an order. If I was to implement payment processing, I would use the Authorize.net API to do so and add an SSL certificate in order to use https. Credit card information can never be saved to a database, which would be a severe PCI violation and expose the application and its owners to liability.
+Users must be logged in to proceed to the checkout page. If they are not logged in, they are prompted to do so. Credit card fields are only present to mimic the Seamless layout, but are not necessary to complete an order. The order, every item in the order and every option for every item is saved to its respective database table with a single AJAX request.
 
 ### *Reviews*
 
@@ -44,6 +48,7 @@ All modals are custom-built without use of external libraries. All pages, while 
 ## *Future*
 
 Upcoming features include:
-1. Menu item customization (add toppings, choose your preparation, etc.)
+1. ~~Menu item customization (add toppings, choose your preparation, etc.)~~
 1. Restaurant sorting by rating, price and distance.
-1. User profiles including saved addresses and order history.
+1. User profiles – Order histories.
+1. User profiles – Saved addresses.

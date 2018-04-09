@@ -27,7 +27,6 @@
 
 .modal-order-info {
   min-width: 60%;
-  margin: 30px 0 0;
 }
 
 .order-placed-modal span {
@@ -42,28 +41,45 @@
   margin-bottom: 20px;
 }
 
-.modal-order-info ul {
+.modal-order-list {
   border-top: 1px dashed black;
   padding: 20px;
-  margin-bottom: 20px;
 }
 
-.modal-order-info ul li {
+.modal-order-item {
   display: flex;
+  flex-direction: column;
   margin: 2px 0;
-  font-weight: 700;
+}
+
+.modal-order-container {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.modal-order-item span {
+  font-weight: 400;
+}
+
+.modal-order-item-instructions {
+  margin: 5px 0 20px;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 12px;
 }
 
 #modal-quantity {
-  flex-basis: 5%
+  flex-basis: 5%;
+  font-weight: 700;
 }
 
 #modal-item-name {
   flex-basis: 85%;
+  font-weight: 700;
 }
 
 #modal-price {
   flex-basis: 10%;
+  font-weight: 700;
 }
 
 .totals {
@@ -85,6 +101,7 @@
 }
 
 .totals li:last-of-type {
+  margin-top: 20px;
   font-weight: 700;
 }
 
@@ -96,17 +113,49 @@
   cursor: pointer;
 }
 
+.modal-footer-container {
+  display: none;
+  text-align: center;
+}
+
 .modal-footer-container h5 {
   margin-bottom: 5px;
 }
 
-.order-placed-modal a {
-  text-decoration: underline;
-  color: #2b8282;
+.modal-email-send-container {
+  margin-top: 20px;
 }
 
-.modal-footer-container {
+.modal-footer-container input[type="email"] {
+  width: 360px;
+  text-align: left;
+  border-radius: 4px;
+  padding: 12px 16px;
+  color: black;
+  font-size: 14px;
+  min-height: 44px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.modal-footer-container input[type="email"]:focus {
+  border: 2px solid rgba(81, 150, 238, 1);
+  box-shadow: 0 0 10px rgba(81, 150, 238, 1);
+}
+
+.modal-footer-container input[type='submit'] {
+  width: 60px;
+  margin-left: 10px;
+  border-radius: 4px;
   text-align: center;
+  color: white;
+  background-color: #2b8282;
+  min-height: 44px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.modal-footer-container input[type='submit']:hover {
+  box-shadow: inset 9999px 9999px rgba(0, 0, 0, 0.3);
 }
 
 .order-placed-modal .x-close {

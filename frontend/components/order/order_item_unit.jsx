@@ -61,7 +61,7 @@ class OrderItemUnit extends React.Component {
           <ul>
             {optionsList}
           </ul>
-          <div className='order-item-itemInstructions'>"{itemInstructions}"</div>
+          <div className='order-item-itemInstructions'>{itemInstructions ? `"${itemInstructions}"` : null}</div>
         </div>
 
         <div className='order-item-price'>${(price * quantity).toFixed(2)}</div>

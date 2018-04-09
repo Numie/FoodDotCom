@@ -167,6 +167,13 @@ class Checkout extends React.Component {
 
       if (orderItem.options) {
         orderItem.order_item_options_attributes = Array.from(orderItem.options.values());
+
+        while (orderItem.order_item_options_attributes.some(el => el instanceof Array)) {
+          orderItem.order_item_options_attributes.forEach((option, idx) => {
+            if (option instanceof Array) orderItem.order_item_options_attributes.splice(idx, 1, ...option);
+          });
+        }
+
         orderItem.order_item_options_attributes.forEach((option, idx) => {
           if (option === null) return;
           option.item_option_id = option.id;

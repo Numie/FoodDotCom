@@ -47,10 +47,18 @@
 }
 
 .order-item-options {
-  list-style: default;
+  list-style: disc inside;
+  margin: 5px 0;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
 }
 
-.order-item-options, .order-item-itemInstructions {
+.order-item-options span {
+  position: relative;
+  left: -5px;
+}
+
+.order-item-itemInstructions {
   margin: 10px 0;
   color: rgba(0, 0, 0, 0.8);
   font-size: 12px;

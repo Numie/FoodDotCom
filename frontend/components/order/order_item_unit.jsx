@@ -41,10 +41,10 @@ class OrderItemUnit extends React.Component {
       if (option === null) return null;
       if (option instanceof Array) {
         option.forEach(item => {
-          optionsList.push(<li key={item.id} className='order-item-options'>{item.name}</li>);
+          optionsList.push(<li key={item.id} className='order-item-options'><span>{item.name}</span></li>);
         });
       } else {
-        optionsList.push(<li key={option.id} className='order-item-options'>{option.name}</li>);
+        optionsList.push(<li key={option.id} className='order-item-options'><span>{option.name}</span></li>);
       }
     });
 
@@ -58,10 +58,10 @@ class OrderItemUnit extends React.Component {
             {name}
             <div className={this.props.location.pathname.includes('checkout') ? 'hidden' : 'material-icons'} id='edit-item-button'>create</div>
           </div>
-          <ul className='order-item-options'>
+          <ul>
             {optionsList}
           </ul>
-          <div className='order-item-itemInstructions'>{itemInstructions}</div>
+          <div className='order-item-itemInstructions'>"{itemInstructions}"</div>
         </div>
 
         <div className='order-item-price'>${(price * quantity).toFixed(2)}</div>

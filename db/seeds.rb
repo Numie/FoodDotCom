@@ -208,7 +208,7 @@ end
 
 MenuItem.destroy_all
 restaurant_ids.each do |id|
-  16.times do
+  12.times do
     MenuItem.create!(restaurant_id: id, name: Faker::Food.dish, description: random_descripion, price: random_price)
   end
 end
@@ -217,9 +217,10 @@ menu_item_ids = MenuItem.all.pluck(:id).to_a
 
 ItemOptionSection.destroy_all
 menu_item_ids.each do |id|
-  if id % 3 === 0
+  next if id % 7 == 0
+  if id % 3 == 0
     ItemOptionSection.create!(item_id: id, name: 'Choose your side', required?: true, min_allowed: 1, max_allowed: 1)
-  elsif id % 2 === 0
+  elsif id % 2 == 0
     ItemOptionSection.create!(item_id: id, name: 'Add toppings', required?: false, min_allowed: 0, max_allowed: 6)
   else
     ItemOptionSection.create!(item_id: id, name: 'Add toppings', required?: false, min_allowed: 0, max_allowed: 6)

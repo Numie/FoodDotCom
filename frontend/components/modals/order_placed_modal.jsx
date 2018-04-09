@@ -90,7 +90,6 @@ class OrderPlacedModal extends React.Component {
           <div className='modal-order-info'>
             <div className='modal-review-subheader'>
               <h5>Your order from <span id='modal-restaurant-name'>{restaurantName}</span> was:</h5>
-              <h5 className={'review-link'} onClick={this.goToReview}>Leave a Review</h5>
             </div>
 
             <ul className='modal-order-list'>
@@ -98,6 +97,7 @@ class OrderPlacedModal extends React.Component {
             </ul>
 
             <div className='totals'>
+              <div className={'review-link'} onClick={this.goToReview}>Leave a Review</div>
               <div className='modal-footer-container'>
                 <h5>Enter your email below and click 'send' to receive a confirmation of your order.</h5>
                 <div className='modal-email-send-container'>

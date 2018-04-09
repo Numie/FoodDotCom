@@ -12,20 +12,23 @@
 }
 
 #delete-item-button {
+  flex-basis: 18%;
   padding: 14px 16px;
   color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
 
 .order-item-quantity {
+  flex-basis: 3%;
   padding-top: 20px;
   color: rgba(0, 0, 0, 0.8);
   font-size: 16px;
 }
 
 .order-name-container {
+  width: 49%;
+  flex-basis: 49%;
   padding: 20px 10px;
-  width: 300px;
   word-wrap: break-word;
 }
 
@@ -62,9 +65,12 @@
   margin: 10px 0;
   color: rgba(0, 0, 0, 0.8);
   font-size: 12px;
+  overflow: auto;
 }
 
 .order-item-price {
+  flex-basis: 30%;
+  text-align: right;
   padding: 20px;
   color: rgba(0, 0, 0, 0.8);
   font-size: 16px;

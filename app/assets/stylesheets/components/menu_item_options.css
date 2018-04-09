@@ -1,12 +1,13 @@
 .item-option-section {
   position: relative;
   border-radius: 4px;
-  padding: 20px 20px 0 20px;
+  padding-top: 20px;
   margin-top: 10px;
 }
 
 .item-option-section-required {
   background-color: #e4e4e4;
+  padding: 20px 20px 0;
 }
 
 .item-option-section img {

@@ -14,7 +14,7 @@
 .menu-item-modal-info {
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  padding: 30px;
 }
 
 .menu-item-modal-info h1 {

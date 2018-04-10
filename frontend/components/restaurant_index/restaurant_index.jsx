@@ -6,7 +6,6 @@ import { clearFilters } from '../../actions/restaurant_actions';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => ({
-  // restaurants: Object.values(state.entities.filteredRestaurants).length === 0 ? Object.values(state.entities.restaurants) : Object.values(state.entities.filteredRestaurants)
   restaurants: Object.values(state.entities.restaurants),
   filteredRestaurants: Object.values(state.entities.filteredRestaurants),
   activeFilters: Object.keys(state.entities.filters).length === 0 ? false : true

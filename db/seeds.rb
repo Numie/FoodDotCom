@@ -242,7 +242,6 @@ end
 optional_item_option_section_ids.each do |id|
   ItemOption.create!(item_option_section_id: id, name: 'Sprinkles')
   ItemOption.create!(item_option_section_id: id, name: 'Chocolate Chips')
-  ItemOption.create!(item_option_section_id: id, name: 'Marshmallows')
   ItemOption.create!(item_option_section_id: id, name: 'Cookie Dough')
   ItemOption.create!(item_option_section_id: id, name: 'Chopped Oreo\'s')
   ItemOption.create!(item_option_section_id: id, name: 'Reese\'s Peanut Butter Cups')

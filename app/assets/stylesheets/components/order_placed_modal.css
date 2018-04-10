@@ -133,22 +133,29 @@
   margin-left: 40px;
 }
 
-.modal-footer-container {
-  display: none;
-  width: 320px;
+.totals-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
 }
 
-.modal-footer-container h5 {
-  font-size: 14px;
+.modal-footer-container {
+  margin-bottom: 20px;
+}
+
+.modal-footer-container h6 {
+  font-size: 12px;
   margin-bottom: 5px;
 }
 
 .modal-email-send-container {
-  margin-top: 15px;
+  display: flex;
+  margin-top: 5px;
 }
 
 .modal-footer-container input[type="email"] {
-  width: 250px;
+  width: 185px;
   text-align: left;
   border-radius: 4px;
   padding: 12px 10px;
@@ -164,8 +171,8 @@
 }
 
 .modal-footer-container input[type='submit'] {
-  width: 60px;
-  margin-left: 10px;
+  width: 50px;
+  margin-left: 5px;
   border-radius: 4px;
   text-align: center;
   color: white;

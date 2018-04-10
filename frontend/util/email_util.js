@@ -1,8 +1,8 @@
-export const sendOrderConfirmation = (email, order) => {
+export const sendOrderConfirmation = (email, order, items) => {
   debugger
   return $.ajax({
-    method: 'GET',
+    method: 'POST',
     url: '/api/order_confirmation_email',
-    data: {order, email}
+    data: {order, email, items}
   });
 };

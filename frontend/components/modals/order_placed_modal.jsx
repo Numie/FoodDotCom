@@ -61,12 +61,12 @@ class OrderPlacedModal extends React.Component {
     this.props.history.push(`/restaurants/${restaurantId}`);
   }
 
-  sendOrderConfirmation() {
+  sendOrderConfirmation(e) {
+    e.preventDefault();
     const email = this.state.email;
     const order = this.props.order;
-    const items = this.props.orderItems;
-    debugger
-    this.props.sendOrderConfirmation(email, order, orderItems);
+    const items = Object.values(this.props.orderItems);
+    this.props.sendOrderConfirmation(email, order, items);
   }
 
   render() {
@@ -112,12 +112,14 @@ class OrderPlacedModal extends React.Component {
             </ul>
 
             <div className='totals'>
-              <div className={'review-link'} onClick={this.goToReview}>Leave a Review</div>
-              <div className='modal-footer-container'>
-                <h5>Enter your email below and click 'send' to receive a confirmation of your order.</h5>
-                <div className='modal-email-send-container'>
-                  <input type='email' placeholder='Email' value={`${this.state.email}`} onChange={this.handleChange} />
-                  <input type='submit' value='Send' />
+              <div className='totals-actions'>
+                <div className='review-link' onClick={this.goToReview}>Leave a Review</div>
+                <div className='modal-footer-container'>
+                  <h6>Receive an email receipt of your order below.</h6>
+                  <div className='modal-email-send-container'>
+                    <input type='email' placeholder='Email' value={`${this.state.email}`} onChange={this.handleChange()} />
+                    <input type='submit' value='Send' onClick={this.sendOrderConfirmation} />
+                  </div>
                 </div>
               </div>
 

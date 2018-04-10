@@ -10,12 +10,6 @@ class Api::OrdersController < ApplicationController
     end
   end
 
-  def show
-    order = Order.new(order_params)
-    email = UserMailer.order_confirmation_email(order)
-    email.deliver_now
-  end
-
   private
 
   def order_params

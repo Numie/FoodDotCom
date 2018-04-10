@@ -2,6 +2,7 @@ import React from 'react';
 import { deleteAllItems } from '../../actions/order_item_actions';
 import { deleteOrder, deleteOrderItems } from '../../session_storage/session_storage';
 import { removeCheckoutInfo } from '../../actions/checkout_actions';
+import { sendOrderConfirmation } from '../../actions/email_actions';
 import { toggleOrderPlacedModal, toggleReviewModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -14,6 +15,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   deleteAllItems: () => dispatch(deleteAllItems()),
   removeCheckoutInfo: () => dispatch(removeCheckoutInfo()),
+  sendOrderConfirmation: (email, order, items) => dispatch(sendOrderConfirmation(email, order, items)),
   toggleOrderPlacedModal: () => dispatch(toggleOrderPlacedModal()),
   toggleReviewModal: () => dispatch(toggleReviewModal())
 });
@@ -26,11 +28,16 @@ class OrderPlacedModal extends React.Component {
       email: ""
     };
 
+    this.handleChange = this.handleChange.bind(this);
     this.toggleOrderPlacedModal = this.toggleOrderPlacedModal.bind(this);
     this.goToReview = this.goToReview.bind(this);
+    this.sendOrderConfirmation = this.sendOrderConfirmation.bind(this);
   }
 
-  componentDidMount() {
+  handleChange() {
+    return(e) => {
+      this.setState({email: e.target.value});
+    }
   }
 
   toggleOrderPlacedModal(e) {
@@ -52,6 +59,14 @@ class OrderPlacedModal extends React.Component {
     this.props.toggleOrderPlacedModal();
     this.props.toggleReviewModal();
     this.props.history.push(`/restaurants/${restaurantId}`);
+  }
+
+  sendOrderConfirmation() {
+    const email = this.state.email;
+    const order = this.props.order;
+    const items = this.props.orderItems;
+    debugger
+    this.props.sendOrderConfirmation(email, order, orderItems);
   }
 
   render() {
@@ -101,7 +116,7 @@ class OrderPlacedModal extends React.Component {
               <div className='modal-footer-container'>
                 <h5>Enter your email below and click 'send' to receive a confirmation of your order.</h5>
                 <div className='modal-email-send-container'>
-                  <input type='email' placeholder='Email' value={`${this.state.email}`} />
+                  <input type='email' placeholder='Email' value={`${this.state.email}`} onChange={this.handleChange} />
                   <input type='submit' value='Send' />
                 </div>
               </div>

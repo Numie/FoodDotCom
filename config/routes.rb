@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       resources :menu_items, only: [:index]
       resources :reviews, only: [:index, :create]
     end
-    resources :orders, only: [:create] do
-    end
+    resources :orders, only: [:create]
+    resource :order_confirmation_email, only: [:create]
   end
 end

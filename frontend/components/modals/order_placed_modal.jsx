@@ -4,6 +4,7 @@ import { deleteOrder, deleteOrderItems } from '../../session_storage/session_sto
 import { removeCheckoutInfo } from '../../actions/checkout_actions';
 import { sendOrderConfirmation } from '../../actions/email_actions';
 import { toggleOrderPlacedModal, toggleReviewModal } from '../../actions/modal_actions';
+import { pick, pickBy, merge } from 'lodash';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -64,8 +65,34 @@ class OrderPlacedModal extends React.Component {
   sendOrderConfirmation(e) {
     e.preventDefault();
     const email = this.state.email;
-    const order = this.props.order;
-    const items = Object.values(this.props.orderItems);
+
+    let order = merge({}, this.props.order);
+    order.restaurant_name = order.restaurantName;
+    order.delivery_fee = order.deliveryFee;
+    order = pick(order, ['restaurant_name', 'subtotal', 'delivery_fee', 'tax', 'tip', 'total']);
+
+    let items = Object.values(this.props.orderItems);
+    items.forEach((item, idx) => {
+      item.item_instructions = item.itemInstructions;
+
+      if (item.options) {
+        item.options = Array.from(item.options.values());
+
+        while (item.options.some(el => el instanceof Array)) {
+          item.options.forEach((option, idx) => {
+            if (option instanceof Array) item.options.splice(idx, 1, ...option);
+          });
+        }
+
+        item.options.forEach((option, idx) => {
+          if (option === null) return;
+          item.options[idx] = pick(option, 'name');
+        });
+      }
+
+      items[idx] = pick(item, ['name', 'price', 'quantity', 'item_instructions', 'options']);
+    });
+
     this.props.sendOrderConfirmation(email, order, items);
   }
 

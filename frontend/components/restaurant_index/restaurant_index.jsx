@@ -21,6 +21,7 @@ class RestaurantIndex extends React.Component {
 
   componentDidMount() {
     this.props.deleteAllItems();
+    this.props.clearFilters();
   }
 
   render() {

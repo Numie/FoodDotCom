@@ -50,7 +50,8 @@ All modals are custom-built without use of external libraries. All pages, while 
 ## *Future*
 
 Upcoming features include:
-1. ~~Menu item customization (add toppings, choose your preparation, etc.)~~
+1. ~~Menu item customization (add toppings, etc.)~~
+1. Email order confirmations.
 1. Restaurant sorting by rating, price and distance.
 1. User profiles – Order histories.
 1. User profiles – Saved addresses.

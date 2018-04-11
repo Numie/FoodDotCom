@@ -10,6 +10,6 @@ Rails.application.routes.draw do
       resources :reviews, only: [:index, :create]
     end
     resources :orders, only: [:create]
-    resource :order_confirmation_email, only: [:create]
   end
+  resource :order_confirmation_email, only: [:create]
 end

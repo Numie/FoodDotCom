@@ -1,7 +1,6 @@
-class Api::OrderConfirmationEmailsController < ApplicationController
+class OrderConfirmationEmailsController < ApplicationController
 
   def create
-    debugger
     email = params[:email]
     order = params[:order]
     items = params[:items]

@@ -1,9 +1,25 @@
-Welcome to example.com, name
+Food.com
 ===============================================
+Your order from <%= @order['restaurant_name'] %> was:
 
-You have successfully signed up to example.com,
-your username is: login.
+<% @items.each do |item| %>
+  <%= item['quantity'] %> <%= item['name'] %> <%= sprintf('%.2f', (item['price'].to_f * item['quantity'].to_f)) %>
+  <% item['options'].values.each do |option| %>
+    <%= option['name'] %>
+  <% end %>
+  <%= item['item_instructions'] %>
+<% end %>
 
-To login to the site, just follow this link:.
+---------------
+Subtotal: $<%= sprintf('%.2f', @order['subtotal'].to_f.round(2)) %>
+<% if @order['delivery_fee'] %>
+Delivery Fee: $<%= sprintf('%.2f', @order['delivery_fee'].to_f) %>
+<% end %>
+Tax:  $<%= sprintf('%.2f', @order['tax'].to_f.round(2)) %>
+Tip:  $<%= sprintf('%.2f', (@order['tip'].to_f * @order['subtotal'].to_f)) %>
+---------------
+Total:  $<%= sprintf('%.2f', @order['total'].to_f.round(2)) %>
+===============
 
-Thanks for joining and have a great day!
+
+Thank you for your order!

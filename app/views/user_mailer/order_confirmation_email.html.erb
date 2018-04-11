@@ -30,7 +30,7 @@
       <div style='width: 20%; flex-basis: 20%;'></div>
       <div style='width: 80%; flex-basis: 80%;'>
         <div style='display: flex; justify-content: flex-end;'><div style='margin-right: 5%; text-align: right;'>Subtotal:</div><div style='width: 80px; text-align: right;'>$<%= sprintf('%.2f', @order['subtotal'].to_f.round(2)) %></div></div>
-        <% if @order['delivery_fee'] %>
+        <% if @order['delivery_fee'] != '0' %>
           <div style='display: flex; justify-content: flex-end;'><div style='margin-right: 5%; text-align: right;'>Delivery Fee:</div><div style='width: 80px; text-align: right;'>$<%= sprintf('%.2f', @order['delivery_fee'].to_f) %></div></div>
         <% end %>
         <div style='display: flex; justify-content: flex-end;'><div style='margin-right: 5%; text-align: right;'>Tax:</div><div style='width: 80px; text-align: right;'>$<%= sprintf('%.2f', @order['tax'].to_f.round(2)) %></div></div>

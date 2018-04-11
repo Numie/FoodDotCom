@@ -20,6 +20,16 @@ class UserMailerPreview < ActionMailer::Preview
           "0"=>{"name"=>"French Fries"},
           "1"=>{"name"=>"Sprinkles"}
         }
+      },
+      "1"=>{
+        "name"=>"Souvlaki",
+        "price"=>"10.14",
+        "quantity"=>"1",
+        "item_instructions"=>"when i wake up early in the morning stay in bed im still yawning when im in the middle of a dream lift my head float of stream",
+        "options"=>{
+          "0"=>{"name"=>"French Fries"},
+          "1"=>{"name"=>"Sprinkles"}
+        }
       }
     }
     UserMailer.order_confirmation_email(email, order, items)

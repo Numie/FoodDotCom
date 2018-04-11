@@ -3,23 +3,41 @@
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
-  <body>
-    <h1>Welcome to example.com, </h1>
-    <p>
-      You have successfully signed up to example.com,
-      your username is: .<br />
-    </p>
+  <body style='max-width: 600px; margin: 0 auto; padding: 10px;'>
+    <div style='margin: 40px 0;'>
+      Your order from <strong><%= @order['restaurant_name'] %></strong> was:<br />
+    </div>
+    <ul>
     <% @items.each do |item| %>
-      <%= item['name'] %>
-      <%= item['price'] %>
-      <%= item['quantity'] %>
-      <% item['options'].values.each do |option| %>
-        <%= option['name'] %>
-      <% end %>
+      <li style='list-style: none; margin-bottom: 20px;'>
+        <div style='display: flex;'>
+          <div style='font-weight: bold; width: 5%; flex-basis: 5%;'><%= item['quantity'] %></div>
+          <div style='font-weight: bold; width: 65%; flex-basis: 65%;'><%= item['name'] %></div>
+          <div style='font-weight: bold; width: 30%; flex-basis: 30%; text-align: right;'><%= sprintf('%.2f', (item['price'].to_f * item['quantity'].to_f)) %></div>
+        </div>
+        <ul style='margin: 5px 0; list-style: disc; font-size: 14px'>
+          <% item['options'].values.each do |option| %>
+            <li>
+              <%= option['name'] %>
+            </li>
+          <% end %>
+        </ul>
+        <div style='font-size: 14px;'><%= item['item_instructions'] %></div>
+      </li>
     <% end %>
-    <p>
-      To login to the site, just follow this link:.
-    </p>
-    <p>Thanks for joining and have a great day!</p>
+    </ul>
+    <div style='display: flex; padding-left: 40px; margin-top: 40px;'>
+      <div style='width: 20%; flex-basis: 20%;'></div>
+      <div style='width: 80%; flex-basis: 80%;'>
+        <div style='display: flex; justify-content: flex-end;'><div style='margin-right: 5%; text-align: right;'>Subtotal:</div><div style='width: 80px; text-align: right;'>$<%= sprintf('%.2f', @order['subtotal'].to_f.round(2)) %></div></div>
+        <% if @order['delivery_fee'] %>
+          <div style='display: flex; justify-content: flex-end;'><div style='margin-right: 5%; text-align: right;'>Delivery Fee:</div><div style='width: 80px; text-align: right;'>$<%= sprintf('%.2f', @order['delivery_fee'].to_f) %></div></div>
+        <% end %>
+        <div style='display: flex; justify-content: flex-end;'><div style='margin-right: 5%; text-align: right;'>Tax:</div><div style='width: 80px; text-align: right;'>$<%= sprintf('%.2f', @order['tax'].to_f.round(2)) %></div></div>
+        <div style='display: flex; justify-content: flex-end;'><div style='margin-right: 5%; text-align: right;'>Tip:</div><div style='width: 80px; text-align: right;'>$<%= sprintf('%.2f', (@order['tip'].to_f * @order['subtotal'].to_f)) %></div></div>
+        <div style='display: flex; justify-content: flex-end; font-weight: bold;'><div style='margin-right: 5%; text-align: right;'>Total:</div><div style='width: 80px; text-align: right;'>$<%= sprintf('%.2f', @order['total'].to_f.round(2)) %></div></div>
+      </div>
+    </div>
+    <div style='margin: 30px auto 0; width: max-content; font-weight: bold;'>Thank you for your order!</div>
   </body>
 </html>

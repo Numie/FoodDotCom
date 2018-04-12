@@ -7,7 +7,7 @@ const defaultModalsUI = {
   sessionModal: false,
   signupModal: false,
   menuItemModal: false,
-  orderPlacedModal: true,
+  orderPlacedModal: false,
   reviewModal: false
 };
 

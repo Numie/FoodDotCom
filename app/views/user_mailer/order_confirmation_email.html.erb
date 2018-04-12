@@ -16,7 +16,7 @@
           <div style='font-weight: bold; width: 30%; flex-basis: 30%; text-align: right;'>$<%= sprintf('%.2f', (item['price'].to_f * item['quantity'].to_f)) %></div>
         </div>
         <ul style='margin: 5px 0; list-style: disc; font-size: 14px'>
-          <% item['options'].values.each do |option| %>
+          <% item['options_list'].values.each do |option| %>
             <li>
               <%= option['name'] %>
             </li>

@@ -156,6 +156,8 @@
 
 .email-sent {
   color: #2b8282;
+  font-size: 12px;
+  margin-top: 5px;
 }
 
 .modal-footer-container input[type="email"] {

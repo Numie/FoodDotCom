@@ -4,7 +4,7 @@ Your order from <%= @order['restaurant_name'] %> was:
 
 <% @items.each do |item| %>
   <%= item['quantity'] %> <%= item['name'] %> <%= sprintf('%.2f', (item['price'].to_f * item['quantity'].to_f)) %>
-  <% item['options'].values.each do |option| %>
+  <% item['options_list'].values.each do |option| %>
     <%= option['name'] %>
   <% end %>
   <%= item['item_instructions'] %>

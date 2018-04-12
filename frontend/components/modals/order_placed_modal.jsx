@@ -80,21 +80,21 @@ class OrderPlacedModal extends React.Component {
       item.item_instructions = item.itemInstructions;
 
       if (item.options) {
-        item.options = Array.from(item.options.values());
+        item.options_list = Array.from(item.options.values());
 
-        while (item.options.some(el => el instanceof Array)) {
-          item.options.forEach((option, idx) => {
-            if (option instanceof Array) item.options.splice(idx, 1, ...option);
+        while (item.options_list.some(el => el instanceof Array)) {
+          item.options_list.forEach((option, idx) => {
+            if (option instanceof Array) item.options_list.splice(idx, 1, ...option);
           });
         }
 
-        item.options.forEach((option, idx) => {
+        item.options_list.forEach((option, idx) => {
           if (option === null) return;
-          item.options[idx] = pick(option, 'name');
+          item.options_list[idx] = pick(option, 'name');
         });
       }
 
-      items[idx] = pick(item, ['name', 'price', 'quantity', 'item_instructions', 'options']);
+      items[idx] = pick(item, ['name', 'price', 'quantity', 'item_instructions', 'options_list']);
     });
 
     this.props.sendOrderConfirmation(email, order, items);
@@ -151,8 +151,8 @@ class OrderPlacedModal extends React.Component {
                   <div className='modal-email-send-container'>
                     <input type='email' placeholder='Email' value={`${this.state.email}`} onChange={this.handleChange()} />
                     <input type='submit' value='Send' onClick={this.sendOrderConfirmation} />
-                    <h6 className={this.state.emailSent ? 'email-sent' : 'hidden'}>Email confirmation sent!</h6>
                   </div>
+                  <div className={this.state.emailSent ? 'email-sent' : 'hidden'}>Your email confirmation was sent!</div>
                 </div>
               </div>
 

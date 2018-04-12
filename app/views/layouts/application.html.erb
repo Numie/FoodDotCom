@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
 
-    <%=  javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyAo82B1dCxPWWlLhFr244TV2VPabqEnLc0&libraries=places" %>
+    <%=  javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=" + "#{ENV['google_maps_api_key']}" + "&libraries=places" %>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>

@@ -155,6 +155,7 @@
 }
 
 .email-sent {
+  position: absolute;
   color: #2b8282;
   font-size: 12px;
   margin-top: 5px;

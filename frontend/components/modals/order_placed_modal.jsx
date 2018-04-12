@@ -26,7 +26,8 @@ class OrderPlacedModal extends React.Component {
     super(props);
 
     this.state = {
-      email: ""
+      email: "",
+      emailSent: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -42,6 +43,9 @@ class OrderPlacedModal extends React.Component {
   }
 
   toggleOrderPlacedModal(e) {
+    if (this.state.emailSent === true) {
+      this.setState({emailSent: false});
+    }
     if (e.target === e.currentTarget) {
       this.props.deleteAllItems();
       this.props.removeCheckoutInfo();
@@ -94,6 +98,7 @@ class OrderPlacedModal extends React.Component {
     });
 
     this.props.sendOrderConfirmation(email, order, items);
+    this.setState({email: "", emailSent: true});
   }
 
   render() {
@@ -146,6 +151,7 @@ class OrderPlacedModal extends React.Component {
                   <div className='modal-email-send-container'>
                     <input type='email' placeholder='Email' value={`${this.state.email}`} onChange={this.handleChange()} />
                     <input type='submit' value='Send' onClick={this.sendOrderConfirmation} />
+                    <h6 className={this.state.emailSent ? 'email-sent' : 'hidden'}>Email confirmation sent!</h6>
                   </div>
                 </div>
               </div>

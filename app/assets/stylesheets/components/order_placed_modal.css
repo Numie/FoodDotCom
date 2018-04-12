@@ -154,6 +154,10 @@
   margin-top: 5px;
 }
 
+.email-sent {
+  color: #2b8282;
+}
+
 .modal-footer-container input[type="email"] {
   width: 185px;
   text-align: left;

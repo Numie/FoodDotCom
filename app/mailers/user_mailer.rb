@@ -7,6 +7,6 @@ class UserMailer < ApplicationMailer
 
     attachments.inline['logo2.jpg'] = File.read('app/assets/images/logo2.jpg')
 
-    mail(to: email, subject: 'Thanks for your (fake) order!')
+    mail(from: 'no-reply@food.com', to: email, subject: 'Thanks for your (fake) order!')
   end
 end

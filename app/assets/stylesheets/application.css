@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+#error-page {
+  top: 200px;
+}
 
 .modal-container {
   position: fixed;

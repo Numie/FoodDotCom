@@ -1,6 +1,7 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-const ErrorPage = () => {
+const ErrorPage = props => {
   return (
     <div>
       <div>
@@ -10,7 +11,7 @@ const ErrorPage = () => {
             <div>
               <h1>Page Not Found!</h1>
               <h5>It looks like the page you're looking for does not exist.</h5>
-              <button>Take Me Back</button>
+              <button onClick={props.history.goBack}>Take Me Back</button>
             </div>
           </div>
         </div>
@@ -19,4 +20,4 @@ const ErrorPage = () => {
   );
 };
 
-export default ErrorPage;
+export default withRouter(ErrorPage);

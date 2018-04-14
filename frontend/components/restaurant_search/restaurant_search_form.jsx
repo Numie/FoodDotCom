@@ -23,15 +23,20 @@ export default class RestaurantSearchForm extends React.Component {
     };
     const autocomplete = new google.maps.places.Autocomplete(this.searchBar, options);
     autocomplete.addListener('place_changed', (arg) => {
+      debugger
       this.handleSubmitOnSelection();
       this.setState({address: autocomplete.getPlace().formatted_address});
     });
   }
 
   handleSubmitOnSelection() {
+    debugger
     if (this.props.location.pathname !== '/') {
+      debugger
       this.props.fetchGeocode(this.state.address).then(() => {
+        debugger
         if (this.props.address.addressComponents[0].types.includes("street number")) {
+          debugger
           this.props.fetchRestaurants(this.state.address).then(() => {
             if (this.props.restaurants.length === 0) {
               this.props.receiveErrors();

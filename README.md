@@ -37,9 +37,13 @@ Menus are complicated. Every restaurant has menu items. Each item has option sec
 
 Users must be logged in to proceed to the checkout page. If they are not logged in, they are prompted to do so. Credit card fields are only present to mimic the Seamless layout, but are not necessary to complete an order. The order, every item in the order and every option for every item is saved to its respective database table with a single AJAX request.
 
+### *Order Confirmations*
+
+After ordering, users may choose to receive an email order confirmation. Gmail mail servers are used in conjunction with Rails ActionMailer and .erb email views. A text-only version of the email is also available for email clients that only accept text formats.
+
 ### *Reviews*
 
-After ordering, users are prompted to review the restaurant. Reviews are displayed at the bottom of restaurant menu pegas and are listed in order of recency.
+After ordering, users are prompted to review the restaurant. Reviews are displayed at the bottom of restaurant menu pages and are listed in order of recency.
 
 ![Reviews](https://media.giphy.com/media/RIj22WFEz5hUBlTTHl/giphy.gif)
 
@@ -51,7 +55,7 @@ All modals are custom-built without use of external libraries. All pages, while 
 
 Upcoming features include:
 1. ~~Menu item customization (add toppings, etc.)~~
-1. Email order confirmations.
+1. ~~Email order confirmations.~~
 1. Restaurant sorting by rating, price and distance.
 1. User profiles – Order histories.
 1. User profiles – Saved addresses.
